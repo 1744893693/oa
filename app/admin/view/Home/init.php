@@ -12,7 +12,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">layui 后台布局</div>
+        <div class="layui-logo" id="title"></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" id="top-menu">
 <!--            <li class="layui-nav-item"><a href="">控制台</a></li>-->
@@ -82,34 +82,55 @@
 </div>
 <script>
     //JavaScript代码区域
+   ;
     var menu=[]
-     $.post('./?s=admin/home/menu',function (data) {
+     $.post('./?s=admin/home/menu',{name:'shen'},function (data) {
          menu=data
-         for(val of data){
-             if(val.region==1){
-                 $('#top-menu').append('<li class="layui-nav-item"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
+         if(1){ //session里面拿到的用户信息。如果里面的用户是董事会成员（val==menu.）则进入
+             var count=0
+             for(val of menu.department){
+                 if(count!==0){
 
+                     if(val.company_id==1){
+
+                         $('#top-menu').append('<li class="layui-nav-item"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
+                     }
+                 }else{
+                     $('#title').html(val.name+'管理系统')
+                 }
+                 count++
+             }
+         }else {
+             for(val of menu.menu){
+                 if(val.department_id==3){
+                     $('#top-menu').append('<li class="layui-nav-item"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
+
+                 }
              }
          }
 
 
+
+
      },'json')
+    layui.use('element', function(){
+        var element = layui.element;
+
+    })
+
 //        $('iframe')[0].contentWindow.location.href='https://www.baidu.com/'
     function menu_child(id){
         $('#left_menu').html('')
-        for(val of menu){
-            if(val.pid==id){
-                console.log(val.name)
+        for(val of menu.menu){
+            if(val.department_id==id){
+
                 $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:">'+val.name+'</a></li>')
 
             }
         }
 
     }
-    layui.use('element', function(){
-        var element = layui.element;
 
-    });
 </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
  */
 header("Content-Type:text/html;charset=utf-8");
 date_default_timezone_set("UTC");
-$route=isset($_GET['s'])?$_GET['s']:'admin/Login/init';
+$route=isset($_GET['s'])?$_GET['s']:'admin/login/init';
 function __autoload($class){
     include_once $class.'.php';
 }

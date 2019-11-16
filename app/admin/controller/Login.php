@@ -12,6 +12,6 @@ namespace app\admin\controller;
 class login
 {
      function init(){
-         include_once './app/admin/view/Login/init.php';
+         include_once './app/admin/view/login/init.php';
      }
 }
