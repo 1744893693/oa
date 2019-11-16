@@ -1,0 +1,31 @@
+@keyframes myfirst
+{
+
+    0%{
+        opacity: 0;
+        top: 55px;
+    }
+    100% {
+        opacity: 1;
+        top: 42px;
+
+    }
+}
+.er:hover{
+    animation: myfirst 2s;
+    -moz-animation: myfirst 2s;	/* Firefox */
+    -webkit-animation: myfirst 2s;	/* Safari 和 Chrome */
+    -o-animation: myfirst 2s;
+}
+.hw{
+    height: 50px;
+    width: 50px;
+    background: black;
+    margin-top: 10px;
+}
+.borderred{
+    border: solid 10px red;
+}
+.bordergreen{
+    border: solid 10px green;
+}
