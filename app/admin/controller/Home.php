@@ -14,7 +14,7 @@ use app\admin\model\Menu;
 class Home
 {
     function init(){
-        include_once './app/admin/view/Home/init.php';
+        include_once './app/admin/view/home/init.php';
     }
     function menu(){
         $data=(new Menu())->init();

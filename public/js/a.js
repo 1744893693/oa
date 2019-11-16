@@ -42,7 +42,7 @@ $(function () {
         height:'42px',
     })
 
-    $.post('./Home.php/?s=Home/top',function (data) {
+    $.post('./home.php/?s=home/top',function (data) {
         var result=eval(('('+data+')'))
         for( val of result){
             $('.left>ul').append('<li><a href="'+val[2]+'">'+val[1]+'</a></li>')
@@ -266,7 +266,7 @@ $(function () {
         height: '50px',
         padding: '4px 0',
     })
-    $.post('./Home.php/?s=Home/mune',function (data) {
+    $.post('./home.php/?s=home/mune',function (data) {
 
         var mune=eval(('('+data+')'))
         $('.muen').append('<li clas="home"><a class="yi" href="https://www.bilibili.com/"><div class="shou">首页</div></a></li>')
@@ -327,7 +327,7 @@ $(function () {
         height:'11111px',
         margin:'0 auto'
     })
-    $.post('./Home.php/?s=Home/data',function (data) {
+    $.post('./home.php/?s=home/data',function (data) {
         var data=eval(('('+data+')'))
         $('.demo3').append('<div class="first"></div>')
         $('.first').append('<div class="fleft"></div><div class="frihgt"></div>')
@@ -355,7 +355,7 @@ $(function () {
         })
         $('.fleft').append('<ul class="pic"></ul><ul class="trit"></ul>')
         $('.pic').css('position','relative')
-        $.post('./Home.php/?s=Home/fpx',{table:'data_copy'},function (data) {
+        $.post('./home.php/?s=home/fpx',{table:'data_copy'},function (data) {
             var mune=eval(('('+data+')'))
             var m=0
             var n=4

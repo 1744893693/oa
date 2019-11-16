@@ -12,7 +12,7 @@ class Model
     public $connect;
     function __construct()
     {
-        $data=new \mysqli('127.0.0.1','root','root','oa');
+        $data=new \mysqli('106.54.76.194','blog','root321.','oa');
         $data->query('set names utf8');
         $this->connect=$data;
     }

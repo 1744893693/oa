@@ -75,7 +75,7 @@
   }
 
   /**
-   * Check if val is a valid array Home.
+   * Check if val is a valid array home.
    */
   function isValidArrayIndex (val) {
     var n = parseFloat(String(val));
@@ -329,7 +329,7 @@
   }
 
   /**
-   * Return the first Home at which a loosely equal value can be
+   * Return the first home at which a loosely equal value can be
    * found in the array (if value is a plain object, the array must
    * contain an object of the same shape), or -1 if it is not present.
    */
@@ -6528,7 +6528,7 @@
                 // e.g. for directives that uses the "inserted" hook.
                 var insert = ancestor.data.hook.insert;
                 if (insert.merged) {
-                  // start at Home 1 to avoid re-invoking component mounted hook
+                  // start at home 1 to avoid re-invoking component mounted hook
                   for (var i$2 = 1; i$2 < insert.fns.length; i$2++) {
                     insert.fns[i$2]();
                   }
@@ -9974,7 +9974,7 @@
           var parent = el.parent;
           if (iterator && iterator === exp && parent && parent.tag === 'transition-group') {
             warn$2(
-              "Do not use view-for Home as key on <transition-group> children, " +
+              "Do not use view-for home as key on <transition-group> children, " +
               "this is the same as not using keys.",
               getRawBindingAttr(el, 'key'),
               true /* tip */
