@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>oa管理系统</title>
     <link rel="stylesheet" href="./public/layui/css/layui.css">
     <script src="./public/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
@@ -46,6 +46,7 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test" id="left_menu">
+
 <!--                <li class="layui-nav-item layui-nav-itemed">-->
 <!--                    <a class="" href="javascript:;">所有商品</a>-->
 <!--                    <dl class="layui-nav-child">-->
@@ -77,7 +78,7 @@
     </div>
 
     <div class="layui-footer">
-        gfdsgfgg
+
     </div>
 </div>
 <script>
@@ -104,7 +105,6 @@
              for(val of menu.menu){
                  if(val.department_id==3){
                      $('#top-menu').append('<li class="layui-nav-item"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
-
                  }
              }
          }
@@ -112,21 +112,28 @@
 
 
 
-     },'json')
-    layui.use('element', function(){
-        var element = layui.element;
 
-    })
+     },'json')
+
 
 //        $('iframe')[0].contentWindow.location.href='https://www.baidu.com/'
     function menu_child(id){
         $('#left_menu').html('')
         for(val of menu.menu){
             if(val.department_id==id){
-
-                $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:">'+val.name+'</a></li>')
+               var audit=val.id
+                $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
 
             }
+
+            layui.use('element', function(){
+                var element = layui.element;
+            })
+        }
+        if(val.department_id==id){
+            var audit=val.id
+            $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
+            $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
         }
 
     }

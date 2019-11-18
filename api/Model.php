@@ -24,5 +24,27 @@ class Model
         }
         return $date;
     }
+    function selects()
+    {
 
+        $data=$this->connect->query('select * from company');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+    function update1($a){
+
+        $data=$this->connect->query('update company set status=1 WHERE id='.$a.'');
+
+        return $data;
+
+    }
+    function update0($a){
+        $data=$this->connect->query('update company set status=0 WHERE id='.$a.'');
+
+        return $data;
+
+    }
 }
