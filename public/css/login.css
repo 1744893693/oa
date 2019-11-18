@@ -1,0 +1,76 @@
+.b{
+    font-family:Arial, Helvetica, sans-serif;
+    background:url('../img/grass.jpg');
+    font-size:13px;
+}
+img{
+    border:0;
+}
+.lg{width:500px; height:500px; margin:100px auto; background:url('../img/login_bg.png') no-repeat;}
+.lg_top{ height:200px; width:468px;}
+.lg_main{width:400px; height:200px; margin:0 25px;}
+.lg_m_1{
+    width:290px;
+    height:100px;
+    padding:60px 55px 20px 55px;
+}
+.ur{
+    height:34px;
+    border:0;
+    color:#666;
+    width:236px;
+    margin:4px 28px;
+    background:url('../img/user.png') no-repeat;
+    padding-left:10px;
+    font-size:16pt;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.pw{
+     height:34px;
+     border:0;
+     color:#666;
+     width:236px;
+     margin:4px 28px;
+     background:url('../img/password.png') no-repeat;
+     padding-left:10px;
+     font-size:16pt;
+     font-family:Arial, Helvetica, sans-serif;
+ }
+.vc{
+     height:34px;
+     border:0;
+     color:#666;
+     width:118px;
+     margin:4px 28px;
+     background:url('../img/password.png') no-repeat;
+     padding-left:10px;
+     font-size:16pt;
+     font-family:Arial, Helvetica, sans-serif;
+ }
+.yz{
+    height:34px;
+    border:0;
+    color:#666;
+    width:118px;
+    margin:-36px 142px;
+    /*background:url('../img/password.png') no-repeat;*/
+    padding-left:10px;
+    font-size:16pt;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.bu{width:330px;
+    height:72px;
+    text-align: center;
+    background:url('../img/enter.png') no-repeat;
+    border:0;
+    display:block;
+    font-size:25px;
+    color:#fff;
+    margin-left: -80px;
+    margin-top:-6px;
+}
+.lg_foot{
+    height:75px;
+    width:330px;
+    padding: 6px 68px 0 68px;
+}
