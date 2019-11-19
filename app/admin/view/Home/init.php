@@ -83,13 +83,13 @@
 </div>
 <script>
     //JavaScript代码区域
-    layui.use('element', function(){
-        var element = layui.element;
-    })
+
     var menu=[]
      $.post('./?s=admin/home/menu',function (data) {
          menu=data
-
+         layui.use('element', function(){
+             var element = layui.element;
+         })
          if(1){ //session里面拿到的用户信息。如果里面的用户是董事会成员（val==menu.）则进入
              var count=0
              for(val of menu.department){
@@ -137,16 +137,16 @@
 
             }
 
-
+            layui.use('element', function(){
+                var element = layui.element;
+            })
         }
 //        if(val.department_id==id){
 //            var audit=val.id
 //            $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
 ////            $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
 //        }
-        layui.use('element', function(){
-            var element = layui.element;
-        })
+
     }
 
 </script>
