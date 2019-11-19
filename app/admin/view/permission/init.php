@@ -11,10 +11,10 @@
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
-<body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-
-    <div class="layui-body">
+<body >
+<!--<div class="layui-layout layui-layout-admin">-->
+<!---->
+<!--    <div class="layui-body">-->
         <!-- 内容主体区域 -->
         <a href="" style="font-size:150% ">首页</a>/
         <a href="" style="font-size:150% ">演示</a>/
@@ -41,14 +41,14 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-    </div>
+<!--    </div>-->
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
         <!--© layui.com - 底部固定区域-->
         <div id="demo7"></div>
     </div>
-</div>
+<!--</div>-->
 
 <script type="text/javascript">
     layui.use('table', function(){
@@ -65,10 +65,8 @@
             cols: [[ //表头
                 {field:'checkbox',type:'checkbox', width:150, sort: true},
                 {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'name', title: '名字', width:150},
-                {field: 'pwd', title: '密码', width:150},
-                {field: 'key', title: 'key', width:150},
-                {field: 'type', title: '类型', width:150},
+                {field: 'functional-grade', title: '职能等级', width:150},
+                {field: 'companyId', title: '公司', width:150},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]],
             id: 'testReload'
@@ -82,7 +80,7 @@
                 if(obj.event === 'del'){
                     layer.confirm('真的删除ID为：'+data.id+"的用户吗?", function(index){
                         $.ajax({
-                            url:"{:url('admin/accountlist/del')}",
+                            url:"./?s=admin/permission/delate_permission",
                             type:'post',
                             data:{'id':data.id},//向服务端发送删除的id
                             success:function(data){
@@ -108,46 +106,11 @@
                 } else if(obj.event === 'detail'){
                     layer.msg('name：'+ data.name  )
                 }
-            });
-        //重载
-        $(function () {
-            $('#check').click(function () {
-                var demoReload=$('#demoReload').val();
-                $.ajax({
-                    url:'{:url("admin/Accountlist/con")}',
-                    data:{demoReload:demoReload},
-                    dataType:'json',
-                    type:'post',
-                    success:function (data) {
-                        layui.use('layer', function(){
-                            var layer = layui.layer;
-                            layer.msg(data.data);
-                        });
-                    }
-                })
-                active = {
-                    reload: function(){
-                        var demoReload = $('#demoReload');
-                        //执行重载
-                        table.reload('testReload', {
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                            ,where: {
-                                key: {
-                                    id: demoReload.val()
-                                }
-                            }
-                        }, 'data');
-                    }
-                }
-                $('.demoTable .layui-btn').on('click', function(){
-                    var type = $(this).data('type');
-                    active[type] ? active[type].call(this) : '';
-                });
             })
-        })
-    })
+
+            })
+
+
 
 </script>
 </body>
