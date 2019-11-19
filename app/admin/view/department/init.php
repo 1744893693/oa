@@ -25,16 +25,15 @@
 </script>
 
 
-<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
+<script src="./public/layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
 <script>
     layui.use('table', function(){
         var table = layui.table;
-
         table.render({
             elem: '#test'
-            ,url:'/?s=admin/Department/select'
+            ,url:'./?s=admin/Department/select'
             ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -43,7 +42,7 @@
             }]
             ,title: '用户数据表'
             ,cols: [[
-                {type: 'checkbox', fixed: 'left'}
+                ,{type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
                 ,{field:'name', title:'用户名', width:120, edit: 'text'}
                 ,{field:'company_id', title:'公司代码', width:80, edit: 'text', sort: true}

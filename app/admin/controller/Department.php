@@ -6,13 +6,15 @@
  * Time: 16:22
  */
 namespace app\admin\controller;
-use app\admin\model\Dment;
+
+use api\Model;
+
 class Department{
     function init(){
-        include_once './app/admin/view/Department/init.php';
+        include_once './app/admin/view/department/init.php';
     }
     function select(){
-        $data=( new Dment())->select();
+        $data=( new Model())->sql_operation('select * from department');
         if($data){
             $d=[];
             $d['code']=0;
@@ -20,8 +22,12 @@ class Department{
             $d['msg']="";
             $d['data']=$data;
         }
-        echo json_encode($data);
+        echo json_encode($d);
         //var_dump($data);
+    }
+    function delete(){
+        $id=$_POST['id'];
+        $data=(new Model())->sql_operation("delete from department WHERE id='$id'");
     }
 
 
