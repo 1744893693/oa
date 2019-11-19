@@ -26,7 +26,6 @@ class Model
     }
     function selects()
     {
-
         $data=$this->connect->query('select * from company');
         $dat=[];
         while ($d=mysqli_fetch_assoc($data)){
@@ -35,20 +34,28 @@ class Model
         return $dat;
     }
     function update1($a){
-
         $data=$this->connect->query('update company set status=1 WHERE id='.$a.'');
-
-<<<<<<< HEAD
         return $data;
-
     }
     function update0($a){
         $data=$this->connect->query('update company set status=0 WHERE id='.$a.'');
-
         return $data;
-
     }
-=======
+    function positionc(){
+        $data=$this->connect->query('select * from position');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+    function  positionsc($a){
+        $data=$this->connect->query(  "delete from position WHERE id='.$a.'");
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $data;
+    }
 
->>>>>>> 504df051274b1557db2884d504efc3d722ce2c24
 }

@@ -10,25 +10,35 @@
     <script src="./public/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
+<style type="text/css">
+thead {color:green}
+tbody {color:blue;height:50px}
+tfoot {color:red}
+
+</style>
 <body>
 <h1 style=" text-align:center">OA公司注册审核</h1>
-<div class="layui-btn layui-btn-lg"><a href="./?s=admin/Home/init">返回</a></div>
+<div class="layui-btn layui-btn-lg"><a href='./?s=admin/Home/init'>返回</a></div>
 <br>
-<table id="demo" lay-filter="test">
+<table border="1" width="100%" style="text-align:center">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>申请公司</th>
+        <th>法定人</th>
+        <td>状态</td>
 
+    </tr>
+    </thead>
     <?php foreach ($data as $k=>$value){?>
     <tr>
-        <?php echo $value['id']?>
-    </tr>
+        <th><?php echo $value['id']?></th>
+        <th><?php echo $value['company_name']?></th>
+        <th><?php echo $value['legal_person']?></th>
+        <th><?php echo $value['status']?></th>
 
-    <tr>
-        <?php echo $value['company_name']?>
-    </tr>
-
-    <?php echo $value['status']?>
-
-    <a href="./?s=admin/status/up&id=<?php echo $value['id']?>">同意</a>
-    <a href="./?s=admin/status/du&id=<?php echo $value['id']?>">否定</a>
+    <th><a href="./?s=admin/status/up&id=<?php echo $value['id']?>">同意</a></th>
+    <th><a href="./?s=admin/status/du&id=<?php echo $value['id']?>">否定</a></th>
     </tr>
 
 <?php }?>
