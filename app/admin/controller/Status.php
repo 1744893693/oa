@@ -43,7 +43,7 @@ class  status
             $d['msg']="";
             $d['data']=$data;
         }
-       echo json_encode($d);
+       echo json_encode();
 
     }
 }

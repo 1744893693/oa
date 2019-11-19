@@ -73,7 +73,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px; height: 100%">
-<!--            <iframe src="https://www.newduba.cn/?f=qabc&hid=94_568_68_800_&pru=1" height="100%" width="100%" frameborder="0"></iframe>-->
+            <iframe height="100%" width="100%" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -83,10 +83,13 @@
 </div>
 <script>
     //JavaScript代码区域
-
+    layui.use('element', function(){
+        var element = layui.element;
+    })
     var menu=[]
      $.post('./?s=admin/home/menu',function (data) {
          menu=data
+
          if(1){ //session里面拿到的用户信息。如果里面的用户是董事会成员（val==menu.）则进入
              var count=0
              for(val of menu.department){
@@ -109,28 +112,41 @@
              }
          }
      },'json')
-
+    function list(tt) {
+         for(val of menu.menu){
+             if(val.id==tt) {
+                 if (val.method) {
+                     $('iframe')[0].contentWindow.location.href = './?s=' + val.method
+                 }
+             }
+         }
+//
+    }
 
 //        $('iframe')[0].contentWindow.location.href='https://www.baidu.com/'
     function menu_child(id){
-        $('#left_menu').html('')
+        $('#left_menu').text('')
         for(val of menu.menu){
             if(val.department_id==id){
                var audit=val.id
-                $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
+
+                $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:list('+val.id+')">'+val.name+'</a></li>')
+
+//                $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
 //                $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
+
             }
 
-            layui.use('element', function(){
-                var element = layui.element;
-            })
-        }
-        if(val.department_id==id){
-            var audit=val.id
-            $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
-            $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
-        }
 
+        }
+//        if(val.department_id==id){
+//            var audit=val.id
+//            $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
+////            $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
+//        }
+        layui.use('element', function(){
+            var element = layui.element;
+        })
     }
 
 </script>

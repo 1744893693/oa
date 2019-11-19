@@ -17,7 +17,6 @@ class Login{
          $pwd = trim($_POST['pwd']);
          $yzm = trim($_POST['yzm']);
          $match = '/^[0-9a-zA-Z]{6,24}$/';
-
          if (!(preg_match($match, $name) || preg_match($match, $pwd))) {
              echo json_encode(array('type' => 101, 'data' => '账号或密码格式不正确！'));
              die;
