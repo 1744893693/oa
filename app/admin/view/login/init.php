@@ -27,7 +27,7 @@
                 </div>
 
             <div >
-                <img src="http://127.0.0.1/oa/yzm.php" class="yz"  alt="" onclick="this.setAttribute('src','http://127.0.0.1/oa/yzm.php')">
+                <img src="./yzm.php" class="yz"  alt="" onclick="this.setAttribute('src','http://127.0.0.1/oa/yzm.php')">
             </div>
 
         <div class="lg_foot">
