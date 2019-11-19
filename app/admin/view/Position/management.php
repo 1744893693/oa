@@ -76,18 +76,9 @@
                 var data = obj.data;
                 if(obj.event === 'del'){
                     layer.confirm('真的删除ID为：'+data.id+"的职位吗?", function(index){
-                        $.ajax({
-                            url:"./?=admin/Position/positionsc",
-                            type:'post',
-                            data:{'id':data.id},//向服务端发送删除的id
-                            success:function(data){
-                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                                layer.close(index);
-//                                console.log(index);
-                                layer.msg(data.data);
-                            }
-                        }) ;
-                        layer.close(index);
+                      $.post('./?s=admin/Position/positionsc',{id:data.id})
+                        obj.del();
+                      layer.close(index);
                     });
                 } else if(obj.event === 'edit'){
                     layui.use('layer', function(){

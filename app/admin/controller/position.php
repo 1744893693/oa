@@ -27,10 +27,9 @@ class  position{
     }
     function positionsc(){
         $d=new Model();
-        $data=$d->positionsc($_POST['id']);
-    if($data){
+        $id=$_POST['id'];
+        $d->sql_operation("delete from position WHERE id='$id'");
 
-}
     }
 
 
