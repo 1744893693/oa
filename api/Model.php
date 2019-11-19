@@ -14,6 +14,26 @@ class Model{
         $data->query('set names utf8');
         $this->connect=$data;
     }
+
+    function sql_operation($sql){
+        $data=$this->connect;
+        $data=$data->query($sql);
+
+        if (is_bool($data)){
+            return $data;
+        }else{
+            $date=[];
+            while ($val=mysqli_fetch_assoc($data)){
+                $date[]=$val;
+            }
+            return $date;
+        }
+    }
+
+
+
+
+
     function select($table){
         $data=$this->connect->query('select * from '.$table );
         $date=[];
@@ -50,13 +70,4 @@ class Model{
         }
         return $dat;
     }
-    function  positionsc($a){
-        $data=$this->connect->query(  "delete from position WHERE id='.$a.'");
-        $dat=[];
-        while ($d=mysqli_fetch_assoc($data)){
-            $dat[]=$d;
-        }
-        return $data;
-    }
-
 }
