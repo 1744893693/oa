@@ -27,7 +27,7 @@
                 </div>
 
             <div >
-                <img src="http://127.0.0.1/oa/yzm.php" class="yz"  alt="" onclick="this.setAttribute('src','http://127.0.0.1/oa/yzm.php')">
+                <img src="./yzm.php" class="yz"  alt="" onclick="this.setAttribute('src','http://127.0.0.1/oa/yzm.php')">
             </div>
 
         <div class="lg_foot">
@@ -81,9 +81,11 @@
                     dataType:'json',
                     type:'post',
                     success:function (type) {
-
+                        if(type.type==201){
                             alert(type.data)
                             window.location.href="./?s=admin/home/init"
+                        }
+                        alert(type.data)
                     },
                     error:function (type) {
                 }

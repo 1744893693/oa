@@ -29,6 +29,9 @@ class  status
         $d->update0($_GET['id']);
         header('Location:http://127.0.0.1/oa/?s=admin/status/company');
     }
+
+
+
     function layuia(){
 
         $d=new Model();
