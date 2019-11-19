@@ -83,9 +83,9 @@
 </div>
 <script>
     //JavaScript代码区域
-   ;
+
     var menu=[]
-     $.post('./?s=admin/home/menu',{name:'shen'},function (data) {
+     $.post('./?s=admin/home/menu',function (data) {
          menu=data
          if(1){ //session里面拿到的用户信息。如果里面的用户是董事会成员（val==menu.）则进入
              var count=0
@@ -108,11 +108,6 @@
                  }
              }
          }
-
-
-
-
-
      },'json')
 
 

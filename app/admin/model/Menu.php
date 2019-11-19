@@ -26,9 +26,7 @@ class menu{
 
         return $data;
     }
-<<<<<<< HEAD
 
-=======
     function permi(){
         $d =  new \mysqli('106.54.76.194','blog','root321.','oa');
         $s = $d->query('set name utf8');
@@ -40,5 +38,5 @@ class menu{
         $d->close();
         return $data;
     }
->>>>>>> 504df051274b1557db2884d504efc3d722ce2c24
+
 }

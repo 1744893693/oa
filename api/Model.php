@@ -37,10 +37,7 @@ class Model
     function update1($a){
 
         $data=$this->connect->query('update company set status=1 WHERE id='.$a.'');
-
-<<<<<<< HEAD
         return $data;
-
     }
     function update0($a){
         $data=$this->connect->query('update company set status=0 WHERE id='.$a.'');
@@ -48,7 +45,5 @@ class Model
         return $data;
 
     }
-=======
 
->>>>>>> 504df051274b1557db2884d504efc3d722ce2c24
 }

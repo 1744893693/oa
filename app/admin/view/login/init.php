@@ -83,7 +83,7 @@
                     success:function (type) {
 
                             alert(type.data)
-//                            window.location.href="./?s=admin/Home/init"
+                            window.location.href="./?s=admin/home/init"
                     },
                     error:function (type) {
                 }
