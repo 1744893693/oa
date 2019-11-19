@@ -81,9 +81,11 @@
                     dataType:'json',
                     type:'post',
                     success:function (type) {
-
+                        if(type.type==201){
                             alert(type.data)
-//                            window.location.href="./?s=admin/Home/init"
+                            window.location.href="./?s=admin/home/init"
+                        }
+                        alert(type.data)
                     },
                     error:function (type) {
                 }

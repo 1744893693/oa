@@ -8,7 +8,7 @@
 
 namespace app\admin\model;
 use \api\Model;
-class menu{
+class Menu{
     function init(){
         $data['department']=(new Model())->select('department');
         $data['menu']=(new Model())->select('menu');
@@ -23,7 +23,6 @@ class menu{
             $data[]=$da;
         }
         $d->close();
-
         return $data;
     }
 
@@ -38,5 +37,18 @@ class menu{
         $d->close();
         return $data;
     }
+
+    function employ(){
+        $d =  new \mysqli('106.54.76.194','blog','root321.','oa');
+        $s = $d->query('set name utf8');
+        $s = $d->query('select * from user ');
+        $data=[];
+        while ($da=mysqli_fetch_assoc($s)){
+            $data[]=$da;
+        }
+        $d->close();
+        return $data;
+    }
+
 
 }

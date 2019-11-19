@@ -7,10 +7,12 @@
  */
 header("Content-Type:text/html;charset=utf-8");
 date_default_timezone_set("UTC");
-function __autoload($class){
-    include_once $class.'.php';
+spl_autoload_register('autoload');
+function autoload($class){
+   $c = strtr($class,'\\','/');
+    include_once $c.'.php';
 }
-$route=isset($_GET['s'])?$_GET['s']:'admin/login/init';
+$route=isset($_GET['s'])?$_GET['s']:'admin/Login/init';
 $route=explode('/',$route);
 
 $controller='app\\'.$route[0].'\\controller\\'.$route[1];
