@@ -118,7 +118,7 @@
             if(val.department_id==id){
                var audit=val.id
                 $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
-
+//                $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
             }
 
             layui.use('element', function(){

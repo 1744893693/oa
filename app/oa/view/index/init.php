@@ -98,8 +98,8 @@
                     type:'post',
                     dataType:'json',
                     success:function(aha) {
-                        alert(aha)
-                        window.location.href='./?s=admin/login/init'
+                        alert('注册申请已提交，请耐心等待')
+                        //window.location.href='./?s=admin/login/init'
                     }
                 })
             })

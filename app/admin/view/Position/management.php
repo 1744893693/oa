@@ -16,12 +16,10 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <a href="" style="font-size:150% ">首页</a>/
-        <a href="" style="font-size:150% ">演示</a>/
-        <a href="" style="font-size:150% ">导航元素</a>
+
 
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend style="font-size:150% ">职能等级</legend>
+            <legend style="font-size:150% ">公司职位</legend>
         </fieldset>
 
         <table id="demo" lay-filter="test"></table>
@@ -55,7 +53,7 @@
         var table = layui.table;
         table.render({
             elem: '#demo',//指定表格元素
-            url: './?s=admin/permission/permission',//请求路径
+            url: './?s=admin/Position/managements',//请求路径
             toolbar: '#toolbarDemo', //开启头部工具栏，并为其绑定左侧模板
             defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示',
@@ -63,13 +61,10 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[ //表头
-                {field:'checkbox',type:'checkbox', width:150, sort: true},
-                {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'name', title: '名字', width:150},
-                {field: 'pwd', title: '密码', width:150},
-                {field: 'key', title: 'key', width:150},
-                {field: 'type', title: '类型', width:150},
-                {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                {field:'id',type:'checkbox', width:150,sort: true},
+                {field: 'position_name', title: 'ID', width:150, sort: true},
+                {field: 'status', title: '名字', width:150},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]],
             id: 'testReload'
             ,page: true
@@ -80,15 +75,15 @@
             table.on('tool(test)', function(obj){
                 var data = obj.data;
                 if(obj.event === 'del'){
-                    layer.confirm('真的删除ID为：'+data.id+"的用户吗?", function(index){
+                    layer.confirm('真的删除ID为：'+data.id+"的职位吗?", function(index){
                         $.ajax({
-                            url:"{:url('admin/accountlist/del')}",
+                            url:"./?=admin/Position/positionsc",
                             type:'post',
                             data:{'id':data.id},//向服务端发送删除的id
                             success:function(data){
                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                 layer.close(index);
-                                console.log(index);
+//                                console.log(index);
                                 layer.msg(data.data);
                             }
                         }) ;
