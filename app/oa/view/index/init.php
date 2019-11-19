@@ -99,6 +99,7 @@
                     dataType:'json',
                     success:function(aha) {
                         alert(aha)
+                        window.location.href='./?s=admin/login/init'
                     }
                 })
             })
