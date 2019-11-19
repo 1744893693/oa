@@ -7,11 +7,9 @@
  * Time: 11:18
  */
 namespace api;
-class Model
-{
+class Model{
     public $connect;
-    function __construct()
-    {
+    function __construct(){
         $data=new \mysqli('106.54.76.194','blog','root321.','oa');
         $data->query('set names utf8');
         $this->connect=$data;
@@ -24,9 +22,7 @@ class Model
         }
         return $date;
     }
-    function selects()
-    {
-
+    function selects(){
         $data=$this->connect->query('select * from company');
         $dat=[];
         while ($d=mysqli_fetch_assoc($data)){
@@ -35,15 +31,11 @@ class Model
         return $dat;
     }
     function update1($a){
-
         $data=$this->connect->query('update company set status=1 WHERE id='.$a.'');
         return $data;
     }
     function update0($a){
         $data=$this->connect->query('update company set status=0 WHERE id='.$a.'');
-
         return $data;
-
     }
-
 }

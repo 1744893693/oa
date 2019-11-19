@@ -6,7 +6,7 @@
  * Time: 9:17
  */
 namespace app\admin\controller;
-use app\admin\model\menu;
+use app\admin\model\Menu;
 class Login{
      function init(){
          include_once './app/admin/view/login/init.php';
@@ -29,7 +29,7 @@ class Login{
          else {
              session_start();
              if ($_POST['yzm'] == $_SESSION['yzm']) {
-             $aa = new menu();
+             $aa = new Menu();
              $v = $aa->log("select * from `user` where name = '".$name."'");
              if(!isset($v[0])){
                  exit(json_encode(array('type' => 106, 'data' => '账号不存在！')));
@@ -40,10 +40,10 @@ class Login{
 
              if ($v) {
                  $_SESSION['admin']=$v[0];
-                 echo json_encode(array('type' => 201, 'data' => $_SESSION['admin']['name'].'登录成功！'));
+                 exit(json_encode(array('type' => 201, 'data' => $_SESSION['admin']['name'].'登录成功！'))) ;
              }
          }else{
-                 echo json_encode(array('type' => 104, 'data' => '验证码不正确，请重新输入！'));
+                 exit(json_encode(array('type' => 104, 'data' => '验证码不正确，请重新输入！'))) ;
              }
          }
      }
