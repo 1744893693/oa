@@ -30,10 +30,6 @@ class Model{
         }
     }
 
-
-
-
-
     function select($table){
         $data=$this->connect->query('select * from '.$table );
         $date=[];
@@ -53,17 +49,25 @@ class Model{
         }
         return $dat;
     }
-    function update1($a){
-        $data=$this->connect->query('update company set status=1 WHERE id='.$a.'');
-        return $data;
-    }
-    function update0($a){
-        $data=$this->connect->query('update company set status=0 WHERE id='.$a.'');
-        return $data;
-    }
 
     function positionc(){
         $data=$this->connect->query('select * from position');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+    function employee(){
+        $data=$this->connect->query('select * from user');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+    function permiss(){
+        $data=$this->connect->query('select * from permissions');
         $dat=[];
         while ($d=mysqli_fetch_assoc($data)){
             $dat[]=$d;

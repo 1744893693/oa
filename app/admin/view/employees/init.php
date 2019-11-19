@@ -11,16 +11,16 @@
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
-<body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-
-    <div class="layui-body">
+<body >
+<!--<div class="layui-layout layui-layout-admin">-->
+<!---->
+<!--    <div class="layui-body">-->
         <!-- 内容主体区域 -->
-        <a href="" style="font-size:150% ">首页</a>/
-        <a href="" style="font-size:150% ">演示</a>/
-        <a href="" style="font-size:150% ">导航元素</a>
+<!--        <a href="" style="font-size:150% ">首页</a>/-->
+<!--        <a href="" style="font-size:150% ">演示</a>/-->
+<!--        <a href="" style="font-size:150% ">导航元素</a>-->
 
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <fieldset class="layui-elem-field layui-field-title" style="">
             <legend style="font-size:150% ">员工管理</legend>
         </fieldset>
 
@@ -41,14 +41,14 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-    </div>
+<!--    </div>-->
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
         <!--© layui.com - 底部固定区域-->
         <div id="demo7"></div>
     </div>
-</div>
+<!--</div>-->
 
 <script type="text/javascript">
     layui.use('table', function(){
@@ -81,7 +81,7 @@
                 if(obj.event === 'del'){
                     layer.confirm('真的删除ID为：'+data.id+"的用户吗?", function(index){
                         $.ajax({
-                            url:"{:url('admin/accountlist/del')}",
+                            url:"./?s=admin/employees/employee",
                             type:'post',
                             data:{'id':data.id},//向服务端发送删除的id
                             success:function(data){
@@ -100,20 +100,19 @@
                             skin:'layer-open',
                             btn:[],
                             area: ['500px', '300px'],
-                            content:'<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">编辑信息详情</legend></fieldset>' +
-                            '<form class="layui-form" action="" lay-filter="example"><div class="layui-form-item"><label class="layui-form-label">名字</label><div class="layui-input-inline"><input  id="name"  lay-verify="pass" placeholder="" autocomplete="off" class="layui-input"> </div></div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label">密码</label> <div class="layui-input-inline"> <input type="password" id="pwd" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input"> </div> <div class="layui-form-mid layui-word-aux">请填写8到24位密码</div> </div>' +
+                            content:'<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">修改信息详情</legend></fieldset>' +
+                            '<form class="layui-form" action="" lay-filter="example"><div class="layui-form-item"><label class="layui-form-label">名字</label><div class="layui-input-inline"><input  id="name"   placeholder="" autocomplete="off" class="layui-input"> </div></div>' +
+                            '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input  type="password" id="pwd"  placeholder="请输入密码" autocomplete="off" class="layui-input"> </div> </div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label">权限</label> <div class="layui-input-inline"> <input type="permission"  placeholder="请输入权限" autocomplete="off" class="layui-input"> </div>  </div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label">公司</label> <div class="layui-input-inline"> <input type="company"  placeholder="请输入公司" autocomplete="off" class="layui-input"> </div>  </div>' +
-                            '<div class="layui-form-item"> <div class="layui-input-block"> <button type="submit" id="bu" class="layui-btn" lay-submit="" lay-filter="demo1">提交</button> </div> </div>'
+                            '<div class="layui-form-item"> <div class="layui-input-block"> <button type="submit" id="bu" class="layui-btn" >提交</button> </div> </div>'
 
                         })
                     })
-
-
-                } else if(obj.event === 'detail'){
-                    layer.msg('name：'+ data.name  )
                 }
+//                else if(obj.event === 'detail'){
+//                    layer.msg('name：'+ data.name  )
+//                }
             })
     })
 

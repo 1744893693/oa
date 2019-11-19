@@ -18,19 +18,25 @@ class  status
         include_once './app/admin/view/status/company.php';
     }
     function up(){
+   $d= new Model();
+   $id=$_POST['id'];
+   $d->sql_operation("update company set status=1 WHERE id='$id'");
 
-        $d=new Model();
-        $d->update1($_GET['id']);
-      header('Location:http://127.0.0.1/oa/?s=admin/status/company');
     }
 
-    function du(){
-        $d=new Model();
-        $d->update0($_GET['id']);
-        header('Location:http://127.0.0.1/oa/?s=admin/status/company');
+    function db(){
+        $d= new Model();
+        $id=$_POST['id'];
+        $d->sql_operation("update company set status=0 WHERE id='$id'");
+
     }
 
+    function statussc(){
+        $d=new Model();
+        $id=$_POST['id'];
+        $d->sql_operation("delete from company WHERE id='$id'");
 
+    }
 
     function layuia(){
 
@@ -43,7 +49,7 @@ class  status
             $d['msg']="";
             $d['data']=$data;
         }
-       echo json_encode();
+       echo json_encode($d);
 
     }
 }
