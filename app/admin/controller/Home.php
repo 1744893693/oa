@@ -9,9 +9,10 @@
 namespace app\admin\controller;
 
 
+use api\login;
 use app\admin\model\Menu;
 
-class Home
+class Home extends login
 {
     function init(){
         include_once './app/admin/view/home/init.php';
