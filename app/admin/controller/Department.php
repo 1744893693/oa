@@ -13,6 +13,13 @@ class Department{
     }
     function select(){
         $data=( new Dment())->select();
+        if($data){
+            $d=[];
+            $d['code']=0;
+            $d['count']=100;
+            $d['msg']="";
+            $d['data']=$data;
+        }
         echo json_encode($data);
         //var_dump($data);
     }
