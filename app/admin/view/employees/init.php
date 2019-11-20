@@ -12,14 +12,6 @@
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
 <body >
-<!--<div class="layui-layout layui-layout-admin">-->
-<!---->
-<!--    <div class="layui-body">-->
-        <!-- 内容主体区域 -->
-<!--        <a href="" style="font-size:150% ">首页</a>/-->
-<!--        <a href="" style="font-size:150% ">演示</a>/-->
-<!--        <a href="" style="font-size:150% ">导航元素</a>-->
-
         <fieldset class="layui-elem-field layui-field-title" style="">
             <legend style="font-size:150% ">员工管理</legend>
         </fieldset>
@@ -33,6 +25,7 @@
                     <input class="layui-input" name="id" id="demoReload" autocomplete="off">
                 </div>
                 <button class="layui-btn" data-type="reload" id="check">搜索</button>
+                <button class="layui-btn" data-type="reload" id="insert">添加</button>
             </div>
         </script>
 
@@ -41,14 +34,12 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-<!--    </div>-->
+
 
     <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        <!--© layui.com - 底部固定区域-->
         <div id="demo7"></div>
     </div>
-<!--</div>-->
+
 
 <script type="text/javascript">
     layui.use('table', function(){
@@ -65,15 +56,15 @@
             cols: [[ //表头
                 {field:'checkbox',type:'checkbox', width:150, sort: true},
                 {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'name', title: '名字', width:150},
+                {field: 'name', title: '账号', width:150},
                 {field: 'pwd', title: '密码', width:150},
                 {field: 'type', title: '权限', width:150},
-                {field: 'company_id', title: '公司', width:150},
+                {field: 'company_id', title: '公司ID', width:150},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]],
             id: 'testReload'
             ,page: true
-            ,height: 310
+            ,height: 715
         }),
             //监听行工具事件
             table.on('tool(test)', function(obj){
@@ -90,7 +81,7 @@
                                 console.log(index);
                                 layer.msg(data.data);
                             }
-                        }) ;
+                        });
                         layer.close(index);
                     });
                 } else if(obj.event === 'edit'){
@@ -98,23 +89,61 @@
                         var layer = layui.layer;
                         layer.open({
                             skin:'layer-open',
-                            btn:[],
                             area: ['500px', '300px'],
                             content:'<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">修改信息详情</legend></fieldset>' +
-                            '<form class="layui-form" action="" lay-filter="example"><div class="layui-form-item"><label class="layui-form-label">名字</label><div class="layui-input-inline"><input  id="name"   placeholder="" autocomplete="off" class="layui-input"> </div></div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input  type="password" id="pwd"  placeholder="请输入密码" autocomplete="off" class="layui-input"> </div> </div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label">权限</label> <div class="layui-input-inline"> <input type="permission"  placeholder="请输入权限" autocomplete="off" class="layui-input"> </div>  </div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label">公司</label> <div class="layui-input-inline"> <input type="company"  placeholder="请输入公司" autocomplete="off" class="layui-input"> </div>  </div>' +
-                            '<div class="layui-form-item"> <div class="layui-input-block"> <button type="submit" id="bu" class="layui-btn" >提交</button> </div> </div>'
-
+                            '<div class="layui-form-item"><label class="layui-form-label">ID</label><div class="layui-input-inline"><input  value="'+data.id+'" name="id" lay-verify="pass" id="id"  class="layui-input"> </div></div>' +
+                            '<div class="layui-form-item"><label class="layui-form-label">账号</label><div class="layui-input-inline"><input  value="'+data.name+'" name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
+                            '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input value="'+data.pwd+'" name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
+                            '<div class="layui-form-item"> <label class="layui-form-label">权限</label> <div class="layui-input-inline"> <input value="'+data.type+'"  name="type" id="type" lay-verify="pass"   autocomplete="off" class="layui-input"> </div>  </div>' +
+                            '<div class="layui-form-item"> <label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input value="'+data.company_id+'" lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
+                            yes: function(index){
+                                $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),type:$('#type').val(),company_id:$('#company_id').val()},function (ba) {
+                                        layer.msg()
+                                        layui.table.reload('testReload');
+                                    }
+                                )
+                                layer.close(index)//如果设定了yes回调，需进行手工关闭
+                            },
                         })
                     })
                 }
-//                else if(obj.event === 'detail'){
-//                    layer.msg('name：'+ data.name  )
-//                }
+                else if(obj.event === 'detail'){
+                    layer.msg('name：'+ data.name  )
+                }
+            }),
+            $(function () {
+                $('#insert').click(function () {
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.open({
+                            skin: 'layer-open',
+                            area: ['500px', '300px'],
+                            content: '<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">添加员工信息</legend></fieldset>' +
+                            '<div ><label class="layui-form-label">ID</label><div class="layui-input-inline"><input   name="id" lay-verify="pass" id="id"  class="layui-input"> </div></div>' +
+                            '<div ><label class="layui-form-label">账号</label><div class="layui-input-inline"><input   name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
+                            '<div ><label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input  name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
+                            '<div ><label class="layui-form-label">权限</label> <div class="layui-input-inline"> <input   name="type" id="type" lay-verify="pass"   autocomplete="off" class="layui-input"> </div>  </div>' +
+                            '<div ><label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
+                            yes: function (index) {
+                                $.post('./?s=admin/Employees/em_insert', {
+                                    id: $('#id').val(),
+                                    name: $('#name').val(),
+                                    pwd: $('#pwd').val(),
+                                    type: $('#type').val(),
+                                    company_id: $('#company_id').val()
+                                }, function (data) {
+                                    layer.msg()
+                                    layui.table.reload('testReload');
+
+                                })
+                                layer.close(index)
+                            },
+                        })
+                    })
+                })
             })
     })
+
 
 </script>
 </body>

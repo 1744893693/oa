@@ -33,6 +33,7 @@
         <input class="layui-input" name="id" id="demoReload" autocomplete="off">
         </div>
         <button class="layui-btn" data-type="reload" id="check">搜索</button>
+            <button class="layui-btn" data-type="reload" id="insert">添加</button>
         </div>
         </script>
 
@@ -71,7 +72,7 @@
             ]],
             id: 'testReload'
             ,page: true
-            ,height: 310
+            ,height:715
         }),
 
             //监听行工具事件

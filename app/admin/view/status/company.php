@@ -13,9 +13,6 @@
 </head>
 <body>
 
-
-
-
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
             <legend style="font-size:150% ">OA公司注册管理</legend>
         </fieldset>
@@ -32,6 +29,9 @@
             </div>
         </script>
 
+
+
+
         <script type="text/html" id="barDemo">
             <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -39,8 +39,14 @@
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up" id="up">同意</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="db" id="db">驳回</a>
         </script>
-
-
+        
+        <div id="tan" style="display: none">
+          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+          <legend style="font-size:150% ">修改信息详情</legend></fieldset>
+            <div style=" text-align:center"  >公司ID <input type="text"id="id" name="id"></div>
+          <div style=" text-align:center" >注册公司 <input type="text" id="company_name"  name="company_name"></div>
+          <div style=" text-align:center;top: 30px">公司法人 <input type="text"id="legal_person"name="legal_person"></div>
+        </div>
 <script type="text/javascript">
     layui.use('table', function(){
         var table = layui.table;
@@ -69,84 +75,94 @@
             //监听行工具事件
             table.on('tool(test)', function(obj){
                 var data = obj.data;
+             var id= $('#id').val(data.id),
+                 company_name= $('#company_name').val(data.company_name),
+                 legal_person= $('#legal_person').val(data.legal_person);
                 if(obj.event === 'del'){
                     layer.confirm('真的删除状态为：'+data.id+"的职位吗?", function(index){
                         $.post('./?s=admin/Status/statussc',{id:data.id})
-
                         obj.del();
                         layer.close(index);
+                        layui.table.reload('testReload');
                     });
-                }
-                else if(obj.event === 'edit'){
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-                        layer.open({
-                            skin:'layer-open',
-                            btn:[],
-                            area: ['500px', '300px'],
-                        })
-                    })
                 } else if(obj.event === 'up'){
                     layer.confirm('真的修改状态为：'+data.id+"的职位吗?", function(index){
                         $.post('./?s=admin/status/up',{id:data.id})
-//                        obj.up();
                         layer.close(index);
-
-//                        layui.table.reload('test'); //重载表格
+                        layui.table.reload('testReload');
                     });
                 }else if(obj.event === 'db'){
                     layer.confirm('真的修改状态为：'+data.id+"的职位吗?", function(index){
                         $.post('./?s=admin/status/db',{id:data.id})
-
-//                        obj.db();
                         layer.close(index);
+                        layui.table.reload('testReload');
                     });
+                }else if(obj.event === 'edit'){
+
+                    layui.use('layer', function(){
+
+                        var layer = layui.layer;
+                        layer.open({
+                            skin:'layer-open',
+                            btn: ['确定', '取消'],
+                            area: ['500px', '300px'],
+                            formType:2,
+                            title:false,
+                            content:$('#tan'),
+                            shade:.0,
+                            type:1,
+                            yes: function(index){
+
+                                $.post('./?s=admin/Status/updatetan', {id:$('#id').val(),company_name:$('#company_name').val(),legal_person:$('#legal_person').val()},function (date) {
+                                        layer.msg(date)
+                                        layui.table.reload('testReload');
+                                    }
+                                )
+                                layer.close(index)
+                            },
+                        })
+                    })
                 }
-
-
 
             });
-
-
-
-        //重载
-        $(function () {
-            $('#check').click(function () {
-                var demoReload=$('#demoReload').val();
-                $.ajax({
-                    url:'./?s=admin/Status/company',
-                    data:{demoReload:demoReload},
-                    dataType:'json',
-                    type:'post',
-                    success:function (data) {
-                        layui.use('layer', function(){
-                            var layer = layui.layer;
-                            layer.msg(data.data);
-                        });
-                    }
-                })
-                active = {
-                    reload: function(){
-                        var demoReload = $('#demoReload');
-                        //执行重载
-                        table.reload('testReload', {
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                            ,where: {
-                                key: {
-                                    id: demoReload.val()
-                                }
-                            }
-                        }, 'data');
-                    }
-                }
-                $('.demoTable .layui-btn').on('click', function(){
-                    var type = $(this).data('type');
-                    active[type] ? active[type].call(this) : '';
-                });
-            })
-        })
+//        //重载
+//        $(function () {
+//            $('#check').click(function () {
+//                var demoReload=$('#demoReload').val();
+//                $.ajax({
+//                    url:'./?s=admin/Status/company',
+//                    data:{demoReload:demoReload},
+//                    dataType:'json',
+//                    type:'post',
+//                    success:function (data) {
+//                        layui.use('layer', function(){
+//                            var layer = layui.layer;
+//                            layer.msg(data.data);
+//                        });
+//                    }
+//                })
+//                active = {
+//                    reload: function(){
+//                        var demoReload = $('#demoReload');
+//                        //执行重载
+//                        table.reload('testReload', {
+//                            page: {
+//                                curr: 1 //重新从第 1 页开始
+//                            }
+//                            ,where: {
+//                                key: {
+//                                    id: demoReload.val()
+//                                }
+//                            }
+//                        }, 'data');
+//                    }
+//                }
+//                $('.demoTable .layui-btn').on('click', function(){
+//                    var type = $(this).data('type');
+//                    active[type] ? active[type].call(this) : '';
+//                });
+//            })
+//        })
     })
 
 </script>

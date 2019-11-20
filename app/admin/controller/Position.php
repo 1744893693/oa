@@ -29,9 +29,14 @@ class  position{
         $d=new Model();
         $id=$_POST['id'];
         $d->sql_operation("delete from position WHERE id='$id'");
-
     }
-
+   function updatetian (){
+       $d=new Model();
+       $id=$_POST['id'];
+       $a=$_POST['position_name'];
+       $date=$d->sql_operation("update Position set position_name='$a' WHERE  id='$id'");
+       echo  $date;
+}
 
 
 }
