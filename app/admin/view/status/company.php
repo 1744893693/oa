@@ -43,9 +43,9 @@
         <div id="tan" style="display: none">
           <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
           <legend style="font-size:150% ">修改信息详情</legend></fieldset>
-            <div style=" text-align:center"  >公司ID <input type="text"id="id" name="id"></div>
-          <div style=" text-align:center" >注册公司 <input type="text" id="company_name"  name="company_name"></div>
-          <div style=" text-align:center;top: 30px">公司法人 <input type="text"id="legal_person"name="legal_person"></div>
+
+          <div style=" text-align:center" class="layui-form-item">注册公司 <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px "></div>
+          <div style=" text-align:center;top: 30px" class="layui-form-item">公司法人<input type="text"id="legal_person"style="width: 150px;height:30px "></div>
         </div>
 <script type="text/javascript">
     layui.use('table', function(){
@@ -75,8 +75,7 @@
             //监听行工具事件
             table.on('tool(test)', function(obj){
                 var data = obj.data;
-             var id= $('#id').val(data.id),
-                 company_name= $('#company_name').val(data.company_name),
+             var company_name= $('#company_name').val(data.company_name),
                  legal_person= $('#legal_person').val(data.legal_person);
                 if(obj.event === 'del'){
                     layer.confirm('真的删除状态为：'+data.id+"的职位吗?", function(index){
@@ -113,7 +112,7 @@
                             type:1,
                             yes: function(index){
 
-                                $.post('./?s=admin/Status/updatetan', {id:$('#id').val(),company_name:$('#company_name').val(),legal_person:$('#legal_person').val()},function (date) {
+                                $.post('./?s=admin/Status/updatetan', {id:data.id,company_name:$('#company_name').val(),legal_person:$('#legal_person').val()},function (date) {
                                         layer.msg(date)
                                         layui.table.reload('testReload');
                                     }
