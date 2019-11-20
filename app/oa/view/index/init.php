@@ -22,7 +22,7 @@
 
 <div id="login-bg" class="container-fluid">
     <div class="bg-color"></div>
-    <div class="bgr-color"></div>
+    
 </div>
 
 <!-- End Backgrounds -->

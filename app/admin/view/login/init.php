@@ -27,7 +27,7 @@
                 </div>
 
             <div >
-                <img src="./yzm.php" class="yz"  alt="" onclick="this.setAttribute('src','http://127.0.0.1/oa/yzm.php')">
+                <img src="./yzm.php" class="yz"  alt="" onclick="this.setAttribute('src','./yzm.php')">
             </div>
 
         <div class="lg_foot">
@@ -83,7 +83,7 @@
                     success:function (type) {
                         if(type.type==201){
                             alert(type.data)
-                            window.location.href="./?s=admin/home/init"
+                            window.location.href="./?s=admin/Home/init"
                         }
                         alert(type.data)
                     },

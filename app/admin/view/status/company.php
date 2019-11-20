@@ -46,7 +46,7 @@
         var table = layui.table;
         table.render({
             elem: '#demo',//指定表格元素
-            url: './?s=admin/status/layuia',//请求路径
+            url: './?s=admin/Status/layuia',//请求路径
             toolbar: '#toolbarDemo', //开启头部工具栏，并为其绑定左侧模板
             defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示',
@@ -71,7 +71,7 @@
                 var data = obj.data;
                 if(obj.event === 'del'){
                     layer.confirm('真的删除状态为：'+data.id+"的职位吗?", function(index){
-                        $.post('./?s=admin/status/statussc',{id:data.id})
+                        $.post('./?s=admin/Status/statussc',{id:data.id})
 
                         obj.del();
                         layer.close(index);
@@ -114,7 +114,7 @@
             $('#check').click(function () {
                 var demoReload=$('#demoReload').val();
                 $.ajax({
-                    url:'./?s=admin/status/company',
+                    url:'./?s=admin/Status/company',
                     data:{demoReload:demoReload},
                     dataType:'json',
                     type:'post',

@@ -85,7 +85,7 @@
     //JavaScript代码区域
 
     var menu=[]
-     $.post('./?s=admin/home/menu',function (data) {
+     $.post('./?s=admin/Home/menu',function (data) {
          menu=data
          layui.use('element', function(){
              var element = layui.element;

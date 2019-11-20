@@ -9,7 +9,7 @@ namespace app\oa\controller;
 use app\oa\model\Company;
 class Index {
     function init(){
-        include_once './app/oa/view/Index/init.php';
+        include_once './app/oa/view/index/init.php';
     }
     function company(){
         $a=$_POST['a1'];
