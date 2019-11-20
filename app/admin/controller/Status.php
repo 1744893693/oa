@@ -37,9 +37,16 @@ class  status
         $d->sql_operation("delete from company WHERE id='$id'");
 
     }
+    function updatetan(){
+        $d=new Model();
+        $a=$_POST['company_name'];
+        $b=$_POST['legal_person'];
+        $id=$_POST['id'];
+       $date= $d->sql_operation("update company set company_name='$a',legal_person='$b' WHERE  id='$id'");
+        return $date;
+    }
 
     function layuia(){
-
         $d=new Model();
         $data=$d->selects();
         if($data){

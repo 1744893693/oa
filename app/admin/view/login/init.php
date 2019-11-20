@@ -81,13 +81,22 @@
                     dataType:'json',
                     type:'post',
                     success:function (type) {
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            layer.msg(type.data);
+                        })
                         if(type.type==201){
-                            alert(type.data)
+                            layer.msg(type.data)
                             window.location.href="./?s=admin/Home/init"
                         }
-                        alert(type.data)
+//                        if(type.type==201){
+//                            alert(type.data)
+//                            window.location.href="./?s=admin/Home/init"
+//                        }
+//                        alert(type.data)
                     },
                     error:function (type) {
+//                        alert(type.data)
                 }
                 })
         })
