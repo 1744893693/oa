@@ -14,7 +14,9 @@ class Index {
     function company(){
         $a=$_POST['a1'];
         $b=$_POST['b2'];
-        $data=( new Company())->insert($a,$b);
-        echo json_encode($data);
+            $data=( new Company())->insert($a,$b);
+            echo json_encode($data);
+
+
     }
 }

@@ -67,7 +67,7 @@
             })
             $('#exampleInputPassword1').keyup(function () {
                 var names = $('#exampleInputPassword1').val()
-                var pan = /^[\u4e00-\u9fa5]{2,5}$/
+                var pan = /^[\u4e00-\u9fa5]{4,8}$/
                 var tee = pan.test(names)
                 if (tee == false){  //错误变红色
                     $('#exampleInputPassword1').parent().css("border","3px solid #f00")
@@ -92,16 +92,38 @@
             var b2=$('#exampleInputPassword1').val()
 
             $('#registerid').click(function () {
-                $.ajax({
-                    url:'./?s=oa/Index/company',
-                    data:{a1:a1,b2:b2},
-                    type:'post',
-                    dataType:'json',
-                    success:function(aha) {
-                        alert('注册申请已提交，请耐心等待')
-                        //window.location.href='./?s=admin/login/init'
+                //var registerid=$('#registerid').val()
+                var a1=$('#exampleInputEmail1').val()
+                var span=/^[\u4e00-\u9fa5]{4,8}$/
+                var tee=span.test(a1)
+                var b2=$('#exampleInputPassword1').val()
+                var tee=span.test(b2)
+
+                if(a1==''){
+                    alert('名字不能为空')
+                    return false
+                }else {
+                    if(tee==false){
+                        alert('格式4-8位汉字')
+                        return false
+                    }if (tee==true){
+                        if(b2==''){
+                            alert('所属人不能为空')
+                            return false
+                        }
+                    }if(tee=true){
+                        $.ajax({
+                            url:'./?s=oa/Index/company',
+                            data:{a1:a1,b2:b2},
+                            type:'post',
+                            dataType:'json',
+                            success:function(aha) {
+                                alert('注册申请已提交，请耐心等待')
+                                //window.location.href='./?s=admin/login/init'
+                            }
+                        })
                     }
-                })
+                }
             })
         })
     </script>

@@ -15,6 +15,9 @@ class Department{
     }
     function select(){
         $data=( new Model())->sql_operation('select * from department');
+        foreach ($data as $k=>$v){
+            $data[$k]['ip']=$k+1;
+        }
         if($data){
             $d=[];
             $d['code']=0;
@@ -23,11 +26,16 @@ class Department{
             $d['data']=$data;
         }
         echo json_encode($d);
-        //var_dump($data);
     }
     function delete(){
         $id=$_POST['id'];
         $data=(new Model())->sql_operation("delete from department WHERE id='$id'");
+        //var_dump($data);
+    }
+    function update(){
+        $id=$_POST['id'];
+        $data=(new Model())->sql_operation("update department set id='$id'");
+        //var_dump($data);
     }
 
 
