@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>oa管理系统</title>
-    <link rel="stylesheet" href="./public/layui/css/layui.css">
-    <script src="./public/layui/layui.js"></script>
+    <link rel="stylesheet" href="./public/layui-v2.5.5/layui/css/layui.css">
+    <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 
 </head>
@@ -73,7 +73,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px; height: 100%">
-            <iframe height="100%" width="100%" frameborder="0"></iframe>
+            <iframe   height="100%" width="100%" frameborder="0"></iframe>
         </div>
     </div>
 
