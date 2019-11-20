@@ -11,11 +11,8 @@
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
-<body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
+<body>
 
-    <div class="layui-body">
-        <!-- 内容主体区域 -->
 
 
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -41,12 +38,14 @@
         </script>
     </div>
 
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        <!--© layui.com - 底部固定区域-->
-        <div id="demo7"></div>
-    </div>
-</div>
+        <div id="tan" style="display: none">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top  20px;">
+                <legend style="font-size:150% ">修改信息详情</legend></fieldset>
+            <div style=" text-align:center"  >职位ID <input type="text"id="id" name="id"></div>
+            <div style=" text-align:center" >职位昵称 <input type="text" id="position_name"  name="position_name"></div>
+
+        </div>
+
 
 <script type="text/javascript">
     layui.use('table', function(){
@@ -62,77 +61,94 @@
             }],
             cols: [[ //表头
                 {field:'id',type:'checkbox', width:150,sort: true},
-                {field: 'position_name', title: 'ID', width:150, sort: true},
-                {field: 'status', title: '名字', width:150},
+                {field: 'id', title: 'ID', width:150, sort: true},
+                {field: 'position_name', title: '职位', width:150},
+//                {field: 'status', title: 'ID', width:150, sort: true},
+
+
                 {fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]],
             id: 'testReload'
             ,page: true
-            ,height: 310
+            ,height:700
         }),
 
             //监听行工具事件
             table.on('tool(test)', function(obj){
                 var data = obj.data;
+                       var  id=$('#id').val(data.id),
+                       position_name =$('#position_name').val(data.position_name);
+
                 if(obj.event === 'del'){
                     layer.confirm('真的删除ID为：'+data.id+"的职位吗?", function(index){
                       $.post('./?s=admin/Position/positionsc',{id:data.id})
                         obj.del();
                       layer.close(index);
+                        layui.table.reload('testReload');
                     });
                 } else if(obj.event === 'edit'){
                     layui.use('layer', function(){
                         var layer = layui.layer;
                         layer.open({
                             skin:'layer-open',
-                            btn:[],
+                            btn: ['确定', '取消'],
                             area: ['500px', '300px'],
+                            formType:2,
+                            title:false,
+                            content:$('#tan'),
+                            shade:.0,
+                            type:1,
+                            yes: function(index){
+
+                                $.post('./?s=admin/Position/updatetian', {id:$('#id').val(),position_name:$('#position_name').val()},function (date) {
+                                        layer.msg(date)
+                                        layui.table.reload('testReload');
+                                    }
+                                )
+//                                layer.close(index)
+                            },
                         })
                     })
-
-
-                } else if(obj.event === 'detail'){
-                    layer.msg('name：'+ data.name  )
                 }
             });
-        //重载
-        $(function () {
-            $('#check').click(function () {
-                var demoReload=$('#demoReload').val();
-                $.ajax({
-                    url:'{:url("admin/Accountlist/con")}',
-                    data:{demoReload:demoReload},
-                    dataType:'json',
-                    type:'post',
-                    success:function (data) {
-                        layui.use('layer', function(){
-                            var layer = layui.layer;
-                            layer.msg(data.data);
-                        });
-                    }
-                })
-                active = {
-                    reload: function(){
-                        var demoReload = $('#demoReload');
-                        //执行重载
-                        table.reload('testReload', {
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                            ,where: {
-                                key: {
-                                    id: demoReload.val()
-                                }
-                            }
-                        }, 'data');
-                    }
-                }
-                $('.demoTable .layui-btn').on('click', function(){
-                    var type = $(this).data('type');
-                    active[type] ? active[type].call(this) : '';
-                });
-            })
-        })
+//        //重载
+//        $(function () {
+//            $('#check').click(function () {
+//                var demoReload=$('#demoReload').val();
+//                $.ajax({
+//                    url:'{:url("admin/Accountlist/con")}',
+//                    data:{demoReload:demoReload},
+//                    dataType:'json',
+//                    type:'post',
+//                    success:function (data) {
+//                        layui.use('layer', function(){
+//                            var layer = layui.layer;
+//                            layer.msg(data.data);
+//                        });
+//                    }
+//                })
+//                active = {
+//                    reload: function(){
+//                        var demoReload = $('#demoReload');
+//                        //执行重载
+//                        table.reload('testReload', {
+//                            page: {
+//                                curr: 1 //重新从第 1 页开始
+//                            }
+//                            ,where: {
+//                                key: {
+//                                    id: demoReload.val()
+//                                }
+//                            }
+//                        }, 'data');
+//                    }
+//                }
+//                $('.demoTable .layui-btn').on('click', function(){
+//                    var type = $(this).data('type');
+//                    active[type] ? active[type].call(this) : '';
+//                });
+//            })
+//        })
     })
 
 </script>
