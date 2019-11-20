@@ -12,10 +12,7 @@
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
 <body >
-<!--<div class="layui-layout layui-layout-admin">-->
-<!---->
-<!--    <div class="layui-body">-->
-        <!-- 内容主体区域 -->
+
         <a href="" style="font-size:150% ">首页</a>/
         <a href="" style="font-size:150% ">演示</a>/
         <a href="" style="font-size:150% ">导航元素</a>
@@ -42,14 +39,12 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-<!--    </div>-->
+
 
     <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        <!--© layui.com - 底部固定区域-->
         <div id="demo7"></div>
     </div>
-<!--</div>-->
+
 
 <script type="text/javascript">
     layui.use('table', function(){

@@ -28,6 +28,7 @@
         <input class="layui-input" name="id" id="demoReload" autocomplete="off">
         </div>
         <button class="layui-btn" data-type="reload" id="check">搜索</button>
+        <button class="layui-btn" data-type="reload" id="jia">添加</button>
         </div>
         </script>
 
@@ -41,9 +42,13 @@
         <div id="tan" style="display: none">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top  20px;">
                 <legend style="font-size:150% ">修改信息详情</legend></fieldset>
-            <div style=" text-align:center"  >职位ID <input type="text"id="id" name="id"></div>
-            <div style=" text-align:center" >职位昵称 <input type="text" id="position_name"  name="position_name"></div>
+            <div style=" text-align:center" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px"></div>
+        </div>
 
+        <div id="plus" style="display: none">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top  20px;">
+                <legend style="font-size:150% ">添加信息详情</legend></fieldset>
+            <div style=" text-align:center" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px"></div>
         </div>
 
 
@@ -74,83 +79,91 @@
         }),
 
             //监听行工具事件
-            table.on('tool(test)', function(obj){
-                var data = obj.data;
-                       var  id=$('#id').val(data.id),
-                       position_name =$('#position_name').val(data.position_name);
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+                   var position_name =$('#position_name').val(data.position_name);
 
-                if(obj.event === 'del'){
-                    layer.confirm('真的删除ID为：'+data.id+"的职位吗?", function(index){
-                      $.post('./?s=admin/Position/positionsc',{id:data.id})
-                        obj.del();
-                      layer.close(index);
-                        layui.table.reload('testReload');
-                    });
-                } else if(obj.event === 'edit'){
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-                        layer.open({
-                            skin:'layer-open',
-                            btn: ['确定', '取消'],
-                            area: ['500px', '300px'],
-                            formType:2,
-                            title:false,
-                            content:$('#tan'),
-                            shade:.0,
-                            type:1,
-                            yes: function(index){
-
-                                $.post('./?s=admin/Position/updatetian', {id:$('#id').val(),position_name:$('#position_name').val()},function (date) {
-                                        layer.msg(date)
-                                        layui.table.reload('testReload');
-                                    }
-                                )
-//                                layer.close(index)
-                            },
-                        })
+            if(obj.event === 'del'){
+                layer.confirm('真的删除ID为：'+data.id+"的职位吗?", function(index){
+                  $.post('./?s=admin/Position/positionsc',{id:data.id})
+                    obj.del();
+                  layer.close(index);
+                    layui.table.reload('testReload');
+                });
+            }  else if(obj.event === 'edit'){
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.open({
+                        skin:'layer-open',
+                        btn: ['确定', '取消'],
+                        area: ['500px', '300px'],
+                        formType:2,
+                        title:false,
+                        content:$('#tan'),
+                        shade:0,
+                        type:1,
+                        yes: function(index){
+                            $.post('./?s=admin/Position/updatetian', {id:data.id,position_name:$('#position_name').val()},function (date) {
+                                layer.msg(date)
+                                layui.table.reload('testReload');
+                            })
+                            layer.close(index)
+                        },
                     })
-                }
-            });
-//        //重载
-//        $(function () {
-//            $('#check').click(function () {
-//                var demoReload=$('#demoReload').val();
-//                $.ajax({
-//                    url:'{:url("admin/Accountlist/con")}',
-//                    data:{demoReload:demoReload},
-//                    dataType:'json',
-//                    type:'post',
-//                    success:function (data) {
-//                        layui.use('layer', function(){
-//                            var layer = layui.layer;
-//                            layer.msg(data.data);
-//                        });
-//                    }
-//                })
-//                active = {
-//                    reload: function(){
-//                        var demoReload = $('#demoReload');
-//                        //执行重载
-//                        table.reload('testReload', {
-//                            page: {
-//                                curr: 1 //重新从第 1 页开始
-//                            }
-//                            ,where: {
-//                                key: {
-//                                    id: demoReload.val()
-//                                }
-//                            }
-//                        }, 'data');
-//                    }
-//                }
-//                $('.demoTable .layui-btn').on('click', function(){
-//                    var type = $(this).data('type');
-//                    active[type] ? active[type].call(this) : '';
-//                });
-//            })
-//        })
+                })
+            }
+        })
+
+            $('#jia').click(function () {
+
+                layui.use('layer', function() {
+                    var layer = layui.layer;
+                    layer.open({
+                        skin: 'layer-open',
+                        btn: ['确定', '取消'],
+                        area: ['500px', '300px'],
+                        formType: 2,
+                        title: false,
+                        content: $('#plus'),
+                        shade: 0,
+                        type: 1,
+                        yes: function (index) {
+                            alert($('#position_namepuls').val())
+                            $.post('./?s=admin/Position/puls', {position_name:$('#position_namepuls').val()}, function (date) {
+                                layer.msg(date)
+                                layui.table.reload('testReload');
+                            })
+                            layer.close(index)
+                        }
+                    })
+                })
+            })
     })
 
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </script>
 </body>
 </html>

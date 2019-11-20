@@ -34,9 +34,14 @@ class  position{
        $d=new Model();
        $id=$_POST['id'];
        $a=$_POST['position_name'];
-       $date=$d->sql_operation("update Position set position_name='$a' WHERE  id='$id'");
+       $date=$d->sql_operation("update position set position_name='$a' WHERE  id='$id'");
        echo  $date;
 }
-
+    function puls(){
+        $d=new Model();
+        $a=$_POST['position_name'];
+        $date=$d->sql_operation("insert into position   VALUES (NULL ,'$a')");
+        return $a;
+    }
 
 }
