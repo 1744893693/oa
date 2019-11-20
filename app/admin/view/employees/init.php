@@ -12,11 +12,16 @@
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
 <body >
+
+            <a href="" style="font-size:150% ">首页</a>/
+            <a href="" style="font-size:150% ">演示</a>/
+            <a href="" style="font-size:150% ">员工管理</a>
+
         <fieldset class="layui-elem-field layui-field-title" style="">
             <legend style="font-size:150% ">员工管理</legend>
         </fieldset>
 
-        <table id="demo" lay-filter="test"></table>
+        <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
 
         <script type="text/html" id="toolbarDemo">
@@ -54,13 +59,15 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[ //表头
-                {field:'checkbox',type:'checkbox', width:150, sort: true},
-                {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'name', title: '账号', width:150},
-                {field: 'pwd', title: '密码', width:150},
-                {field: 'type', title: '权限', width:150},
-                {field: 'company_id', title: '公司ID', width:150},
-                {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                {field:'checkbox',type:'checkbox' , sort: true},
+                {field: 'id', title: 'ID',sort: true},
+                {field: 'name', title: '账号', },
+                {field: 'pwd', title: '密码', },
+                {field: 'type', title: '权限', },
+                {field: 'company_id', title: '公司ID', },
+                {field: 'permissions_id', title: '职能ID', },
+                {field: 'permissions_group_id', title: '职能组ID', },
+                {fixed: 'right', title:'操作', toolbar: '#barDemo', }
             ]],
             id: 'testReload'
             ,page: true
@@ -101,24 +108,54 @@
                             '<div class="layui-form-item"> <label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input value="'+data.company_id+'" lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
                             yes: function(index){
                                 $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),type:$('#type').val(),company_id:$('#company_id').val()},function (ba) {
-                                        layer.msg(ba)
+//                                        layer.msg(type.data)
                                         layui.table.reload('testReload');
                                     }
                                 )
-                                layer.close(index)
+                                layer.close(index)//如果设定了yes回调，需进行手工关闭
                             },
                         })
-
                     })
                 }
                 else if(obj.event === 'detail'){
                     layer.msg('name：'+ data.name  )
                 }
+            }),
+            $(function () {
+                $('#insert').click(function () {
+                    layui.use('layer', function (){
+                        var layer = layui.layer;
+                        layer.open({
+                            skin: 'layer-open',
+                            area: ['500px', '300px'],
+//                            type:1,
+//                            formType:2,
+                            content: '<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">添加员工信息</legend></fieldset>' +
+                            '<div ><label class="layui-form-label">账号</label><div class="layui-input-inline"><input   name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
+                            '<div ><label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input  name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
+                            '<div ><label class="layui-form-label">权限</label> <div class="layui-input-inline"> <input   name="type" id="type" lay-verify="pass"   autocomplete="off" class="layui-input"> </div>  </div>' +
+                            '<div ><label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="company_id" id="company_id"  autocomplete="off" class="layui-input"></div></div>'+
+                            '<div ><label class="layui-form-label">职能ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_id" id="permissions_id"  autocomplete="off" class="layui-input"></div></div>'+
+                            '<div ><label class="layui-form-label">职能组ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_group_id" id="permissions_group_id"  autocomplete="off" class="layui-input"></div></div>',
+                            yes: function (index) {
+                                $.post('?s=admin/Employees/em_insert', {
+                                    name: $('#name').val(),
+                                    pwd: $('#pwd').val(),
+                                    type: $('#type').val(),
+                                    company_id: $('#company_id').val()
+                                }, function (type) {
+                                    layer.msg(type.data)
+                                    layui.table.reload('testReload');
+                                })
+                                layer.close(index)
+                            },
+                        })
+                    })
+                })
             })
 
 
     })
-
 </script>
 </body>
 </html>
