@@ -44,6 +44,20 @@ class Employees extends Login {
         }else{
             exit(json_encode(array('type' => 101, 'data' =>'修改失败！'))) ;
         }
+    }
+    function em_insert(){
+        $d=new Model();
+        $name=$_POST['name'];
+        $pwd=$_POST['pwd'];
+        $type=$_POST['type'];
+        $company_id=$_POST['company_id'];
+//        $permissions_id=$_POST['permissions_id'];
+        $data = $d->sql_operation("insert into user VALUES (null,'$name','$pwd','$type','$company_id')");
+        if($data){
+            exit(json_encode(array('type' => 201, 'data' =>'添加成功！'))) ;
+        }else{
+            exit(json_encode(array('type' => 101, 'data' =>'添加失败！'))) ;
+        }
 
     }
 }
