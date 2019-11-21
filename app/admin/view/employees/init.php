@@ -101,7 +101,7 @@
                             '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input value="'+data.pwd+'" name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input value="'+data.company_id+'" lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
                             yes: function(index){
-                                $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),company_id:$('#company_id').val()},function ($ba) {
+                                $.post('./?s=admin/Employees/em_update', {id:data.id,name:$('#name').val(),pwd:$('#pwd').val(),company_id:$('#company_id').val()},function ($ba) {
 //                                        layer.msg(type.data)
                                         layui.table.reload('testReload');
                                 })
