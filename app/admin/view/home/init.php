@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./public/layui-v2.5.5/layui/css/layui.css">
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
-
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">

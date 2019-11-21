@@ -21,15 +21,20 @@ class  status
     function up(){
         $d= new Model();
         $id=$_POST['id'];
-        $d->sql_operation("update company set status=1 WHERE id='$id'");
+        $data=$d->sql_operation("update company set status=1 WHERE id='$id'");
+        if($data) {
+            $d= new Model();
+            $id=$_POST['id'];
+//            name pwd company_id permissions_id permissions_group_id
 
+            $data=$d->sql_operation("insert into USER   VALUES (NULL ,'$a')");
+        }
     }
 
     function db(){
         $d= new Model();
         $id=$_POST['id'];
         $d->sql_operation("update company set status=0 WHERE id='$id'");
-
     }
 
     function statussc(){
@@ -65,6 +70,17 @@ class  status
             $d['data']=$data;
         }
         echo json_encode($d);
-
     }
+//    function  ye(){
+//        $d=new Model();
+//        $date=$d->selects();
+//        $page=$_GET['page'];
+//        $limit=$_GET['limit'];
+//        $data['data']=$date->limit($limit*($page-1),$limit)
+//
+//        $data['msg']='jjjj';
+//        $data['code']=0;
+//        $data['count']=count($date);
+//        return  $data;
+//    }
 }
