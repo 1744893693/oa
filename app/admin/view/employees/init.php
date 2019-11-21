@@ -12,14 +12,15 @@
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
 <body >
+        <span class="layui-breadcrumb">
+          <a href="">首页</a>/
+          <a href="/demo/">演示</a>
+          <a><cite>导航元素</cite></a>
+        </span>
 
-            <a href="" style="font-size:150% ">首页</a>/
-            <a href="" style="font-size:150% ">演示</a>/
-            <a href="" style="font-size:150% ">员工管理</a>
-
-        <fieldset class="layui-elem-field layui-field-title" style="">
-            <legend style="font-size:150% ">员工管理</legend>
-        </fieldset>
+<!--        <fieldset class="layui-elem-field layui-field-title" style="">-->
+<!--            <legend style="font-size:150% ">员工管理</legend>-->
+<!--        </fieldset>-->
 
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -27,7 +28,7 @@
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
                 <div class="layui-inline">
-                    <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+                    <input class="layui-input" name="id" id="id" autocomplete="off">
                 </div>
                 <button class="layui-btn" data-type="reload" id="check">搜索</button>
                 <button class="layui-btn" data-type="reload" id="insert">添加</button>
@@ -40,11 +41,9 @@
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
 
-
     <div class="layui-footer">
         <div id="demo7"></div>
     </div>
-
 
 <script type="text/javascript">
     layui.use('table', function(){
@@ -63,7 +62,6 @@
                 {field: 'id', title: 'ID',sort: true},
                 {field: 'name', title: '账号', },
                 {field: 'pwd', title: '密码', },
-                {field: 'type', title: '权限', },
                 {field: 'company_id', title: '公司ID', },
                 {field: 'permissions_id', title: '职能ID', },
                 {field: 'permissions_group_id', title: '职能组ID', },
@@ -73,9 +71,6 @@
             ,page: true
             ,height: 715
         }),
-
-
-
             //监听行工具事件
             table.on('tool(test)', function(obj){
                 var data = obj.data;
@@ -85,11 +80,11 @@
                             url:"./?s=admin/Employees/employee",
                             type:'post',
                             data:{'id':data.id},//向服务端发送删除的id
-                            success:function(data){
+                            success:function(type){
                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                 layer.close(index);
                                 console.log(index);
-                                layer.msg(data.data);
+                                layer.msg(type.data);
                             }
                         });
                         layer.close(index);
@@ -104,10 +99,9 @@
                             '<div class="layui-form-item"><label class="layui-form-label">ID</label><div class="layui-input-inline"><input  value="'+data.id+'" name="id" lay-verify="pass" id="id"  class="layui-input"> </div></div>' +
                             '<div class="layui-form-item"><label class="layui-form-label">账号</label><div class="layui-input-inline"><input  value="'+data.name+'" name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input value="'+data.pwd+'" name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label">权限</label> <div class="layui-input-inline"> <input value="'+data.type+'"  name="type" id="type" lay-verify="pass"   autocomplete="off" class="layui-input"> </div>  </div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input value="'+data.company_id+'" lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
                             yes: function(index){
-                                $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),type:$('#type').val(),company_id:$('#company_id').val()},function (ba) {
+                                $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),type:$('#type').val(),company_id:$('#company_id').val()},function (type) {
 //                                        layer.msg(type.data)
                                         layui.table.reload('testReload');
                                     }
@@ -121,19 +115,16 @@
                     layer.msg('name：'+ data.name  )
                 }
             }),
-            $(function () {
-                $('#insert').click(function () {
+
+                $(document).on('click','#insert',function(){
                     layui.use('layer', function (){
                         var layer = layui.layer;
                         layer.open({
                             skin: 'layer-open',
                             area: ['500px', '300px'],
-//                            type:1,
-//                            formType:2,
                             content: '<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">添加员工信息</legend></fieldset>' +
                             '<div ><label class="layui-form-label">账号</label><div class="layui-input-inline"><input   name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
                             '<div ><label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input  name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
-                            '<div ><label class="layui-form-label">权限</label> <div class="layui-input-inline"> <input   name="type" id="type" lay-verify="pass"   autocomplete="off" class="layui-input"> </div>  </div>' +
                             '<div ><label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="company_id" id="company_id"  autocomplete="off" class="layui-input"></div></div>'+
                             '<div ><label class="layui-form-label">职能ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_id" id="permissions_id"  autocomplete="off" class="layui-input"></div></div>'+
                             '<div ><label class="layui-form-label">职能组ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_group_id" id="permissions_group_id"  autocomplete="off" class="layui-input"></div></div>',
@@ -142,18 +133,43 @@
                                     name: $('#name').val(),
                                     pwd: $('#pwd').val(),
                                     type: $('#type').val(),
-                                    company_id: $('#company_id').val()
+                                    company_id: $('#company_id').val(),
+                                    permissions_id:$('#permissions_id').val(),
+                                    permissions_group_id:$('#permissions_group_id').val()
                                 }, function (type) {
-                                    layer.msg(type.data)
+//                                    layer.msg(type.data);
                                     layui.table.reload('testReload');
                                 })
                                 layer.close(index)
                             },
                         })
                     })
-                })
-            })
+                }),
 
+            // 执行搜索，表格重载
+            $(document).on('click','#check',function(){
+                // 搜索条件
+                var send_name = $('#id').val();
+                table.reload('testReload', {
+                    method: 'post'
+                    , where: {
+                        'send_name': send_name
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            }),
+
+        //面包屑显示
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
 
     })
 </script>

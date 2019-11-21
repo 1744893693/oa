@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 
 use api\Login;
+use api\Model;
 use app\admin\model\Menu;
 
 class Home extends Login
@@ -21,5 +22,16 @@ class Home extends Login
         $data=(new Menu())->init();
         echo json_encode($data);
 
+    }
+    function out(){
+        $d=$_SESSION['admin']['company_id'];
+        session_destroy();
+        echo $d;
+    }
+    function company(){
+        $id=$_POST['id'];
+        $data=new Model();
+        $data=$data->sql_operation("select * from company where id = '$id'");
+        echo json_encode($data);
     }
 }

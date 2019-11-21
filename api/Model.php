@@ -14,7 +14,6 @@ class Model{
         $data->query('set names utf8');
         $this->connect=$data;
     }
-
     function sql_operation($sql){
         $data=$this->connect;
         $data=$data->query($sql);
@@ -29,7 +28,6 @@ class Model{
             return $date;
         }
     }
-
     function select($table){
         $data=$this->connect->query('select * from '.$table );
         $date=[];
@@ -38,10 +36,7 @@ class Model{
         }
         return $date;
     }
-
-
     function selects(){
-
         $data=$this->connect->query('select * from company');
         $dat=[];
         while ($d=mysqli_fetch_assoc($data)){
@@ -49,7 +44,6 @@ class Model{
         }
         return $dat;
     }
-
     function positionc(){
         $data=$this->connect->query('select * from position');
         $dat=[];
