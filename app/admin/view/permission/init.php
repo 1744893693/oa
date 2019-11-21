@@ -61,7 +61,7 @@
             cols: [[ //表头
                 {field:'checkbox',type:'checkbox', width:150, sort: true},
                 {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'functional-grade', title: '职能等级', width:150},
+                {field: 'functional_grade', title: '职能等级', width:150},
                 {field: 'companyId', title: '公司', width:150},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]],
@@ -69,7 +69,6 @@
             ,page: true
             ,height:715
         }),
-
             //监听行工具事件
             table.on('tool(test)', function(obj){
                 var data = obj.data;

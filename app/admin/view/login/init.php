@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 登录 - Layui</title>
+    <title></title>
     <link rel="stylesheet" href="./public/layui-v2.5.5/layui/css/layui.css">
     <link rel="stylesheet" href="./public/css/login.css">
 </head>
@@ -45,7 +45,10 @@
 <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     $(function () {
-
+        $.post('./?s=admin/Login/company',{id:<?php echo $_GET['id'];?>},function (data) {
+            $('title').html(data[0].company_name+'公司OA管理后台')
+            $('.lg_top').html(data[0].company_name+'公司OA管理后台')
+        },'json')
         function packaging(input, Regular,ss) {
             var zen = $('#' + input).val()
             var ze = Regular;
@@ -81,14 +84,17 @@
                     dataType:'json',
                     type:'post',
                     success:function (type) {
+
                         layui.use('layer', function(){
                             var layer = layui.layer;
-                            layer.msg(type.data);
+                            if(type.type==201){
+                                layer.msg(type.data)
+                                window.location.href="./?s=admin/Home/init"
+                            }else {
+                                layer.msg(type.data);
+                            }
                         })
-                        if(type.type==201){
-                            layer.msg(type.data)
-                            window.location.href="./?s=admin/Home/init"
-                        }
+
 //                        if(type.type==201){
 //                            alert(type.data)
 //                            window.location.href="./?s=admin/Home/init"

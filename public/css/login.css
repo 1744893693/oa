@@ -1,13 +1,13 @@
 .b{
     font-family:Arial, Helvetica, sans-serif;
     background:url('../img/grass.jpg');
-    font-size:13px;
+    font-size:10px;
 }
 img{
     border:0;
 }
 .lg{width:500px; height:500px; margin:100px auto; background:url('../img/login_bg.png') no-repeat;}
-.lg_top{ height:200px; width:468px;}
+.lg_top{ height:120px; width:468px;font-size: 25px;text-align: center;padding-top: 80px;color: #efb128;font-style: oblique;text-decoration: blink}
 .lg_main{width:400px; height:200px; margin:0 25px;}
 .lg_m_1{
     width:290px;
@@ -22,7 +22,7 @@ img{
     margin:4px 28px;
     background:url('../img/user.png') no-repeat;
     padding-left:10px;
-    font-size:16pt;
+    font-size:13pt;
     font-family:Arial, Helvetica, sans-serif;
 }
 .pw{
@@ -33,7 +33,7 @@ img{
      margin:4px 28px;
      background:url('../img/password.png') no-repeat;
      padding-left:10px;
-     font-size:16pt;
+     font-size:13pt;
      font-family:Arial, Helvetica, sans-serif;
  }
 .vc{
@@ -44,7 +44,7 @@ img{
      margin:4px 28px;
      background:url('../img/password.png') no-repeat;
      padding-left:10px;
-     font-size:16pt;
+     font-size:13pt;
      font-family:Arial, Helvetica, sans-serif;
  }
 .yz{

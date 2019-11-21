@@ -7,9 +7,10 @@
  */
 session_start();
 header ('Content-Type: image/png');
-$im = @imagecreatetruecolor(60, 50)
+$im = @imagecreatetruecolor(50, 40)
 or die('Cannot Initialize new GD image stream');
-//$text_color = imagecolorallocate($im, 233, 14, 91);
+$text_color = imagecolorallocate($im, 188, 180, 40);
+imagefill($im, 0, 0, $text_color);
 for($i = 1; $i<=10;$i++){
     imageline($im,rand(5,15)*$i,rand(5,15),rand(20,30)*$i,rand(20,30),imagecolorallocate($im,rand(0,255),rand(0,255),rand(0,255)));
     }
@@ -24,3 +25,5 @@ $_SESSION['yzm']=$data;
 
 imagepng($im);
 imagedestroy($im);
+
+

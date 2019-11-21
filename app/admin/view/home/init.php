@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>oa管理系统</title>
-    <link rel="stylesheet" href="./public/layui/css/layui.css">
-    <script src="./public/layui/layui.js"></script>
+    <link rel="stylesheet" href="./public/layui-v2.5.5/layui/css/layui.css">
+    <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 
 </head>
@@ -73,7 +73,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px; height: 100%">
-            <iframe height="100%" width="100%" frameborder="0"></iframe>
+            <iframe   height="100%" width="100%" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -82,73 +82,49 @@
     </div>
 </div>
 <script>
-    //JavaScript代码区域
-
     var menu=[]
      $.post('./?s=admin/Home/menu',function (data) {
          menu=data
          layui.use('element', function(){
              var element = layui.element;
          })
-         if(1){ //session里面拿到的用户信息。如果里面的用户是董事会成员（val==menu.）则进入
-             var count=0
-             for(val of menu.department){
-                 if(count!==0){
-
-                     if(val.company_id==1){
-
+         for(val of menu.department){
+             if(1==<?php echo $_SESSION['admin']['permissions_group_id']?>){
+                     if(val.company_id==<?php echo $_SESSION['admin']['company_id']?>){
                          $('#top-menu').append('<li class="layui-nav-item"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
                      }
-                 }else{
-                     $('#title').html(val.name+'管理系统')
-                 }
-                 count++
-             }
-         }else {
-             for(val of menu.menu){
-                 if(val.department_id==3){
-                     $('#top-menu').append('<li class="layui-nav-item"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
+             }else if (val.permissions_group_id==<?php echo $_SESSION['admin']['permissions_group_id']?>){
+                 if(val.permissions_id == <?php echo $_SESSION['admin']['permissions_id']?>){
+                     if(val.company_id==<?php echo $_SESSION['admin']['company_id']?>){
+                         $('#top-menu').append('<li class="layui-nav-item"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
+                     }
                  }
              }
          }
      },'json')
-    function list(tt) {
+     function list(tt) {
          for(val of menu.menu){
-             if(val.id==tt) {
-                 if (val.method) {
-                     $('iframe')[0].contentWindow.location.href = './?s=' + val.method
+              if(val.id==tt) {
+                  if (val.method) {
+                      $('iframe')[0].contentWindow.location.href = './?s=' + val.method
+                  }
+              }
+          }
+     }
+     function menu_child(id){
+         $('#left_menu').text('')
+         for(val of menu.menu){
+             if(val.department_id==id){
+                 if(val.permissions_id>=<?php echo $_SESSION['admin']['permissions_id']?>){
+                     var audit=val.id
+                     $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:list('+val.id+')">'+val.name+'</a></li>')
                  }
              }
+             layui.use('element', function(){
+                 var element = layui.element;
+             })
          }
-//
-    }
-
-//        $('iframe')[0].contentWindow.location.href='https://www.baidu.com/'
-    function menu_child(id){
-        $('#left_menu').text('')
-        for(val of menu.menu){
-            if(val.department_id==id){
-               var audit=val.id
-
-                $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:list('+val.id+')">'+val.name+'</a></li>')
-
-//                $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
-//                $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
-
-            }
-
-            layui.use('element', function(){
-                var element = layui.element;
-            })
-        }
-//        if(val.department_id==id){
-//            var audit=val.id
-//            $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:">'+val.name+'</a></li>')
-////            $('#audit').append('<li class="audits" style=" text-align:center"><a href="./?s=admin/status/company">oa审批</a></li>')
-//        }
-
-    }
-
+     }
 </script>
 </body>
 </html>
