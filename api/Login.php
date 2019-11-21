@@ -19,4 +19,8 @@ class Login
              header('Location: ./');
          }
      }
+     function out(){
+         session_destroy();
+         echo 111;
+     }
 }

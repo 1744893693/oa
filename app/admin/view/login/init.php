@@ -78,9 +78,11 @@
                 var name = $('#name').val();
                 var pwd = $('#pwd').val();
                 var yzm = $('#yzm').val();
+                var yy=<?php echo $_GET['id']?>;
+//                console.log(id)
             $.ajax({
                     url: './?s=admin/Login/login',
-                    data: {name:name,pwd:pwd,yzm:yzm},
+                    data: {name:name,pwd:pwd,yzm:yzm,id:yy},
                     dataType:'json',
                     type:'post',
                     success:function (type) {
