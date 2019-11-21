@@ -18,9 +18,7 @@
           <a><cite>导航元素</cite></a>
         </span>
 
-<!--        <fieldset class="layui-elem-field layui-field-title" style="">-->
-<!--            <legend style="font-size:150% ">员工管理</legend>-->
-<!--        </fieldset>-->
+
 
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -28,7 +26,7 @@
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
                 <div class="layui-inline">
-                    <input class="layui-input" name="id" id="id" autocomplete="off">
+                    <input class="layui-input" value="" name="id" id="id" autocomplete="off">
                 </div>
                 <button class="layui-btn" data-type="reload" id="check">搜索</button>
                 <button class="layui-btn" data-type="reload" id="insert">添加</button>
@@ -40,6 +38,35 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
+<!--        <script type="text/html">-->
+<!--        <div class="layui-inline">-->
+<!--            <label class="layui-form-label">职能</label>-->
+<!--            <div class="layui-input-inline" name="permissions_id" id="permissions_id" >-->
+<!--                <select name="modules" lay-verify="required" lay-search="" >-->
+<!--                    <option value=""></option>-->
+<!--                    --><?php //foreach ([1,2,3,4,5] as $key){?>
+<!--                        <option value="">--><?php //echo $key?><!--</option>-->
+<!--                    --><?php //}?>
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-inline">-->
+<!--            <label class="layui-form-label">职能组</label>-->
+<!--            <div class="layui-input-inline" name="permissions_group_id" id="permissions_group_id" >-->
+<!--                <select name="modules" lay-verify="required" lay-search="" >-->
+<!--                    <option value=""></option>-->
+<!--                    <option value="1">layer</option>-->
+<!--                    <option value="2">form</option>-->
+<!--                    <option value="3">layim</option>-->
+<!--                    <option value="4">element</option>-->
+<!--                    <option value="5">laytpl</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </script>-->
+
+
+
 
     <div class="layui-footer">
         <div id="demo7"></div>
@@ -57,11 +84,10 @@
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
-            cols: [[ //表头
-                {field:'checkbox',type:'checkbox' , sort: true},
-                {field: 'id', title: 'ID',sort: true},
-                {field: 'name', title: '账号', },
-                {field: 'pwd', title: '密码', },
+            cols: [[
+                { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
+                {field: 'name', title: '账号' },
+                {field: 'pwd', title: '密码' },
                 {field: 'company_id', title: '公司ID', },
                 {field: 'permissions_id', title: '职能ID', },
                 {field: 'permissions_group_id', title: '职能组ID', },
@@ -75,37 +101,36 @@
             table.on('tool(test)', function(obj){
                 var data = obj.data;
                 if(obj.event === 'del'){
-                    layer.confirm('真的删除ID为：'+data.id+"的用户吗?", function(index){
+                    layer.confirm("是否删除该用户?", function(index){
                         $.ajax({
                             url:"./?s=admin/Employees/employee",
                             type:'post',
-                            data:{'id':data.id},//向服务端发送删除的id
+                            data:{'name':data.name},//向服务端发送删除的id
                             success:function(type){
                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                 layer.close(index);
                                 console.log(index);
-                                layer.msg(type.data);
+//                                layer.msg(type.data);
                             }
-                        });
+                        })
                         layer.close(index);
-                    });
+                    })
                 } else if(obj.event === 'edit'){
                     layui.use('layer', function(){
                         var layer = layui.layer;
                         layer.open({
                             skin:'layer-open',
-                            area: ['500px', '300px'],
+                            area: ['650px', '450px'],
                             content:'<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">修改信息详情</legend></fieldset>' +
-                            '<div class="layui-form-item"><label class="layui-form-label">ID</label><div class="layui-input-inline"><input  value="'+data.id+'" name="id" lay-verify="pass" id="id"  class="layui-input"> </div></div>' +
-                            '<div class="layui-form-item"><label class="layui-form-label">账号</label><div class="layui-input-inline"><input  value="'+data.name+'" name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
+                            '<div class="layui-form-item"><label class="layui-form-label">ID</label><div class="layui-input-inline"><input  value="'+data.id+'" name="id" lay-verify="pass" id="id" autocomplete="off" class="layui-input"> </div></div>' +
+                            '<div class="layui-form-item"><label class="layui-form-label">账号</label><div class="layui-input-inline"><input  value="'+data.name+'" name="name" lay-verify="pass" id="name" autocomplete="off" class="layui-input"> </div></div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input value="'+data.pwd+'" name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input value="'+data.company_id+'" lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
                             yes: function(index){
-                                $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),type:$('#type').val(),company_id:$('#company_id').val()},function (type) {
+                                $.post('./?s=admin/Employees/em_update', {id:data.id,name:$('#name').val(),pwd:$('#pwd').val(),company_id:$('#company_id').val()},function ($ba) {
 //                                        layer.msg(type.data)
                                         layui.table.reload('testReload');
-                                    }
-                                )
+                                })
                                 layer.close(index)//如果设定了yes回调，需进行手工关闭
                             },
                         })
@@ -121,11 +146,10 @@
                         var layer = layui.layer;
                         layer.open({
                             skin: 'layer-open',
-                            area: ['500px', '300px'],
+                            area: ['650px', '450px'],
                             content: '<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">添加员工信息</legend></fieldset>' +
                             '<div ><label class="layui-form-label">账号</label><div class="layui-input-inline"><input   name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
                             '<div ><label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input  name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
-                            '<div ><label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="company_id" id="company_id"  autocomplete="off" class="layui-input"></div></div>'+
                             '<div ><label class="layui-form-label">职能ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_id" id="permissions_id"  autocomplete="off" class="layui-input"></div></div>'+
                             '<div ><label class="layui-form-label">职能组ID</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_group_id" id="permissions_group_id"  autocomplete="off" class="layui-input"></div></div>',
                             yes: function (index) {
@@ -133,7 +157,7 @@
                                     name: $('#name').val(),
                                     pwd: $('#pwd').val(),
                                     type: $('#type').val(),
-                                    company_id: $('#company_id').val(),
+//                                    company_id: $('#company_id').val(),
                                     permissions_id:$('#permissions_id').val(),
                                     permissions_group_id:$('#permissions_group_id').val()
                                 }, function (type) {
@@ -141,7 +165,7 @@
                                     layui.table.reload('testReload');
                                 })
                                 layer.close(index)
-                            },
+                            }
                         })
                     })
                 }),
@@ -151,14 +175,14 @@
                 // 搜索条件
                 var send_name = $('#id').val();
                 table.reload('testReload', {
-                    method: 'post'
+                    method: 'get'
                     , where: {
                         'send_name': send_name
                     }
                     , page: {
                         curr: 1
                     }
-                });
+                })
             }),
 
         //面包屑显示
@@ -168,7 +192,7 @@
             element.on('nav(demo)', function(elem){
                 //console.log(elem)
                 layer.msg(elem.text());
-            });
+            })
         });
 
     })
