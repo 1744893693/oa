@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,15 @@
 </head>
 <body>
 
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend style="font-size:150% ">OA公司注册管理</legend>
-</fieldset>
+<span class="layui-breadcrumb">
+  <a href="./?s=admin/Home/init">首页</a>
+  <a href="/demo/">演示</a>
+  <a><cite>公司管理</cite></a>
+</span>
 
 <table id="demo" lay-filter="test"></table>
-<table class="layui-hide" id="test" lay-filter="test" style="height:100%"></table>
+<table class="layui-hide" id="test" lay-filter="test" style="height:100%";></table>
+
 
 <script type="text/html" id="toolbarDemo">
     <div class="demoTable">
@@ -38,7 +42,6 @@
 
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="del">删除</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up" id="up">同意</a>
@@ -47,7 +50,7 @@
 
 <div id="tan" style="display: none">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend style="font-size:150% ">修改信息详情</legend></fieldset>
+
 
     <div style=" text-align:center" class="layui-form-item">注册公司 <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px "></div>
     <div style=" text-align:center;top: 30px" class="layui-form-item">公司法人<input type="text"id="legal_person"style="width: 150px;height:30px "></div>
@@ -62,19 +65,20 @@
             defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
-                icon: 'layui-icon-tips'
+                icon: 'layui-icon-tips',
+                cellMinWidth: 80
             }],
             cols: [[ //表头
 
-                {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'company_name', title: '注册公司', width:150, sort: true},
-                {field: 'legal_person', title: '法人', width:150},
-                {field: 'status', title: '状态', width:150},
-                {fixed: 'right', title:'操作', toolbar: '#barDemo', width:260}
+                {field: 'id', title: 'ID',sort: true},
+                {field: 'company_name', title: '注册公司' ,sort: true},
+                {field: 'legal_person', title: '法人'},
+                {field: 'status', title: '状态' },
+                {fixed: 'right', title:'操作', toolbar: '#barDemo',width:300}
             ]],
             id: 'testReload'
             ,page: true
-
+            ,height:630
         });
 
 
@@ -112,7 +116,7 @@
                         btn: ['确定', '取消'],
                         area: ['500px', '300px'],
                         formType:2,
-                        title:false,
+                        title:'修改信息详情',
                         content:$('#tan'),
                         shade:.0,
                         type:1,
@@ -145,7 +149,16 @@
                 }
             });
         });
+        //面包屑显示
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
     })
 
 
