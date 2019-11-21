@@ -61,8 +61,7 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[ //表头
-                {field:'checkbox',type:'checkbox', sort: true},
-                {field: 'id', title: 'ID',sort: true},
+                { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
                 {field: 'functional_grade', title: '职能等级'},
                 {field: 'companyId', title: '公司'},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
