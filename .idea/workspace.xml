@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e4ef3c4c-5fd7-467e-959d-a3b25a62ec84" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/controller/Position.php" afterPath="$PROJECT_DIR$/app/admin/controller/Position.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/view/position/management.php" afterPath="$PROJECT_DIR$/app/admin/view/position/management.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/controller/Status.php" afterPath="$PROJECT_DIR$/app/admin/controller/Status.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/view/status/company.php" afterPath="$PROJECT_DIR$/app/admin/view/status/company.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,12 +19,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="company.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="company.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/admin/view/status/company.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
-              <caret line="93" column="38" lean-forward="false" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
+            <state relative-caret-position="2455">
+              <caret line="155" column="7" lean-forward="false" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
               <folding>
+                <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#legend#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -33,7 +33,6 @@
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#5706#5720#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -57,27 +56,23 @@
       <file leaf-file-name="Status.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/controller/Status.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="45" column="8" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="21" />
+            <state relative-caret-position="617">
+              <caret line="69" column="1" lean-forward="false" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
               <folding>
-                <marker date="1574226023313" expanded="true" signature="391:433" ph="update compa... " />
-                <marker date="1574226023313" expanded="true" signature="542:584" ph="update compa... " />
-                <marker date="1574226023313" expanded="true" signature="698:732" ph="delete from " />
-                <marker date="1574226023313" expanded="true" signature="922:958" ph="update compa... " />
-                <marker date="1574226023313" expanded="true" signature="922:972" ph="update compa... " />
-                <marker date="1574226023313" expanded="true" signature="922:976" ph="update compa... " />
-                <marker date="1574226023313" expanded="true" signature="922:977" ph="update compa... " />
-                <marker date="1574226023313" expanded="true" signature="922:992" ph="update compa... " />
-                <marker date="1574226023313" expanded="true" signature="922:1011" ph="update compa... " />
+                <marker date="1574296206729" expanded="true" signature="407:449" ph="update compa... " />
+                <marker date="1574296206729" expanded="true" signature="558:600" ph="update compa... " />
+                <marker date="1574296206729" expanded="true" signature="714:748" ph="delete from " />
+                <marker date="1574296206729" expanded="true" signature="939:1009" ph="update compa... " />
+                <marker date="1574296206729" expanded="true" signature="1167:1310" ph="select * fro... company" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="management.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="management.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/view/position/management.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
+            <state relative-caret-position="722">
               <caret line="137" column="22" lean-forward="true" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -133,12 +128,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/public/js/extend/jquery-3.4.1.min.js" />
-        <option value="$PROJECT_DIR$/app/admin/controller/Status.php" />
-        <option value="$PROJECT_DIR$/app/admin/view/status/company.php" />
         <option value="$PROJECT_DIR$/app/admin/view/position/positionpuls.html" />
         <option value="$PROJECT_DIR$/app/admin/view/position/positionpuls.php" />
         <option value="$PROJECT_DIR$/app/admin/controller/Position.php" />
         <option value="$PROJECT_DIR$/app/admin/view/position/management.php" />
+        <option value="$PROJECT_DIR$/app/admin/view/status/company.php" />
+        <option value="$PROJECT_DIR$/app/admin/controller/Status.php" />
       </list>
     </option>
   </component>
@@ -150,10 +145,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="197" />
-    <option name="y" value="23" />
+    <option name="x" value="194" />
+    <option name="y" value="30" />
     <option name="width" value="1229" />
-    <option name="height" value="737" />
+    <option name="height" value="912" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -288,32 +283,6 @@
               <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="login" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oa" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -409,15 +378,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574213406811</updated>
-      <workItem from="1574213409000" duration="30634000" />
+      <workItem from="1574213409000" duration="31871000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30634000" />
+    <option name="totallyTimeSpent" value="31871000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="197" y="23" width="1229" height="737" extended-state="1" />
+    <frame x="194" y="30" width="1229" height="912" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.211047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -484,41 +453,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/controller/Status.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="45" column="8" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="21" />
-          <folding>
-            <marker date="1574226023313" expanded="true" signature="391:433" ph="update compa... " />
-            <marker date="1574226023313" expanded="true" signature="542:584" ph="update compa... " />
-            <marker date="1574226023313" expanded="true" signature="698:732" ph="delete from " />
-            <marker date="1574226023313" expanded="true" signature="922:958" ph="update compa... " />
-            <marker date="1574226023313" expanded="true" signature="922:972" ph="update compa... " />
-            <marker date="1574226023313" expanded="true" signature="922:976" ph="update compa... " />
-            <marker date="1574226023313" expanded="true" signature="922:977" ph="update compa... " />
-            <marker date="1574226023313" expanded="true" signature="922:992" ph="update compa... " />
-            <marker date="1574226023313" expanded="true" signature="922:1011" ph="update compa... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/view/status/company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="93" column="38" lean-forward="false" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#legend#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#5706#5720#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/admin/view/login/init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -542,7 +476,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/admin/view/position/management.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
+        <state relative-caret-position="722">
           <caret line="137" column="22" lean-forward="true" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -555,6 +489,37 @@
             <element signature="n#style#0;n#legend#0;n#fieldset#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/controller/Status.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="69" column="1" lean-forward="false" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
+          <folding>
+            <marker date="1574296206729" expanded="true" signature="407:449" ph="update compa... " />
+            <marker date="1574296206729" expanded="true" signature="558:600" ph="update compa... " />
+            <marker date="1574296206729" expanded="true" signature="714:748" ph="delete from " />
+            <marker date="1574296206729" expanded="true" signature="939:1009" ph="update compa... " />
+            <marker date="1574296206729" expanded="true" signature="1167:1310" ph="select * fro... company" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/view/status/company.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2455">
+          <caret line="155" column="7" lean-forward="false" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#legend#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
