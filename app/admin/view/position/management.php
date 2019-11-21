@@ -15,39 +15,35 @@
 
 
 
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend style="font-size:150% ">公司职位</legend>
-        </fieldset>
+       <span class="layui-breadcrumb">
+  <a href="./?s=admin/Home/init">首页</a>
+  <a href="/demo/">演示</a>
+  <a><cite>职位管理</cite></a>
+       </span>
 
         <table id="demo" lay-filter="test"></table>
-        <table class="layui-hide" id="test" lay-filter="test"></table>
+        <table class="layui-hide" id="test" lay-filter="test" style="height:100%"></table>
 
         <script type="text/html" id="toolbarDemo">
         <div class="demoTable">
         <div class="layui-inline">
         <input class="layui-input" name="id" id="demoReload" autocomplete="off">
         </div>
-        <button class="layui-btn" data-type="reload" id="check">搜索</button>
         <button class="layui-btn" data-type="reload" id="jia">添加</button>
         </div>
         </script>
 
         <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
     </div>
 
         <div id="tan" style="display: none">
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top  20px;">
-                <legend style="font-size:150% ">修改信息详情</legend></fieldset>
             <div style=" text-align:center" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px"></div>
         </div>
 
         <div id="plus" style="display: none">
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top  20px;">
-                <legend style="font-size:150% ">添加信息详情</legend></fieldset>
             <div style=" text-align:center" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px"></div>
         </div>
 
@@ -65,17 +61,15 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[ //表头
-                {field:'id',type:'checkbox', width:150,sort: true},
-                {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'position_name', title: '职位', width:150},
+                {field:'id',type:'checkbox',sort: true},
+                {field: 'id', title: 'ID', sort: true},
+                {field: 'position_name', title: '职位'},
 //                {field: 'status', title: 'ID', width:150, sort: true},
-
-
-                {fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+                {fixed: 'right', title:'操作', toolbar: '#barDemo'}
             ]],
             id: 'testReload'
             ,page: true
-            ,height:700
+            ,height:630
         }),
 
             //监听行工具事件
@@ -98,7 +92,7 @@
                         btn: ['确定', '取消'],
                         area: ['500px', '300px'],
                         formType:2,
-                        title:false,
+                        title:'编辑信息详情',
                         content:$('#tan'),
                         shade:0,
                         type:1,
@@ -114,7 +108,7 @@
             }
         })
 
-            $('#jia').click(function () {
+        $(document).on('click','#jia',function(){
 
                 layui.use('layer', function() {
                     var layer = layui.layer;
@@ -123,12 +117,11 @@
                         btn: ['确定', '取消'],
                         area: ['500px', '300px'],
                         formType: 2,
-                        title: false,
+                        title:'添加信息详情',
                         content: $('#plus'),
                         shade: 0,
                         type: 1,
                         yes: function (index) {
-                            alert($('#position_namepuls').val())
                             $.post('./?s=admin/Position/puls', {position_name:$('#position_namepuls').val()}, function (date) {
                                 layer.msg(date)
                                 layui.table.reload('testReload');
@@ -138,6 +131,17 @@
                     })
                 })
             })
+        //面包屑显示
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
+
     })
 
 

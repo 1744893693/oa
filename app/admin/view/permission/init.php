@@ -13,9 +13,11 @@
 </head>
 <body >
 
-        <a href="" style="font-size:150% ">首页</a>/
-        <a href="" style="font-size:150% ">演示</a>/
-        <a href="" style="font-size:150% ">导航元素</a>
+        <span class="layui-breadcrumb">
+  <a href="./?s=admin/Home/init">首页</a>
+  <a href="/demo/">演示</a>
+  <a><cite>职能管理</cite></a>
+       </span>
 
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
             <legend style="font-size:150% ">职能等级</legend>
@@ -59,15 +61,15 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[ //表头
-                {field:'checkbox',type:'checkbox', width:150, sort: true},
-                {field: 'id', title: 'ID', width:150, sort: true},
-                {field: 'functional_grade', title: '职能等级', width:150},
-                {field: 'companyId', title: '公司', width:150},
-                {fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                {field:'checkbox',type:'checkbox', sort: true},
+                {field: 'id', title: 'ID',sort: true},
+                {field: 'functional_grade', title: '职能等级'},
+                {field: 'companyId', title: '公司'},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
             ]],
             id: 'testReload'
             ,page: true
-            ,height:715
+            ,height:570
         }),
             //监听行工具事件
             table.on('tool(test)', function(obj){
@@ -102,6 +104,17 @@
                     layer.msg('name：'+ data.name  )
                 }
             })
+
+        //面包屑显示
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
 
             })
 
