@@ -65,9 +65,9 @@ class Employees extends Login {
         $name=$_POST['name'];
         $pwd=$_POST['pwd'];
         $company_id=$_POST['company_id'];
-        $ba = $d->sql_operation("update  user set   name='$name', pwd='$pwd', company_id='$company_id' where id='$id'");
+        $ba = $d->sql_operation("update user set name='$name',pwd='$pwd',company_id='$company_id' where id='$id'");
         if($ba){
-           echo json_encode(array('type' => 1, 'data' =>'修改成功！'));
+           echo json_encode(array('type' => 1, 'data' =>'修改成功！')) ;
         }else{
            echo json_encode(array('type' => 0, 'data' =>'修改失败！'));
         }

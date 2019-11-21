@@ -60,8 +60,8 @@
             cols: [[ //表头
                 {field:'checkbox',type:'checkbox' , sort: true},
                 {field: 'id', title: 'ID',sort: true},
-                {field: 'name', title: '账号', },
-                {field: 'pwd', title: '密码', },
+                {field: 'name', title: '账号' },
+                {field: 'pwd', title: '密码' },
                 {field: 'company_id', title: '公司ID', },
                 {field: 'permissions_id', title: '职能ID', },
                 {field: 'permissions_group_id', title: '职能组ID', },
@@ -84,7 +84,7 @@
                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                 layer.close(index);
                                 console.log(index);
-                                layer.msg(type.data);
+//                                layer.msg(type.data);
                             }
                         });
                         layer.close(index);
@@ -96,16 +96,15 @@
                             skin:'layer-open',
                             area: ['500px', '300px'],
                             content:'<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">修改信息详情</legend></fieldset>' +
-                            '<div class="layui-form-item"><label class="layui-form-label">ID</label><div class="layui-input-inline"><input  value="'+data.id+'" name="id" lay-verify="pass" id="id"  class="layui-input"> </div></div>' +
-                            '<div class="layui-form-item"><label class="layui-form-label">账号</label><div class="layui-input-inline"><input  value="'+data.name+'" name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
+                            '<div class="layui-form-item"><label class="layui-form-label">ID</label><div class="layui-input-inline"><input  value="'+data.id+'" name="id" lay-verify="pass" id="id" autocomplete="off" class="layui-input"> </div></div>' +
+                            '<div class="layui-form-item"><label class="layui-form-label">账号</label><div class="layui-input-inline"><input  value="'+data.name+'" name="name" lay-verify="pass" id="name" autocomplete="off" class="layui-input"> </div></div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input value="'+data.pwd+'" name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
                             '<div class="layui-form-item"> <label class="layui-form-label">公司ID</label> <div class="layui-input-inline"> <input value="'+data.company_id+'" lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
                             yes: function(index){
-                                $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),type:$('#type').val(),company_id:$('#company_id').val()},function (type) {
+                                $.post('./?s=admin/Employees/em_update', {id:$('#id').val(),name:$('#name').val(),pwd:$('#pwd').val(),company_id:$('#company_id').val()},function ($ba) {
 //                                        layer.msg(type.data)
                                         layui.table.reload('testReload');
-                                    }
-                                )
+                                })
                                 layer.close(index)//如果设定了yes回调，需进行手工关闭
                             },
                         })
