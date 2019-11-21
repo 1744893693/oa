@@ -40,11 +40,11 @@
     </div>
 
         <div id="tan" style="display: none">
-            <div style=" text-align:center" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px"></div>
+            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px"></div>
         </div>
 
         <div id="plus" style="display: none">
-            <div style=" text-align:center" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px"></div>
+            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px"></div>
         </div>
 
 

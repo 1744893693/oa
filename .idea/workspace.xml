@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4ef3c4c-5fd7-467e-959d-a3b25a62ec84" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/controller/Status.php" afterPath="$PROJECT_DIR$/app/admin/controller/Status.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/view/permission/init.php" afterPath="$PROJECT_DIR$/app/admin/view/permission/init.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/view/position/management.php" afterPath="$PROJECT_DIR$/app/admin/view/position/management.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/view/status/company.php" afterPath="$PROJECT_DIR$/app/admin/view/status/company.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +20,8 @@
       <file leaf-file-name="company.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/view/status/company.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+            <state relative-caret-position="-917">
+              <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -57,8 +53,8 @@
       <file leaf-file-name="Status.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/controller/Status.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="85" column="1" lean-forward="true" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+            <state relative-caret-position="408">
+              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding>
                 <marker date="1574312454072" expanded="true" signature="413:455" ph="update compa... " />
                 <marker date="1574312454072" expanded="true" signature="646:684" ph="update compa... " />
@@ -84,15 +80,14 @@
       <file leaf-file-name="management.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/admin/view/position/management.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="35" column="46" lean-forward="false" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+            <state relative-caret-position="475">
+              <caret line="46" column="57" lean-forward="false" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
               <folding>
                 <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -155,8 +150,8 @@
         <option value="$PROJECT_DIR$/app/admin/controller/Position.php" />
         <option value="$PROJECT_DIR$/app/admin/controller/Status.php" />
         <option value="$PROJECT_DIR$/app/admin/view/permission/init.php" />
-        <option value="$PROJECT_DIR$/app/admin/view/position/management.php" />
         <option value="$PROJECT_DIR$/app/admin/view/status/company.php" />
+        <option value="$PROJECT_DIR$/app/admin/view/position/management.php" />
       </list>
     </option>
   </component>
@@ -168,8 +163,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="230" />
-    <option name="y" value="41" />
+    <option name="x" value="29" />
+    <option name="y" value="56" />
     <option name="width" value="1229" />
     <option name="height" value="841" />
   </component>
@@ -453,15 +448,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574213406811</updated>
-      <workItem from="1574213409000" duration="43199000" />
+      <workItem from="1574213409000" duration="44818000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43199000" />
+    <option name="totallyTimeSpent" value="44818000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="230" y="41" width="1229" height="841" extended-state="0" />
+    <frame x="29" y="56" width="1229" height="841" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.211047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -560,25 +555,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/controller/Status.php">
+    <entry file="file://$PROJECT_DIR$/app/admin/view/permission/init.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="85" column="1" lean-forward="true" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
-          <folding>
-            <marker date="1574312454072" expanded="true" signature="413:455" ph="update compa... " />
-            <marker date="1574312454072" expanded="true" signature="646:684" ph="update compa... " />
-            <marker date="1574312454072" expanded="true" signature="802:844" ph="update compa... " />
-            <marker date="1574312454072" expanded="true" signature="957:991" ph="delete from " />
-            <marker date="1574312454072" expanded="true" signature="1182:1252" ph="update compa... " />
-            <marker date="1574312454072" expanded="true" signature="1410:1553" ph="select * fro... company" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="71" column="23" lean-forward="false" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/admin/view/status/company.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+        <state relative-caret-position="-917">
+          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -591,25 +579,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/view/permission/init.php">
+    <entry file="file://$PROJECT_DIR$/app/admin/controller/Status.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="71" column="23" lean-forward="false" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="408">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <marker date="1574312454072" expanded="true" signature="413:455" ph="update compa... " />
+            <marker date="1574312454072" expanded="true" signature="646:684" ph="update compa... " />
+            <marker date="1574312454072" expanded="true" signature="802:844" ph="update compa... " />
+            <marker date="1574312454072" expanded="true" signature="957:991" ph="delete from " />
+            <marker date="1574312454072" expanded="true" signature="1182:1252" ph="update compa... " />
+            <marker date="1574312454072" expanded="true" signature="1410:1553" ph="select * fro... company" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/admin/view/position/management.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="35" column="46" lean-forward="false" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+        <state relative-caret-position="475">
+          <caret line="46" column="57" lean-forward="false" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
