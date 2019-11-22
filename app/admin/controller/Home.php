@@ -24,9 +24,7 @@ class Home extends Login
 
     }
     function out(){
-        $d=$_SESSION['admin']['company_id'];
         session_destroy();
-        echo $d;
     }
     function company(){
         $id=$_POST['id'];

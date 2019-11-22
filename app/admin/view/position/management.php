@@ -140,34 +140,8 @@
                 //console.log(elem)
                 layer.msg(elem.text());
             });
-        });
-
+        })
     })
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 </script>
 </body>
 </html>
