@@ -11,7 +11,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" id="title">11</div>
+        <div class="layui-logo" id="title"></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" id="top-menu">
 <!--            <li class="layui-nav-item"><a href="">控制台</a></li>-->
@@ -29,8 +29,8 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:menu_child(0);">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    个人中心
+<!--                    <img src="" class="layui-nav-img">-->
+                    <?php echo $_SESSION['admin']['name']?>
                 </a>
 <!--                <dl class="layui-nav-child">-->
 <!--                    <dd><a href="">基本资料</a></dd>-->
@@ -84,9 +84,7 @@
 
         var menu=[]
         $.post('./?s=admin/Home/company',{id:'<?php echo $_SESSION['admin']['company_id']?>'},function (data) {
-
             $('#title').html(data[0].company_name+'OA后台管理')
-            console.log(data)
         },'json')
         $.post('./?s=admin/Home/menu',{id:'<?php echo $_SESSION['admin']['company_id']?>'},function (data) {
             menu=data
@@ -113,7 +111,7 @@
             for(val of menu.menu){
                 if(val.id==tt) {
                     if (val.method) {
-                        $('iframe')[0].contentWindow.location.href = './?s=' + val.method
+                        $('iframe')[0].contentWindow.location.href = './?s=' + val.method+'&id=<?php echo $_SESSION['admin']['id']?>'
                     }
                 }
             }
@@ -121,7 +119,7 @@
 
         function login_out() {
             $.post('./?s=admin/Home/out',function (data) {
-                window.location.href="./?id="+data
+                window.location.href="./"
             })
         }
         function menu_child(id){

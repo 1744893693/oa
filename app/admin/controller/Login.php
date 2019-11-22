@@ -31,9 +31,9 @@ class Login{
                  if ($_POST['yzm'] == $_SESSION['yzm']) {
                  $aa = new Menu();
                  $v = $aa->log("select * from `user` where name = '".$name."'");
-                 if($v[0]['company_id']!=$_POST['id']){
-                     exit(json_encode(array('type' => 107, 'data' => '账号不存在！')));
-                 }
+//                 if($v[0]['company_id']!=$_POST['id']){
+//                     exit(json_encode(array('type' => 107, 'data' => '账号不存在！')));
+//                 }
                  if(!isset($v[0])){
                      exit(json_encode(array('type' => 106, 'data' => '账号不存在！')));
                  }
