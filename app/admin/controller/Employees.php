@@ -84,10 +84,11 @@ class Employees extends Login {
         $d=new Model();
         $name=$_POST['name'];
         $pwd=$_POST['pwd'];
+        $department_id=$_POST['department_id'];
         $company_id=$_POST['company_id'];
         $permissions_id=$_POST['permissions_id'];
         $permissions_group_id=$_POST['permissions_group_id'];
-        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$company_id','$permissions_id','$permissions_group_id')");
+        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$department_id','$company_id','$permissions_id','$permissions_group_id')");
         if($type){
             echo json_encode(array('type' => 1, 'data' =>'添加成功！')) ;
         }else{
