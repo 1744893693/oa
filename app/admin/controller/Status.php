@@ -22,26 +22,23 @@ class  status
         $d= new Model();
         $id=$_POST['id'];
         $data=$d->sql_operation("update company set status=1 WHERE id='$id'");
-        if($data) {
-            $d= new Model();
-            $id=$_POST['id'];
-//            name pwd company_id permissions_id permissions_group_id
-
-            $data=$d->sql_operation("insert into USER   VALUES (NULL ,'$a')");
-        }
+//        if($data){
+//            $company_name=$_POST['company_name'];
+//        $d->sql_operation("insert into user  VALUES (NULL ,'$company_name') ");
+//
+//        }
     }
 
     function db(){
         $d= new Model();
         $id=$_POST['id'];
-        $d->sql_operation("update company set status=0 WHERE id='$id'");
+        $d->sql_operation("update company set status=2 WHERE id='$id'");
     }
 
     function statussc(){
         $d=new Model();
         $id=$_POST['id'];
         $d->sql_operation("delete from company WHERE id='$id'");
-
     }
     function updatetan(){
         $d=new Model();
@@ -51,7 +48,6 @@ class  status
         $date= $d->sql_operation("update company set company_name='$a',legal_person='$b' WHERE  id='$id'");
         return $date;
     }
-
     function layuia(){
         $d=new Model();
         if(!empty($_POST['send_name'])){

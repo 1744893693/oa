@@ -40,11 +40,11 @@
     </div>
 
         <div id="tan" style="display: none">
-            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px"></div>
+            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px;margin-left:20px"></div>
         </div>
 
         <div id="plus" style="display: none">
-            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px"></div>
+            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px;margin-left:20px"></div>
         </div>
 
 
@@ -61,8 +61,8 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[ //表头
-                {field:'id',type:'checkbox',sort: true},
-                {field: 'id', title: 'ID', sort: true},
+
+                { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
                 {field: 'position_name', title: '职位'},
 //                {field: 'status', title: 'ID', width:150, sort: true},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo'}
@@ -107,9 +107,7 @@
                 })
             }
         })
-
         $(document).on('click','#jia',function(){
-
                 layui.use('layer', function() {
                     var layer = layui.layer;
                     layer.open({

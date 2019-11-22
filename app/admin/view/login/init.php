@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="./public/img/fa.ico" />
     <title></title>
     <link rel="stylesheet" href="./public/layui-v2.5.5/layui/css/layui.css">
     <link rel="stylesheet" href="./public/css/login.css">

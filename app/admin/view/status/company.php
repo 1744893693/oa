@@ -19,23 +19,36 @@
   <a href="/demo/">演示</a>
   <a><cite>公司管理</cite></a>
 </span>
-
 <table id="demo" lay-filter="test"></table>
 <table class="layui-hide" id="test" lay-filter="test" style="height:100%";></table>
 
 
 <script type="text/html" id="toolbarDemo">
     <div class="demoTable">
-        <div class="layui-inline">
-            <input class="layui-input" name="id" id="id" autocomplete="off">
-        </div>
-        <div class="layui-inline">
+
+<div style="width:100px ;float: left">
+    <select name="modules" lay-verify="required" lay-search="" id="check"style="width:60px ">
+        <option value="">选择字段</option>.
+     <?php foreach ([1,2,5,8,8] as $k){?>
+            <option value="17"><?php echo $k ?></option>
+        <?php }?>
+    </select>
+</div>
+         <div class="layui-inline" >
+<!--        </div>-->
+         <div class="layui-inlinex">
+             <div style="float: left">
+                 <input class="layui-input" name="id" id="id" autocomplete="off" >
+             </div>
             <button class="layui-btn" data-type="reload" id="check">搜索</button>
         </div>
-        <div class="layui-inline">
-
-        </div>
     </div>
+ </div>
+<!--            <div class="layui-input-inline">-->
+<!--            </div>-->
+<!--        <div class="layui-inline">-->
+<!--     </div>-->
+
 </script>
 
 
@@ -49,8 +62,8 @@
 </script>
 
 <div id="tan" style="display: none;margin-top:65px">
-    <div style=" text-align:center" class="layui-form-item">注册公司 <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px "></div>
-    <div style=" text-align:center" class="layui-form-item">公司法人<input type="text"id="legal_person"style="width: 150px;height:30px "></div>
+    <div style=" text-align:center" class="layui-form-item">注册公司 <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px;margin-left:20px "></div>
+    <div style=" text-align:center" class="layui-form-item">公司法人<input type="text"id="legal_person"style="width: 150px;height:30px;margin-left:23px "></div>
 </div>
 <script type="text/javascript">
     layui.use('table', function(){
@@ -66,39 +79,44 @@
                 cellMinWidth: 80
             }],
             cols: [[ //表头
-
-                {field: 'id', title: 'ID',sort: true},
-                {field: 'company_name', title: '注册公司' ,sort: true},
+                { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
+                {field: 'company_name', title: '注册公司'},
                 {field: 'legal_person', title: '法人'},
-                {field: 'status', title: '状态' },
-                {fixed: 'right', title:'操作', toolbar: '#barDemo',width:300}
+                {field: 'status', title: '状态' ,sort: true, templet:function (d) {
+                 if (d.status==0) {  // 自定义内容
+                     return "<span style='color: red'>未审批</span>";
+                 } else if (d.status==1) {
+                     return "<span style='color: green'>已通过</span>";
+                 }else if(d.status==2) {
+                     return "<span style='color: red'>已拒绝</span>";
+                 }
+                }},
+                {fixed: 'right', title:'操作', toolbar: '#barDemo',width:210}
             ]],
             id: 'testReload'
             ,page: true
             ,height:630
         });
-
-
         //监听行工具事件
         table.on('tool(test)', function(obj){
             var data = obj.data;
             var company_name= $('#company_name').val(data.company_name),
                 legal_person= $('#legal_person').val(data.legal_person);
             if(obj.event === 'del'){
-                layer.confirm('真的删除状态为：'+data.id+"的职位吗?", function(index){
+                layer.confirm('你确定删除：'+data.company_name+"的职位吗?", function(index){
                     $.post('./?s=admin/Status/statussc',{id:data.id})
                     obj.del();
                     layer.close(index);
                     layui.table.reload('testReload');
                 });
             } else if(obj.event === 'up'){
-                layer.confirm('真的修改状态为：'+data.id+"的职位吗?", function(index){
+                layer.confirm('你确定更改：'+data.company_name+"的状态为已通过吗?", function(index){
                     $.post('./?s=admin/status/up',{id:data.id})
                     layer.close(index);
                     layui.table.reload('testReload');
                 });
             }else if(obj.event === 'db'){
-                layer.confirm('真的修改状态为：'+data.id+"的职位吗?", function(index){
+                layer.confirm('你确定驳回：'+data.company_name+"的状态为不通过吗?", function(index){
                     $.post('./?s=admin/status/db',{id:data.id})
                     layer.close(index);
                     layui.table.reload('testReload');
@@ -115,6 +133,7 @@
                         formType:2,
                         title:'修改信息详情',
                         content:$('#tan'),
+                        icon:0,
                         shade:.0,
                         type:1,
                         yes: function(index){

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="./public/img/fa.ico" />
     <title>oa管理系统</title>
     <link rel="stylesheet" href="./public/layui-v2.5.5/layui/css/layui.css">
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
@@ -86,7 +87,7 @@
         $.post('./?s=admin/Home/company',{id:'<?php echo $_SESSION['admin']['company_id']?>'},function (data) {
 
             $('#title').html(data[0].company_name+'OA后台管理')
-            console.log(data)
+
         },'json')
         $.post('./?s=admin/Home/menu',{id:'<?php echo $_SESSION['admin']['company_id']?>'},function (data) {
             menu=data
