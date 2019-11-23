@@ -35,7 +35,7 @@
                             $j++;
                             $i++;
                             ?>
-                            <input  type="checkbox" name="mes" value="<?php  echo $menu['functional_group_id']?>" id="fun<?php echo $j ?>" title="<?php  echo $menu['menu_name']?>"  <?php foreach ( $data['my_menu'] as $my_menu){ echo $my_menu['functional_group_id']==$menu['functional_group_id']?'checked':'';}?>
+                            <input  type="checkbox" name="mes" value="<?php  echo $menu['functional_group_id']?>" id="fun<?php echo $j ?>" title="<?php  echo $menu['menu_name']?>"
                             <hr class="layui-bg-green">
                             <?php
                         }
@@ -64,6 +64,8 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
+
+
 
         <div id="yg" style="display: none">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">修改信息详情</legend></fieldset>
@@ -115,14 +117,17 @@
 <!--                </div>-->
 <!--            </div>-->
         </div>
+
+
     <div class="layui-footer">
         <div id="demo7"></div>
     </div>
 
 
 <script type="text/javascript">
-    layui.use('table', function(){
+    layui.use(['table','form'], function(){
         var table = layui.table;
+        var form=layui.form;
         table.render({
             elem: '#demo',//指定表格元素
             url: './?s=admin/Employees/employees',//请求路径
@@ -185,7 +190,36 @@
                 else if(obj.event === 'permission'){
                     layui.use('layer', function(){
                         var layer = layui.layer;
+                        $.post('./?s=admin/Employees/permission_list',{id:data.id},function (date) {
 
+                            var box=$('input:checkbox')
+                            for (ke of box){
+
+                                if(date.length>0){
+                                    console.log(222)
+
+                                    for(val of date){
+                                console.log(val.functional_group_id)
+
+                                        if(ke.value==val.functional_group_id){
+                                            console.log('ke')
+
+                                            $('input:checkbox[value='+val.functional_group_id+']').attr('checked',true)
+                                            form.render();
+                                            break;
+                                        }else {
+                                            $('input:checkbox[value='+ke.value+']').removeAttr('checked')
+                                            form.render()
+                                        }
+                                    }
+                                }else {
+                                    console.log(111)
+                                        $('input:checkbox').removeAttr('checked')
+                                        form.render()
+                                 }
+                             }
+
+                        },'json')
                         layer.open({
                             skin:'layui-layer-molv',
                             btn: ['确定', '取消'],
@@ -201,7 +235,7 @@
                                     return $(elem).val();
                                 }).get().join(',');
                                 $.post('./?s=admin/Employees/permission', {id:text,user_id:data.id},function (date) {
-                                    if(date) {layer.msg('新添加权限'+date+'条！')}
+                                    if(date) {layer.msg(date)}
 
                                 })
                                 layer.close(index)

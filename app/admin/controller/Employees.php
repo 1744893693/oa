@@ -16,7 +16,7 @@ class Employees extends Login {
                                         LEFT JOIN position on user.position_id=position.id where user.company_id=';
     function init(){
         $d=new Model();
-        $data['my_menu']=$d->sql_operation('select id,functional_group_id from permission_group WHERE user_id='.$this->user_id);
+        $data['my_menu']=$d->sql_operation('select id,functional_group_id,user_id from permission_group');
         $data['department']=$d->sql_operation('select id,name from department WHERE company_id='.$this->company_id);
         $data['menu']=$d->sql_operation('select functional_group.id as functional_group_id,functional_group.department_id,
                 functional_group.menu_id,menu.`name` as menu_name from functional_group LEFT JOIN menu on
@@ -91,11 +91,13 @@ class Employees extends Login {
         $idd=explode(',',$id);
         $d=new Model();
         $count=0;
-        foreach ($idd as $val){
-            $data=$d->sql_operation('select functional_group_id from permission_group WHERE functional_group_id='.$val.' and user_id='.$user_id);
-            if(empty($data)){
-                $data=$d->sql_operation('insert into permission_group VALUES (null,'.$val.','.$user_id.',0)');
-                $count++;
+        if($id){
+            foreach ($idd as $val){
+                $data=$d->sql_operation('select functional_group_id from permission_group WHERE functional_group_id='.$val.' and user_id='.$user_id);
+                if(empty($data)){
+                    $data=$d->sql_operation('insert into permission_group VALUES (null,'.$val.','.$user_id.',0)');
+                    $count++;
+                }
             }
         }
         if($count){
@@ -108,7 +110,13 @@ class Employees extends Login {
         }
         if($id){
             $data=$d->sql_operation('delete from permission_group WHERE functional_group_id not in ('.$id.') and user_id='.$user_id);
-            exit('权限取消成功'.$count1-count($idd).'项');
+            exit('权限取消成功'.(count($count1)-count($idd)).'项');
         }
+    }
+    function permission_list(){
+        $id=$_POST['id'];
+        $d=new Model();
+        $data=$d->sql_operation('select functional_group_id from permission_group WHERE user_id='.$id);
+        echo json_encode($data);
     }
 }
