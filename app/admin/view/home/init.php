@@ -91,9 +91,14 @@
 //            layui.use('element', function(){
 //                var element = layui.element;
 //            })
+
             for(val of menu.department){
                 if(1==<?php echo $_SESSION['admin']['permissions_group_id']?>){
+                    console.log(val.company_id==<?php echo $_SESSION['admin']['company_id']?>)
+                    console.log(<?php echo $_SESSION['admin']['company_id']?>)
+                    console.log(val.company_id)
                     if(val.company_id==<?php echo $_SESSION['admin']['company_id']?>){
+
                         $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
                     }
                 }else if (val.permissions_group_id==<?php echo $_SESSION['admin']['permissions_group_id']?>){

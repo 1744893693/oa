@@ -24,12 +24,14 @@ class Home extends Login
 
     }
     function out(){
+        $d=$_SESSION['admin']['company_id'];
         session_destroy();
+        echo $d;
     }
     function company(){
         $id=$_POST['id'];
         $data=new Model();
-        $data=$data->sql_operation("select * from company where id = '$id'");
-        echo json_encode($data);
+        $data->sql_operation("select company_name from company WHERE id=$id");
+        echo $data;
     }
 }
