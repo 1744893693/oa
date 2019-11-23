@@ -11,51 +11,41 @@ use api\Model;
 use app\admin\model\Menu;
 
 class Employees extends Login {
+    public $qurey='select `user`.*,department.`name` as department_name,position.position_name
+                                        from user LEFT JOIN department on user.department_id=department.id 
+                                        LEFT JOIN position on user.position_id=position.id where user.company_id=';
     function init(){
+        $d=new Model();
+        $data['my_menu']=$d->sql_operation('select id,functional_group_id from permission_group WHERE user_id='.$this->user_id);
+        $data['department']=$d->sql_operation('select id,name from department WHERE company_id='.$this->company_id);
+        $data['menu']=$d->sql_operation('select functional_group.id as functional_group_id,functional_group.department_id,
+                functional_group.menu_id,menu.`name` as menu_name from functional_group LEFT JOIN menu on
+                 functional_group.menu_id=menu.id WHERE functional_group.company_id='.$this->company_id);
         include_once './app/admin/view/employees/init.php';
     }
     function employees(){
         $limit = $_GET['limit'];
         $page = $_GET['page'];
+        $company_id=$_SESSION['admin']['company_id'];
         $data = new Model();
         $news = ($page-1)*$limit;
-        $sousuo = $_GET['send_name'];
-        if(!empty($sousuo)){
-            $d =   $data->sql_operation("select * from user where name like '%$_GET[send_name]%'  or id ='$_GET[send_name]' limit $news,$limit ");
-            $s =   $data->sql_operation("select * from user where name like '%$_GET[send_name]%'  or id ='$_GET[send_name]' ");
-        }else if(empty($sousuo)){
-            $d =$data->sql_operation("select * from user where name like '%$_GET[send_name]%'  or id ='$_GET[send_name]' limit $news,$limit ");
-            $s =$data->sql_operation("select * from user where name like '%$_GET[send_name]%'  or id ='$_GET[send_name]'");
+        $q=$this->qurey;
+
+        if(!empty($_GET['send_name'])){
+//            $sousuo = $_GET['send_name'];
+//            var_dump($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%" limit '.$news.','.$limit );
+            $d =   $data->sql_operation($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%" limit '.$news.','.$limit );
+            $s =   $data->sql_operation($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%"');
+        }else{
+            $dd=$q.$company_id.' limit '.$news.','.$limit;
+            $d =$data->sql_operation("$dd");//查找每页显示的员工
+            $s =$data->sql_operation($q.$company_id);//查找该公司所有的员工
         }
-        if($d){
-            $msg = [];
+
             $msg['code'] =0;//状态码
             $msg['count'] = count($s);//数据集
             $msg['data'] = $d;//内容数据
-        }else{
-            $msg = [];
-            $msg['code'] =0;//状态码
-            $msg['count'] =[];//数据集
-            $msg['data'] = [];//内容数据
-        }
         echo json_encode($msg);
-//        $d=new Model();
-//        if(!empty($_GET['send_name'])){
-//            $data=$d->sql_operation("select * from user where name like '%$_GET[send_name]%'  or id ='$_GET[send_name]'");
-//        }else{
-//            $data=$d->employee();
-//        }
-//        if(empty($data)){
-//            $data=$d->employee();
-//        }
-//        if($data){
-//            $d=[];
-//            $d['code']=0;
-//            $d['count']=count($data);
-//            $d['msg']="";
-//            $d['data']=$data;
-//        }
-//        echo json_encode($d);
     }
     function employee(){
         $d=new Model();
@@ -93,5 +83,23 @@ class Employees extends Login {
         }else{
             echo json_encode(array('type' => 0, 'data' =>'添加失败！')) ;
         }
+    }
+    function permission(){
+        $id=$_POST['id'];
+        $user_id=$_POST['user_id'];
+        $idd=explode(',',$id);
+        $d=new Model();
+        $data=$d->sql_operation('delete from permission_group WHERE functional_group_id not in ('.$id.') and user_id='.$user_id);
+        var_dump('delete from permission_group WHERE functional_group_id not in ('.$id.') and user_id='.$user_id) ;
+        $count=0;
+        foreach ($idd as $val){
+
+            $data=$d->sql_operation('select functional_group_id from permission_group WHERE functional_group_id='.$val.' and user_id='.$user_id);
+            if(empty($data)){
+                $data=$d->sql_operation('insert into permission_group VALUES (null,'.$val.','.$this->user_id.',0)');
+                $count++;
+            }
+        }
+        echo $count;
     }
 }

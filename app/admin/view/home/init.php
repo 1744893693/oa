@@ -71,7 +71,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px; height: 100%">
+        <div style="padding: 10px 10px 0 10px; height: calc(100% - 10px)">
             <iframe   height="100%" width="100%" frameborder="0"></iframe>
         </div>
     </div>

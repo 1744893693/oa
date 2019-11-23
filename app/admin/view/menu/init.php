@@ -47,7 +47,7 @@
                <div class="layui-form-item">
                    <label class="layui-form-label">选择部门</label>
                    <div class="layui-input-block" style="width: 250px">
-                       <select id="department">
+                       <select id="edit_department">
                            <?php foreach ($date['department'] as $val){
                                ?>
                                <option value="<?php echo $val['id']?>"><?php echo $val['department_name']?></option>
@@ -111,7 +111,7 @@
                        { type: 'numbers', title: '序号' , width:80, fixed: 'left'},
                        {field: 'menu_name', title: '菜单名'},
                        {field: 'department_name', title: '所属部门',sort: true},
-                       {fixed: 'right', title:'操作', toolbar: '#barDemo'}
+                       {fixed: 'right', title:'操作', toolbar: '#barDemo',align: 'right'}
                    ]],
                    id: 'testReload'
                    ,page: true
@@ -144,10 +144,10 @@
                                    shade:0,
                                    type:1,
                                    yes: function(index){
-                                       $.post('./?s=admin/Menu/edit', {id:data.id,did:data.department_id},function (date) {
-                                           if(date) layer.msg(date)
-
-
+                                       var editid=$('#edit_department').val()
+                                       var dename=$('#edit_department').find("option:selected").text();
+                                       $.post('./?s=admin/Menu/edit', {id:data.id,did:editid},function (date) {
+                                           if(date) layer.msg('已经修改'+data.department_name+'所属部门为'+dename)
                                        })
                                        layer.close(index)
                                        layui.table.reload('testReload');
@@ -173,9 +173,9 @@
                            type: 1,
                            yes: function (index) {
                                var menu_id=$('#menu').val()
-                               var department_id=$('#department').val()
+                               var de_id=$('#department').val()
                                var mmame=$('#menu').find("option:selected").text();
-                               $.post('./?s=admin/Menu/add_menu', {menu_id:menu_id,department_id:department_id,mmame:mmame}, function (date) {
+                               $.post('./?s=admin/Menu/add_menu', {menu_id:menu_id,department_id:de_id,mmame:mmame}, function (date) {
                                    layer.msg(date)
                                    layui.table.reload('testReload');
                                })

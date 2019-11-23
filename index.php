@@ -20,3 +20,6 @@ $d=new $controller();
 $method=$route[2];
 $d->$method();
 
+
+
+

@@ -22,7 +22,33 @@
 
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
+        <div id="permission" style="display: none">
+            <form class="layui-form" style="margin: 30px 30px 0 30px">
+                <?php $j=0; foreach ($data['department'] as $department){
+                    ?>
+                    <div style="margin-top: 25px"><?php echo $department['name']?></div>
+                    <hr class="layui-bg-green">
+                    <?php
+                    $i=0;
+                    foreach ($data['menu'] as $menu){
+                        if($menu['department_id']==$department['id']){
+                            $j++;
+                            $i++;
+                            ?>
+                            <input  type="checkbox" name="mes" value="<?php  echo $menu['functional_group_id']?>" id="fun<?php echo $j ?>" title="<?php  echo $menu['menu_name']?>"  <?php foreach ( $data['my_menu'] as $my_menu){ echo $my_menu['functional_group_id']==$menu['functional_group_id']?'checked':'';}?>
+                            <hr class="layui-bg-green">
+                            <?php
+                        }
+                    }
+                    if(!$i) { ?><div style="height: 30px"><?php echo $department['name'].'暂未添加任何功能';}
+                    }?></div>
+                <hr class="layui-bg-green">
 
+
+<!--                <input type="checkbox" name="" title="写作" lay-skin="primary" checked>-->
+<!--                <input type="checkbox" name="" title="发呆" lay-skin="primary">-->
+            </form>
+        </div>
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
                 <div class="layui-inline">
@@ -34,43 +60,15 @@
         </script>
 
         <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="permission">权限</a>
             <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-<!--        <script type="text/html">-->
-<!--        <div class="layui-inline">-->
-<!--            <label class="layui-form-label">职能</label>-->
-<!--            <div class="layui-input-inline" name="permissions_id" id="permissions_id" >-->
-<!--                <select name="modules" lay-verify="required" lay-search="" >-->
-<!--                    <option value=""></option>-->
-<!--                    --><?php //foreach ([1,2,3,4,5] as $key){?>
-<!--                        <option value="">--><?php //echo $key?><!--</option>-->
-<!--                    --><?php //}?>
-<!--                </select>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="layui-inline">-->
-<!--            <label class="layui-form-label">职能组</label>-->
-<!--            <div class="layui-input-inline" name="permissions_group_id" id="permissions_group_id" >-->
-<!--                <select name="modules" lay-verify="required" lay-search="" >-->
-<!--                    <option value=""></option>-->
-<!--                    <option value="1">layer</option>-->
-<!--                    <option value="2">form</option>-->
-<!--                    <option value="3">layim</option>-->
-<!--                    <option value="4">element</option>-->
-<!--                    <option value="5">laytpl</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        </script>-->
-
-
-
 
     <div class="layui-footer">
         <div id="demo7"></div>
     </div>
+
 
 <script type="text/javascript">
     layui.use('table', function(){
@@ -87,11 +85,9 @@
             cols: [[
                 { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
                 {field: 'name', title: '账号' },
-                {field: 'pwd', title: '密码' },
-                {field: 'company_id', title: '公司ID', },
-                {field: 'permissions_id', title: '职能ID', },
-                {field: 'permissions_group_id', title: '职能组ID', },
-                {fixed: 'right', title:'操作', toolbar: '#barDemo', }
+                {field: 'department_name', type:'password',title: '部门', },
+                {field: 'position_name', title: '职位', },
+                {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'right' }
             ]],
             id: 'testReload'
             ,page: true
@@ -136,8 +132,33 @@
                         })
                     })
                 }
-                else if(obj.event === 'detail'){
-                    layer.msg('name：'+ data.name  )
+                else if(obj.event === 'permission'){
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+
+                        layer.open({
+                            skin:'layui-layer-molv',
+                            btn: ['确定', '取消'],
+                            area: ['600px', '500px'],
+                            formType:2,
+                            title:'修改功能所属部门',
+                            content:$('#permission'),
+                            shade:0,
+                            type:1,
+                            yes: function(index){
+
+                                text = $("input:checkbox[name='mes']:checked").map(function (index, elem) {
+                                    return $(elem).val();
+                                }).get().join(',');
+                                $.post('./?s=admin/Employees/permission', {id:text,user_id:data.id},function (date) {
+                                    if(date) {layer.msg('新添加权限'+date+'条！')}
+
+                                })
+                                layer.close(index)
+                                layui.table.reload('testReload');
+                            },
+                        })
+                    })
                 }
             }),
 

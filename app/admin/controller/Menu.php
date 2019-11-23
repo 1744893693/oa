@@ -32,7 +32,7 @@ class menu extends Login
                                   company LEFT JOIN functional_group on company.id = functional_group.company_id LEFT 
                                   JOIN menu on functional_group.menu_id=menu.id LEFT JOIN department on 
                                   functional_group.department_id=department.id WHERE company.id=$id");
-         $data=$d->sql_operation("select functional_group.id,menu.`name` as menu_name,department.`name` as department_name from 
+         $data=$d->sql_operation("select functional_group.id,menu.`name` as menu_name,functional_group.department_id,department.`name` as department_name from 
                                   company LEFT JOIN functional_group on company.id = functional_group.company_id LEFT 
                                   JOIN menu on functional_group.menu_id=menu.id LEFT JOIN department on 
                                   functional_group.department_id=department.id WHERE company.id=$id limit $start,$limit");
