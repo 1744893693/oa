@@ -138,15 +138,15 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
+                { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left',style:'background-color: #eee;'},
                 {field: 'name', title: '账号' },
                 {field: 'department_name', type:'password',title: '部门', },
                 {field: 'position_name', title: '职位', },
-                {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'right' }
+                {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center',style:'background-color: #CCEFE0;' }
             ]],
             id: 'testReload'
             ,page: true
-            ,height: 715
+            ,height: 'full-50',
         }),
             //监听行工具事件
             table.on('tool(test)', function(obj){
