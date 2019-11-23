@@ -19,19 +19,29 @@ class Home extends Login
         include_once './app/admin/view/home/init.php';
     }
     function menu(){
-        $data=(new Menu())->init();
+        $user_id=$this->user_id;
+        $d=new Model();
+        $data['company']=$d->sql_operation('select company_name from company WHERE id='.$this->company_id);
+        $data['department']=$d->sql_operation('select functional_group.department_id,department.`name` as department_name from user LEFT JOIN 
+            company on `user`.company_id=company.id LEFT JOIN permission_group on `user`.id=permission_group.user_id LEFT JOIN 
+            functional_group on permission_group.functional_group_id=functional_group.id LEFT JOIN menu on functional_group.menu_id
+            =menu.id LEFT JOIN department on menu.department_id=department.id WHERE `user`.id='.$user_id.' GROUP BY functional_group.department_id');
+
+        $data['menu']=$d->sql_operation('select functional_group.department_id,functional_group.menu_id,menu.`name` as menu_name,menu.method from user LEFT JOIN 
+            company on `user`.company_id=company.id LEFT JOIN permission_group on `user`.id=permission_group.user_id LEFT JOIN 
+            functional_group on permission_group.functional_group_id=functional_group.id LEFT JOIN menu on functional_group.menu_id
+            =menu.id LEFT JOIN department on menu.department_id=department.id WHERE `user`.id='.$user_id);
+        //var_dump($data);
         echo json_encode($data);
 
     }
     function out(){
-        $d=$_SESSION['admin']['company_id'];
         session_destroy();
-        echo $d;
     }
     function company(){
         $id=$_POST['id'];
         $data=new Model();
-        $data->sql_operation("select company_name from company WHERE id=$id");
-        echo $data;
+        $data=$data->sql_operation("select * from company where id = '$id'");
+        echo json_encode($data);
     }
 }
