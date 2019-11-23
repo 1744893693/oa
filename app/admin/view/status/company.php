@@ -49,8 +49,12 @@
 </script>
 
 <div id="tan" style="display: none;margin-top:65px">
-    <div style=" text-align:center" class="layui-form-item">注册公司 <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px "></div>
-    <div style=" text-align:center" class="layui-form-item">公司法人<input type="text"id="legal_person"style="width: 150px;height:30px "></div>
+    <div style=" text-align:center" class="layui-form-item">注册公司
+        <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px ">
+    </div>
+    <div style=" text-align:center" class="layui-form-item">公司法人
+        <input type="text"id="legal_person"style="width: 150px;height:30px ">
+    </div>
 </div>
 <script type="text/javascript">
     layui.use('table', function(){

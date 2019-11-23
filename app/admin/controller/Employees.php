@@ -74,10 +74,11 @@ class Employees extends Login {
         $d=new Model();
         $name=$_POST['name'];
         $pwd=$_POST['pwd'];
+        $department_id=$_POST['department_id'];
         $company_id=$_POST['company_id'];
         $permissions_id=$_POST['permissions_id'];
         $permissions_group_id=$_POST['permissions_group_id'];
-        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$company_id','$permissions_id','$permissions_group_id')");
+        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$department_id','$company_id','$permissions_id','$permissions_group_id')");
         if($type){
             echo json_encode(array('type' => 1, 'data' =>'添加成功！')) ;
         }else{
@@ -89,17 +90,25 @@ class Employees extends Login {
         $user_id=$_POST['user_id'];
         $idd=explode(',',$id);
         $d=new Model();
-        $data=$d->sql_operation('delete from permission_group WHERE functional_group_id not in ('.$id.') and user_id='.$user_id);
-        var_dump('delete from permission_group WHERE functional_group_id not in ('.$id.') and user_id='.$user_id) ;
         $count=0;
         foreach ($idd as $val){
-
             $data=$d->sql_operation('select functional_group_id from permission_group WHERE functional_group_id='.$val.' and user_id='.$user_id);
             if(empty($data)){
-                $data=$d->sql_operation('insert into permission_group VALUES (null,'.$val.','.$this->user_id.',0)');
+                $data=$d->sql_operation('insert into permission_group VALUES (null,'.$val.','.$user_id.',0)');
                 $count++;
             }
         }
-        echo $count;
+        if($count){
+            exit('权限添加成功'.$count.'项');
+        }
+        $count1=$d->sql_operation('select id from permission_group WHERE user_id='.$user_id);
+        if(!$id){
+            $data=$d->sql_operation("delete from permission_group WHERE functional_group_id not in ('$id') and user_id=$user_id");
+            exit('权限清空成功');
+        }
+        if($id){
+            $data=$d->sql_operation('delete from permission_group WHERE functional_group_id not in ('.$id.') and user_id='.$user_id);
+            exit('权限取消成功'.$count1-count($idd).'项');
+        }
     }
 }
