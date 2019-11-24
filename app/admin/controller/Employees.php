@@ -17,7 +17,10 @@ class Employees extends Login {
     function init(){
         $d=new Model();
         $data['my_menu']=$d->sql_operation('select id,functional_group_id,user_id from permission_group');
-        $data['department']=$d->sql_operation('select id,name from department WHERE company_id='.$this->company_id);
+        $data['department']=$d->sql_operation('select department.id,department.`name`
+                 from functional_group LEFT JOIN menu on functional_group.menu_id=menu.id LEFT JOIN 
+                 department on functional_group.department_id=department.id WHERE functional_group.company_id='.$this->company_id.'
+                  GROUP BY functional_group.department_id');
         $data['menu']=$d->sql_operation('select functional_group.id as functional_group_id,functional_group.department_id,
                 functional_group.menu_id,menu.`name` as menu_name from functional_group LEFT JOIN menu on
                  functional_group.menu_id=menu.id WHERE functional_group.company_id='.$this->company_id);
@@ -95,7 +98,7 @@ class Employees extends Login {
             foreach ($idd as $val){
                 $data=$d->sql_operation('select functional_group_id from permission_group WHERE functional_group_id='.$val.' and user_id='.$user_id);
                 if(empty($data)){
-                    $data=$d->sql_operation('insert into permission_group VALUES (null,'.$val.','.$user_id.',0)');
+                    $data=$d->sql_operation('insert into permission_group VALUES (null,'.$val.','.$user_id.')');
                     $count++;
                 }
             }

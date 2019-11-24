@@ -22,16 +22,14 @@ class Home extends Login
         $user_id=$this->user_id;
         $d=new Model();
         $data['company']=$d->sql_operation('select company_name from company WHERE id='.$this->company_id);
-        $data['department']=$d->sql_operation('select functional_group.department_id,department.`name` as department_name from user LEFT JOIN 
-            company on `user`.company_id=company.id LEFT JOIN permission_group on `user`.id=permission_group.user_id LEFT JOIN 
-            functional_group on permission_group.functional_group_id=functional_group.id LEFT JOIN menu on functional_group.menu_id
-            =menu.id LEFT JOIN department on menu.department_id=department.id WHERE `user`.id='.$user_id.' GROUP BY functional_group.department_id');
+        $data['department']=$d->sql_operation('select department.id as department_id,department.`name`as department_name from functional_group LEFT 
+                 JOIN menu on functional_group.menu_id=menu.id LEFT JOIN department on functional_group.department_id
+                 =department.id WHERE functional_group.company_id='.$this->company_id.' GROUP BY functional_group.department_id');
 
         $data['menu']=$d->sql_operation('select functional_group.department_id,functional_group.menu_id,menu.`name` as menu_name,menu.method from user LEFT JOIN 
             company on `user`.company_id=company.id LEFT JOIN permission_group on `user`.id=permission_group.user_id LEFT JOIN 
             functional_group on permission_group.functional_group_id=functional_group.id LEFT JOIN menu on functional_group.menu_id
             =menu.id LEFT JOIN department on menu.department_id=department.id WHERE `user`.id='.$user_id);
-        //var_dump($data);
         echo json_encode($data);
 
     }
