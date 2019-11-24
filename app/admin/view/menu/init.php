@@ -122,7 +122,10 @@
                    table.on('tool(test)', function(obj){
                        var data = obj.data;
                        if(obj.event === 'del'){
-                           layer.confirm('请确认是否删除'+data.menu_name+"功能?", function(index){
+                           layer.confirm('请确认是否删除'+data.menu_name+"功能?", {
+                               skin:'layui-layer-molv',
+                           },function(index){
+
                                $.post('./?s=admin/Menu/del',{id:data.id},function (date) {
                                    if(date) layer.msg(data.menu_name+'功能删除成功')
                                })

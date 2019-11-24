@@ -52,8 +52,8 @@ class Employees extends Login {
     }
     function employee(){
         $d=new Model();
-        $name=$_POST['name'];
-        $data = $d->sql_operation("delete from user WHERE name='$name'");
+        $id=$_POST['id'];
+        $data = $d->sql_operation("delete from user WHERE id='$id'");
         if($data){
             echo json_encode(array('type' => 1, 'data' =>'删除成功！'));
         }else{

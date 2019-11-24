@@ -156,7 +156,7 @@
                         $.ajax({
                             url:"./?s=admin/Employees/employee",
                             type:'post',
-                            data:{'name':data.name},//向服务端发送删除的id
+                            data:{'id':data.id},//向服务端发送删除的id
                             success:function(type){
                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                 layer.close(index);
