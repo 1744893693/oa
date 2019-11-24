@@ -90,7 +90,7 @@
 
         },'json')
         $.post('./?s=admin/Home/menu',{id:'<?php echo $_SESSION['admin']['company_id']?>'},function (data) {
-            menu=data
+            menu=data;
 //            layui.use('element', function(){
 //                var element = layui.element;
 //            })
