@@ -144,16 +144,6 @@
                         </select>
                     </div>
                 </div>
-<!--            <div class="layui-form-item">-->
-<!--                <label class="layui-form-label">职位</label>-->
-<!--                <div class="layui-input-block " style="width: 190px">-->
-<!--                    <select  <input type="text" id="position_id" name="position_id" lay-verify="pass" style="width: 190px" placeholder="请输入职位" autocomplete="off" class="layui-input">>-->
-<!--                    <option value=""></option>-->
-<!--                    <option value="0">经理</option>-->
-<!--                    <option value="1">老板</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
             </form>
         </div>
 

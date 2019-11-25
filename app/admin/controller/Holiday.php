@@ -27,6 +27,7 @@ class Holiday extends   Login {
         echo json_encode($d);
     }
     function holiday_insert(){
+
         $aa = new Model();
         $name = $_POST['name'];
         $start_time = $_POST['start_time'];
@@ -35,7 +36,6 @@ class Holiday extends   Login {
         $type = $_POST['type'];
         $reason = $_POST['reason'];
         $data = $aa->sql_operation("insert into operation (name,start_time,end_time,approver,type,reason ) VALUES  ( '$name','$start_time','$end_time','$approver','$type','$reason')");
-//        $data = $aa->sql_operation("insert into operation VALUES (NULL ,'$name','$start_time','$end_time','$approver','$type','$reason')");
         echo json_encode($data);
     }
     function delete(){

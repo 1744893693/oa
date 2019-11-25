@@ -54,8 +54,8 @@
                     <select id="approver">
                     <!--                    <select  <input type="text" id="approver" name="approver" lay-verify="pass"  placeholder="请输入审批人" autocomplete="off" class="layui-input">>-->
                     <option value=""></option>
-                    <option value="0">人事部经理</option>
-                    <option value="1">老板</option>
+                    <option value="人事部经理">人事部经理</option>
+                    <option value="老板">老板</option>
                     </select>
                 </div>
             </div>
@@ -65,11 +65,11 @@
                     <select id="type1">
 <!--                    <select <input type="text" id="type1" name="type1" lay-verify="pass"  placeholder="请输入请假类型" autocomplete="off" class="layui-input">>-->
                         <option value=""></option>
-                        <option value="0">事假</option>
-                        <option value="1">病假</option>
-                        <option value="2">产假</option>
-                        <option value="3">年假</option>
-                        <option value="4">其它</option>
+                        <option value="事假">事假</option>
+                        <option value="病假">病假</option>
+                        <option value="产假">产假</option>
+                        <option value="年假">年假</option>
+                        <option value="其它">其它</option>
                     </select>
                 </div>
             </div>
