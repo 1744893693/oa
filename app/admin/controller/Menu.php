@@ -17,7 +17,11 @@ class menu extends Login
      function init(){
          $id=$_SESSION['admin']['company_id'];
          $d=new Model();
-         $date['menu']=$d->sql_operation("select menu.id,menu.`name` as menu_name from menu");
+         if($id!=3){
+             $date['menu']=$d->sql_operation("select menu.id,menu.`name` as menu_name from menu WHERE id!=12");
+         }else{
+             $date['menu']=$d->sql_operation("select menu.id,menu.`name` as menu_name from menu");
+         }
          $date['department']=$d->sql_operation("select department.id,department.`name` as department_name from 
                                   company LEFT JOIN department on company.id=department.company_id WHERE company.id=$id");
          include_once './app/admin/view/Menu/init.php';

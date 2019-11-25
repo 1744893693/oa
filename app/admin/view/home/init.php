@@ -60,7 +60,7 @@
         }
 
 
-        menu_child(0)
+        menu_child(menu.department[0].department_id)
         layui.use('element', function(){
             var element = layui.element;
         })

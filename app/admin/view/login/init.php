@@ -39,8 +39,8 @@
     </form>
 </div>
 
-<div style="text-align:center;">
-
+<div style="text-align:center;font-size: 30px">
+    <a href="./?s=admin/Register/init">去申请注册公司</a>
 </div>
 <script src="./public/layui-v2.5.5/layui/layui.js"></script>
 <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>

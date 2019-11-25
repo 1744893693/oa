@@ -79,7 +79,7 @@
                 { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
                 {field: 'company_name', title: '注册公司'},
                 {field: 'legal_person', title: '法人'},
-                {field: 'password', title: '账号'},
+                {field: 'account', title: '账号'},
                 {field: 'status', title: '状态' ,width:100,align: 'center',sort: true, templet:function (d) {
                  if (d.status==0) {  // 自定义内容
                      return "<span style='color: red'>未审批</span>";
