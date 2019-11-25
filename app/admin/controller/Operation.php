@@ -18,7 +18,7 @@ class Operation{
         if($data){
             $d=[];
             $d['code']=0;
-            $d['count']=100;
+            $d['count']=count($data);
             $d['msg']="";
             $d['data']=$data;
         }

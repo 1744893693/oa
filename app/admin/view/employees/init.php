@@ -66,56 +66,95 @@
         </script>
 
 
+        <div id="tan" style="display: none;margin-top: 20px"">
+            <form class="layui-form" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="pwd1" name="pwd1" lay-verify="pass" value="111111" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择部门</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="department_id1">
+                            <option value=""></option>
+                            <?php foreach ($date['department'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择职位</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="position_id1">
+                            <option value=""></option>
+                            <?php foreach ($date['position'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['position_name']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-        <div id="yg" style="display: none">
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">修改信息详情</legend></fieldset>
+
+        <div id="yg" style="display: none;margin-top: 20px">
+            <form class="layui-form" >
             <div class="layui-form-item">
                 <label class="layui-form-label">账号</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="name" name="name" lay-verify="pass" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                    <input type="text" id="name1" name="name1" lay-verify="pass" placeholder="请输入账号" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="pwd" name="pwd" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="text" id="pwd" name="pwd" lay-verify="pass" value="111111" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">部门</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="department" name="department" lay-verify="pass" placeholder="请输入部门" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">职位</label>
-                <div class="layui-input-block  " >
-                    <select  <input type="text" id="permissions" name="permissions" lay-verify="pass" style="width: 190px" placeholder="请输入职位" autocomplete="off" class="layui-input">>
-                    <option value=""></option>
-                    <option value="0">经理</option>
-                    <option value="1">老板</option>
+                <label class="layui-form-label">选择部门</label>
+                <div class="layui-input-block" style="width: 190px">
+                    <select id="department_id">
+                        <option value=""></option>
+                        <?php foreach ($date['department'] as $val){
+                            ?>
+                            <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
+                            <?php
+                        }?>
                     </select>
                 </div>
             </div>
-<!--            <div class="layui-form-item project-hide"  >-->
-<!--                <label class="layui-form-label">请假类型</label>-->
-<!--                <div class="layui-input-block  " >-->
-<!--                    <select <input type="text" id="type" name="type" lay-verify="pass" style="width: 190px" placeholder="请输入请假类型" autocomplete="off" class="layui-input">>-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择职位</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="position_id">
+                            <option value=""></option>
+                            <?php foreach ($date['position'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['position_name']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                </div>
+<!--            <div class="layui-form-item">-->
+<!--                <label class="layui-form-label">职位</label>-->
+<!--                <div class="layui-input-block " style="width: 190px">-->
+<!--                    <select  <input type="text" id="position_id" name="position_id" lay-verify="pass" style="width: 190px" placeholder="请输入职位" autocomplete="off" class="layui-input">>-->
 <!--                    <option value=""></option>-->
-<!--                    <option value="0">事假</option>-->
-<!--                    <option value="1">病假</option>-->
-<!--                    <option value="2">产假</option>-->
-<!--                    <option value="3">年假</option>-->
-<!--                    <option value="4">其它</option>-->
+<!--                    <option value="0">经理</option>-->
+<!--                    <option value="1">老板</option>-->
 <!--                    </select>-->
 <!--                </div>-->
 <!--            </div>-->
-<!--            <div class="layui-form-item">-->
-<!--                <label class="layui-form-label">请假原因</label>-->
-<!--                <div class="layui-input-inline">-->
-<!--                    <input type="text" id="reason" name="reason" lay-verify="pass" placeholder="请输入请假原因" autocomplete="off" class="layui-input">-->
-<!--                </div>-->
-<!--            </div>-->
+            </form>
         </div>
 
 
@@ -171,15 +210,21 @@
                         var layer = layui.layer;
                         layer.open({
                             skin:'layer-open',
-                            area: ['650px', '450px'],
-                            content: '<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">修改信息详情</legend></fieldset>' +
-                            '<div class="layui-form-item"><label class="layui-form-label">账号</label><div class="layui-input-inline"><input  value="'+data.name+'" name="name" lay-verify="pass" id="name" autocomplete="off" class="layui-input"> </div></div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input value="'+data.pwd+'" name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label" >部门</label> <div class="layui-input-inline"> <input value="'+data.department_id+'" name="department_id"  type="password" id="department_id" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
-                            '<div class="layui-form-item"> <label class="layui-form-label">公司</label> <div class="layui-input-inline"> <input value="'+data.company_id+'" lay-verify="pass" name="company_id" id="company_id" type="company"   autocomplete="off" class="layui-input"></div></div>',
+                            btn: ['确定', '取消'],
+                            area: ['500px', '300px'],
+                            formType:2,
+                            title:'编辑信息详情',
+                            content:$('#tan'),
+                            shade:0,
+                            type:1,
                             yes: function(index){
-                                $.post('./?s=admin/Employees/em_update', {id:data.id,name:$('#name').val(),pwd:$('#pwd').val(),department_id:$('#department_id').val(),company_id:$('#company_id').val()},function () {
-
+                                $.post('./?s=admin/Employees/em_update', {
+                                    id:data.id,
+                                    pwd: $('#pwd1').val(),
+                                    department_id:$('#department_id1').val(),
+                                    position_id:$('#position_id1').val(),
+                                },function (type) {
+//                                    layer.msg(type.data);
                                         layui.table.reload('testReload');
                                 })
                                 layer.close(index)//如果设定了yes回调，需进行手工关闭
@@ -256,19 +301,12 @@
                             btn:['确定','取消'],
                             shade:.0,
                             content: $('#yg'),
-//                            '<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">添加员工信息</legend></fieldset>' +
-//                            '<div ><label class="layui-form-label">账号</label><div class="layui-input-inline"><input   name="name" lay-verify="pass" id="name"  class="layui-input"> </div></div>' +
-//                            '<div ><label class="layui-form-label" >密码</label> <div class="layui-input-inline"> <input  name="pwd"  type="password" id="pwd" lay-verify="pass"   autocomplete="off" class="layui-input"> </div> </div>' +
-//                            '<div ><label class="layui-form-label">职能</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_id" id="permissions_id"  autocomplete="off" class="layui-input"></div></div>'+
-//                            '<div ><label class="layui-form-label">职能组</label> <div class="layui-input-inline"> <input  lay-verify="pass" name="permissions_group_id" id="permissions_group_id"  autocomplete="off" class="layui-input"></div></div>',
                             yes: function (index) {
                                 $.post('?s=admin/Employees/em_insert', {
-                                    name: $('#name').val(),
+                                    name: $('#name1').val(),
                                     pwd: $('#pwd').val(),
-                                    type: $('#type').val(),
                                     department_id:$('#department_id').val(),
-                                    permissions_id:$('#permissions_id').val(),
-                                    permissions_group_id:$('#permissions_group_id').val()
+                                    position_id:$('#position_id').val(),
                                 }, function () {
 
                                     layui.table.reload('testReload');
