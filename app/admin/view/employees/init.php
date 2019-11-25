@@ -199,7 +199,7 @@
                     layui.use('layer', function(){
                         var layer = layui.layer;
                         layer.open({
-                            skin:'layer-open',
+                            skin: 'layui-layer-molv',
                             btn: ['确定', '取消'],
                             area: ['500px', '300px'],
                             formType:2,
@@ -285,7 +285,7 @@
                     layui.use('layer', function (){
                         var layer = layui.layer;
                         layer.open({
-                            skin: 'layer-open',
+                            skin: 'layui-layer-molv',
                             area: ['650px', '450px'],
                             type:1,
                             btn:['确定','取消'],
