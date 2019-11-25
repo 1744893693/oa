@@ -14,7 +14,14 @@ class Operation{
     }
     function operation(){
         $aa = new Model();
-        $data = $aa->operation();
+        if(!empty($_GET['send_name'])){
+            $data=$aa->sql_operation("select * from operation where name like '%$_GET[send_name]%'  or id like '%$_GET[send_name]%'");
+        }else{
+            $data=$aa->operation();
+        }
+        if(empty($data)){
+            $data=$aa->operation();
+        }
         if($data){
             $d=[];
             $d['code']=0;

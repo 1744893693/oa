@@ -54,9 +54,8 @@ $(function () {
     function list3(value) {
         layui.use('table', function() {
             var datt=$("#bu").val();
-
           layer.open({
-              skin:'layer-open',
+              skin: 'layui-layer-molv',
               btn: ['提交', '取消'],
               area: ['500px', '300px'],
               formType:2,
