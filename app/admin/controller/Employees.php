@@ -16,6 +16,9 @@ class Employees extends Login {
                                         LEFT JOIN position on user.position_id=position.id where user.company_id=';
     function init(){
         $d=new Model();
+        $date['department']=$d->sql_operation('select * from department where department.company_id='.$this->company_id);
+        $date['position']=$d->sql_operation('select * from position ');
+
         $data['my_menu']=$d->sql_operation('select id,functional_group_id,user_id from permission_group');
         $data['department']=$d->sql_operation('select department.id,department.`name`
                  from functional_group LEFT JOIN menu on functional_group.menu_id=menu.id LEFT JOIN 
@@ -63,10 +66,10 @@ class Employees extends Login {
     function em_update(){
         $d=new Model();
         $id=$_POST['id'];
-        $name=$_POST['name'];
+        $department_id=$_POST['department_id'];
         $pwd=$_POST['pwd'];
-        $company_id=$_POST['company_id'];
-        $ba = $d->sql_operation("update user set name='$name',pwd='$pwd',company_id='$company_id' where id='$id'");
+        $position_id=$_POST['position_id'];
+        $ba = $d->sql_operation("update user set pwd='$pwd',department_id='$department_id',position_id='$position_id' where id=$id");
         if($ba){
            echo json_encode(array('type' => 1, 'data' =>'修改成功！')) ;
         }else{
@@ -76,12 +79,12 @@ class Employees extends Login {
     function em_insert(){
         $d=new Model();
         $name=$_POST['name'];
+
         $pwd=$_POST['pwd'];
         $department_id=$_POST['department_id'];
-        $company_id=$_POST['company_id'];
-        $permissions_id=$_POST['permissions_id'];
-        $permissions_group_id=$_POST['permissions_group_id'];
-        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$department_id','$company_id','$permissions_id','$permissions_group_id')");
+        $company_id=$_SESSION['admin']['company_id'];
+        $position_id=$_POST['position_id'];
+        $type = $d->sql_operation("insert into user (name,pwd,department_id,company_id,position_id) VALUES ('$name','$pwd','$department_id','$company_id','$position_id')");
         if($type){
             echo json_encode(array('type' => 1, 'data' =>'添加成功！')) ;
         }else{

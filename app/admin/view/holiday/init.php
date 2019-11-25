@@ -12,12 +12,10 @@
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
 <body >
-
         <span class="layui-breadcrumb">
           <a href="">首页</a>/
-          <a><cite>导航元素</cite></a>
+          <a><cite>申请假期</cite></a>
         </span>
-
 
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -25,16 +23,17 @@
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
                 <button class="layui-btn" data-type="reload" id="insert">申请</button>
+                <button class="layui-btn" data-type="reload" id="delete">一键清空</button>
             </div>
         </script>
 
 
-        <div id="qj" style="display: none">
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend style="font-size:150% ">请假申请</legend></fieldset>
+        <div id="qj" style="display: none;margin-top: 20px">
+            <form class="layui-form" >
             <div class="layui-form-item">
                 <label class="layui-form-label">请假人</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="name" name="name" lay-verify="pass" placeholder="请输入请假人" autocomplete="off" class="layui-input">
+                    <input type="text" id="name" name="name" value="<?php echo $_SESSION['admin']['name'] ?>"  lay-verify="pass" placeholder="请输入请假人" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -51,24 +50,26 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">审批人</label>
-                <div class="layui-input-block  " >
-                    <select  <input type="text" id="approver" name="approver" lay-verify="pass" style="width: 190px" placeholder="请输入审批人" autocomplete="off" class="layui-input">>
+                <div class="layui-input-block  " style="width: 190px" >
+                    <select id="approver">
+                    <!--                    <select  <input type="text" id="approver" name="approver" lay-verify="pass"  placeholder="请输入审批人" autocomplete="off" class="layui-input">>-->
                     <option value=""></option>
-                    <option value="0">经理</option>
-                    <option value="1">老板</option>
+                    <option value="人事部经理">人事部经理</option>
+                    <option value="老板">老板</option>
                     </select>
                 </div>
             </div>
             <div class="layui-form-item project-hide"  >
                 <label class="layui-form-label">请假类型</label>
-                <div class="layui-input-block  " >
-                    <select <input type="text" id="type" name="type" lay-verify="pass" style="width: 190px" placeholder="请输入请假类型" autocomplete="off" class="layui-input">>
+                <div class="layui-input-block  " style="width: 190px">
+                    <select id="type1">
+<!--                    <select <input type="text" id="type1" name="type1" lay-verify="pass"  placeholder="请输入请假类型" autocomplete="off" class="layui-input">>-->
                         <option value=""></option>
-                        <option value="0">事假</option>
-                        <option value="1">病假</option>
-                        <option value="2">产假</option>
-                        <option value="3">年假</option>
-                        <option value="4">其它</option>
+                        <option value="事假">事假</option>
+                        <option value="病假">病假</option>
+                        <option value="产假">产假</option>
+                        <option value="年假">年假</option>
+                        <option value="其它">其它</option>
                     </select>
                 </div>
             </div>
@@ -78,6 +79,7 @@
                     <input type="text" id="reason" name="reason" lay-verify="pass" placeholder="请输入请假原因" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="layui-footer">
@@ -85,7 +87,6 @@
         </div>
 
         <script type="text/javascript">
-
             $(function () {
                 function maxDate() {
                     var now = new Date();
@@ -113,8 +114,6 @@
                     })
                 })
             });
-
-
 
             layui.use('laydate', function() {
                 var laydate = layui.laydate;
@@ -163,13 +162,13 @@
                     ]],
                     id: 'testReload'
                     ,page: true
-                    ,height: 715
+                    ,height: 'full-50'
                 }),
                     $(document).on('click','#insert', function(){
                             layui.use('layer', function(){
                                 var layer = layui.layer;
                                 layer.open({
-                                    skin:'layer-open',
+                                    skin: 'layui-layer-molv',
                                     area: ['650px', '450px'],
                                     type:1,
                                     btn:['确定','取消'],
@@ -177,10 +176,8 @@
                                     shade:.0,
                                     yes: function(index){
                                         $.post('?s=admin/Holiday/holiday_insert', {
-//                                            name:data.name,start_time:data.start_time,end_time:data.end_time,end_time:data.end_time,
-//                                            approver:data.approver,type:data.type,reason:data.reason,audit:data.audit,
                                              name:$('#name').val(),start_time:$('#start_time').val(),end_time:$('#end_time').val(),
-                                            approver:$('#approver').val(),type:$('#type').val(),reason:$('#reason').val(),audit:$('#audit').val()
+                                            approver:$('#approver').val(),type:$('#type1').val(),reason:$('#reason').val()
                                            },function () {
 
                                             layui.table.reload('testReload');
@@ -190,6 +187,19 @@
                                 })
                             })
                     }),
+
+                    $(document).on('click','#delete', function(){
+                        layer.confirm("是否清除所有信息?", function(index){
+                            $.ajax({
+                                url:"./?s=admin/Holiday/delete",
+                                success:function(){
+                                    layui.table.reload('testReload');
+                                }
+                            })
+                            layer.close(index);
+                        })
+                    }),
+
                     //面包屑显示
                     layui.use('element', function(){
                         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
