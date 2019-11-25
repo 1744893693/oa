@@ -68,7 +68,7 @@
             ]],
             id: 'testReload'
             ,page: true
-            ,height: 715
+            ,height: 'full-50'
         }),
             //监听行工具事件
             table.on('tool(test)', function(obj){
