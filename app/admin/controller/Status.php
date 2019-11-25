@@ -28,7 +28,7 @@ class  status extends Login
             exit($account.'已经注册成功');
         }
         $d->sql_operation("update company set status=1 WHERE id='$id'");
-        $d->sql_operation("insert into user (name,pwd,company_id,permissions_id) VALUES ('$account','000000',$id,'0')");
+        $d->sql_operation("insert into user (name,pwd,company_id,permissions_id) VALUES ('$account','111111',$id,'0')");
         $d->sql_operation("insert into department (name,company_id) VALUES ('人事部',$id)");
         $da=$d->sql_operation("select id from department WHERE company_id=$id ");
         $da=$da[0]['id'];
