@@ -112,7 +112,7 @@
             var company_name= $('#company_name').val(data.company_name),
                 legal_person= $('#legal_person').val(data.legal_person);
             if(obj.event === 'del'){
-                layer.confirm('你确定删除：'+data.company_name+"的职位吗?", function(index){
+                layer.confirm('你确定删除：'+data.company_name+"的公司吗?", function(index){
                     $.post('./?s=admin/Status/statussc',{id:data.id})
                     obj.del();
                     layer.close(index);
@@ -136,7 +136,7 @@
 
                     var layer = layui.layer;
                     layer.open({
-                        skin:'layer-open',
+                        skin: 'layui-layer-molv',
                         btn: ['确定', '取消'],
                         area: ['500px', '300px'],
                         formType:2,
