@@ -20,11 +20,11 @@ class Punchin{
         $d=new Model();
         $start= $d->sql_operation("select * from company start  where id='$id'");
         $start=$start[0]['start'];
-        $aa = strtotime($start);//公司上班时间
+        $aa = strtotime($start);
         $time=time();
-        $time_start = strtotime(date("Y-m-d 00:00:00")); //当天开始时间
-        $time_end = strtotime(date("Y-m-d 23:59:59"));//当天结束时间
-        $start_time= $d->sql_operation("select * from workingtime start where user_id='$rid' order by id desc limit 1");//数据库本人上班打卡时间最后一条数据
+        $time_start = strtotime(date("Y-m-d 00:00:00"));
+        $time_end = strtotime(date("Y-m-d 23:59:59"));
+        $start_time= $d->sql_operation("select * from workingtime start where user_id='$rid' order by id desc limit 1");
         $start_time=$start_time[0]['start'];
         if($time_start < $start_time && $start_time < $time_end){
             echo json_encode(array('type'=>203,'data'=>'您已打卡'));
@@ -46,9 +46,9 @@ class Punchin{
         $d=new Model();
         $end= $d->sql_operation("select * from company end where id='$id'");
         $end=$end[0]['end'];
-        $aa = strtotime($end);//公司下班时间
+        $aa = strtotime($end);
         $time=time();
-        $start_time= $d->sql_operation("select * from workingtime end where user_id='$rid' order by id desc limit 1");//数据库本人下班打卡时间最后一条数据
+        $start_time= $d->sql_operation("select * from workingtime end where user_id='$rid' order by id desc limit 1");
         $start_id=$start_time[0]['id'];
         if($time > $aa){
                 $d->sql_operation("UPDATE `workingtime` SET `end`='$time' WHERE id='$start_id'");

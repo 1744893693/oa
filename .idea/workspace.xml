@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4ef3c4c-5fd7-467e-959d-a3b25a62ec84" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/controller/Dakatry.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/controller/Settime.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/view/dakatry/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/view/punchin/daka.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/view/settime/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/mao.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/extend/miaov.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/oa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/oa.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/controller/Punchin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/controller/Punchin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/view/home/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/home/init.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/view/punchin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/view/punchin/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-    </list>
+    <list default="true" id="e4ef3c4c-5fd7-467e-959d-a3b25a62ec84" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +57,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/admin/controller/Punchin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
+            <state relative-caret-position="355">
               <caret line="51" column="39" lean-forward="true" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
               <folding>
                 <element signature="e#6#95#0#PHP" expanded="true" />
@@ -318,15 +293,15 @@
       <workItem from="1574213409000" duration="81012000" />
       <workItem from="1574409917436" duration="16420000" />
       <workItem from="1574494611960" duration="11226000" />
-      <workItem from="1574588417675" duration="20894000" />
+      <workItem from="1574588417675" duration="21275000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129552000" />
+    <option name="totallyTimeSpent" value="129933000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1359275" />
@@ -564,7 +539,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/admin/controller/Punchin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
+        <state relative-caret-position="355">
           <caret line="51" column="39" lean-forward="true" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
           <folding>
             <element signature="e#6#95#0#PHP" expanded="true" />

@@ -31,6 +31,8 @@ $(function () {
     layui.use('table', function() {
         $('#up').click(function () {
             $.ajax({url:"./?s=admin/Punchin/upb",
+                dataType:"json",
+
                 success:function(data){
                     layer.msg(data.data)
                 }
@@ -39,6 +41,7 @@ $(function () {
 
         $('#db').click(function () {
             $.ajax({url:"./?s=admin/Punchin/dbb",
+                dataType:"json",
                 success:function(data){
                     layer.msg(data.data)
                 }
