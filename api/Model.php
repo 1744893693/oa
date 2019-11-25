@@ -68,4 +68,12 @@ class Model{
         }
         return $dat;
     }
+    function operation(){
+        $data=$this->connect->query('select * from operation');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
 }

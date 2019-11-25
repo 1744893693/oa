@@ -46,10 +46,10 @@
 <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $.post('./?s=admin/Login/company',{id:<?php echo $_GET['id'];?>},function (data) {
-            $('title').html(data[0].company_name+'公司OA管理后台')
-            $('.lg_top').html(data[0].company_name+'公司OA管理后台')
-        },'json')
+//        $.post('./?s=admin/Login/company',{id:<?php //echo $_GET['id'];?>//},function (data) {
+//            $('title').html(data[0].company_name+'公司OA管理后台')
+//            $('.lg_top').html(data[0].company_name+'公司OA管理后台')
+//        },'json')
         function packaging(input, Regular,ss) {
             var zen = $('#' + input).val()
             var ze = Regular;
@@ -79,11 +79,11 @@
                 var name = $('#name').val();
                 var pwd = $('#pwd').val();
                 var yzm = $('#yzm').val();
-                var yy=<?php echo $_GET['id']?>;
+//                var yy=<?php //echo $_GET['id']?>//;
 //                console.log(id)
             $.ajax({
                     url: './?s=admin/Login/login',
-                    data: {name:name,pwd:pwd,yzm:yzm,id:yy},
+                    data: {name:name,pwd:pwd,yzm:yzm},
                     dataType:'json',
                     type:'post',
                     success:function (type) {

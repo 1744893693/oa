@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2019/11/19
- * Time: 16:22
- */
 namespace app\admin\controller;
-
 use api\Model;
 
 class Department{
@@ -14,7 +7,11 @@ class Department{
         include_once './app/admin/view/department/init.php';
     }
     function select(){
-        $data=( new Model())->sql_operation('select * from department');
+        $data=(new Model())->sql_operation("select * from department ");
+        foreach ($data as $k=>$v){
+            $data[]=0;
+            $data[$k][]=$k+1;
+        }
         if($data){
             $d=[];
             $d['code']=0;
@@ -23,11 +20,6 @@ class Department{
             $d['data']=$data;
         }
         echo json_encode($d);
-        //var_dump($data);
-    }
-    function delete(){
-        $id=$_POST['id'];
-        $data=(new Model())->sql_operation("delete from department WHERE id='$id'");
     }
 
 
