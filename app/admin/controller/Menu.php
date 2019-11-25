@@ -52,7 +52,7 @@ class menu extends Login
          $cid=$_SESSION['admin']['company_id'];
          $d=new Model();
          $data=$d->sql_operation("select menu.name from functional_group left JOIN menu on functional_group.menu_id =menu.id
-                                   WHERE functional_group.menu_id=$mid");
+                                   WHERE functional_group.menu_id=$mid and functional_group.company_id=$this->company_id");
          if($data) exit($data[0]['name'].'功能已经存在，请不要重复添加！') ;
          $data=$d->sql_operation("insert into functional_group VALUES (NULL,$mid ,0,$did,$cid)");
          if($data) exit($mmame.'功能添加成功') ;

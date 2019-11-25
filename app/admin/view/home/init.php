@@ -37,7 +37,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 10px 10px 0 10px; height: calc(100% - 10px)">
+        <div style="padding: 10px 10px 0 10px; height: calc(100% - 15px)">
             <iframe   height="100%" width="100%" frameborder="0"></iframe>
         </div>
     </div>
@@ -56,19 +56,19 @@
         },'json')
         $.post('./?s=admin/Home/menu',{id:'<?php echo $_SESSION['admin']['company_id']?>'},function (data) {
             menu=data;
-
+            console.log(data)
             for(val of menu.department){
-                if(1==<?php echo $_SESSION['admin']['permissions_group_id']?>){
+//                if(1==<?php //echo $_SESSION['admin']['permissions_group_id']?>//){
                     if(val.company_id==<?php echo $_SESSION['admin']['company_id']?>){
                         $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
                     }
-                }else if (val.permissions_group_id==<?php echo $_SESSION['admin']['permissions_group_id']?>){
-                    if(val.permissions_id == <?php echo $_SESSION['admin']['permissions_id']?>){
-                        if(val.company_id==<?php echo $_SESSION['admin']['company_id']?>){
-                            $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
-                        }
-                    }
-                }
+//                }else if (val.permissions_group_id==<?php //echo $_SESSION['admin']['permissions_group_id']?>//){
+//                    if(val.permissions_id == <?php //echo $_SESSION['admin']['permissions_id']?>//){
+//                        if(val.company_id==<?php //echo $_SESSION['admin']['company_id']?>//){
+//                            $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
+//                        }
+//                    }
+//                }
             }
 //            $('#l').append('<a href="javascript:login_out()">退出</a>')
             menu_child(0)

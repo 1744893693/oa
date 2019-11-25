@@ -6,9 +6,10 @@
  * Time: 11:22
  */
 namespace app\admin\controller;
+use api\Login;
 use api\Model;
 
-class  status
+class  status extends Login
 {
     function company()
     {
@@ -20,19 +21,26 @@ class  status
 
     function up(){
         $d= new Model();
+        $account=$_POST['account'];
         $id=$_POST['id'];
-        $data=$d->sql_operation("update company set status=1 WHERE id='$id'");
-//        if($data){
-//            $company_name=$_POST['company_name'];
-//        $d->sql_operation("insert into user  VALUES (NULL ,'$company_name') ");
-//
-//        }
+        $da=$d->sql_operation("select * from user WHERE company_id=$id and permissions_id='0'");
+        if(!empty($da)){
+            exit($account.'已经注册成功');
+        }
+        $d->sql_operation("update company set status=1 WHERE id='$id'");
+        $d->sql_operation("insert into user (name,pwd,company_id,permissions_id) VALUES ('$account','000000',$id,'0')");
+        $d->sql_operation("insert into department (name,company_id) VALUES ('人事部',$id)");
+        $da=$d->sql_operation("select id from department WHERE company_id=$id ");
+        $da=$da[0]['id'];
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,'$id')");
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (18 ,$da,$id)");
+        exit($account.'已经注册成功');
     }
-
     function db(){
         $d= new Model();
         $id=$_POST['id'];
         $d->sql_operation("update company set status=2 WHERE id='$id'");
+
     }
 
     function statussc(){
