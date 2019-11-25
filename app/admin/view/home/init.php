@@ -49,39 +49,6 @@
 <script>
 
         var menu=[]
-//        $.post('./?s=admin/Home/company',{id:'<?php //echo $_SESSION['admin']['company_id']?>//'},function (data) {
-//
-//            $('#title').html(data[0].company_name+'OA后台管理')
-//
-//        },'json')
-//        $.post('./?s=admin/Home/menu',{id:'<?php //echo $_SESSION['admin']['company_id']?>//'},function (data) {
-//            menu=data;
-//            for(val of menu.department){
-//                if(0==<?php //echo $_SESSION['admin']['permissions_id']?>//){
-//                    if(val.company_id==<?php //echo $_SESSION['admin']['company_id']?>//){
-//                        $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
-//                    }
-//                }else if (val.permissions_id==<?php //echo $_SESSION['admin']['permissions_id']?>//){
-////                    if(val.permissions_id == <?php ////echo $_SESSION['admin']['permissions_id']?>////){
-//                        if(val.company_id==<?php //echo $_SESSION['admin']['company_id']?>//){
-//                            $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.id+')">'+val.name+'</a></li>')
-//                        }
-////                    }
-//                }
-//            }
-////            $('#l').append('<a href="javascript:login_out()">退出</a>')
-//            menu_child(0)
-//        },'json')
-//        function list(tt) {
-//            for (val of menu.menu) {
-//                if (val.id == tt) {
-//                    if (val.method) {
-//                        $('iframe')[0].contentWindow.location.href = './?s=' + val.method
-//                    }
-//                }
-//            }
-//        }
-//$(function () {
     $.post('./?s=admin/Home/menu',function (data) {
         menu=data
         $('#title').html(data.company[0].company_name+'OA后台管理')
@@ -98,7 +65,7 @@
             var element = layui.element;
         })
     },'json')
-//})
+
 
 function list(tt) {
     for(val of menu.menu){
