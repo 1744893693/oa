@@ -105,4 +105,12 @@ class Model{
         }
         return $dat;
     }
+    function logistic(){
+        $data=$this->connect->query('select * from logistic');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
 }
