@@ -66,7 +66,51 @@ class Salary extends Login
     }
     function sa_insert(){
         $d=new Model();
-        $d->sql_operation('select `user`.`name`,`user`.department_id,`user`.position_id,`user`.base_salary from user WHERE company_id='.$this->company_id);
+        $base_time=$d->sql_operation('SELECT start,end,late_money,obsent_money from company WHERE id='.$this->company_id);
+        $company_id=$this->company_id;
+        $start_time=$base_time[0]['start'];
+        $end_time=$base_time[0]['end'];
+        $late_money=$base_time[0]['late_money'];
+        $obsent_money=$base_time[0]['obsent_money'];
+        $base_msg=$d->sql_operation('select user.id,`user`.`name`,`user`.department_id,department.`name` as department_name,`user`.position_id,position.position_name,`user`.base_salary from 
+       user LEFT JOIN department on `user`.department_id=department.id LEFT JOIN position on `user`.position_id=position.id WHERE `user`.company_id='.$this->company_id);
+        foreach ($base_msg as $val1){
+            $time=$d->sql_operation('SELECT start,end from workingtime WHERE user_id='.$val1['id']);
+            $late=0;
+            $obsent=0;
+            foreach ($time as $val2){
+                $dd=date('Ym',$val2['start'])-(date('Ym',time())-1);
+                if($dd==1) {
+                    $aa=date('h',$val2['start']);
+                    $bb=date('h',$val2['end']);
+                    $status=$aa-$start_time;
+                    $status1=$end_time-$bb;
+                    if($status>=1&&$status<3||$status1>=1&&$status1<3){
+                        $late++;
+                    }elseif ($status>=3||$status1>=3){
+                        $obsent++;
+                    }
+                }
+            }
+            $id=$val1['id'];
+            $name=$val1['name'];
+            $department_name=$val1['department_name'];
+            $position_name=$val1['position_name'];
+            $base_salary=$val1['base_salary'];
+            $position_name=$val1['position_name'];
+            $month=date('Ym',time())-1;
+            $late_m=$late_money*$late;
+            $obsent_m=$obsent_money*$obsent;
+            $zong=-($late_m+$obsent_m);
+            $bs=$zong+$base_salary;
+
+            $d->sql_operation("INSERT INTO `salary` (`user_id`, `month`, `base_salary`, `other_salary`, `ready_salary`, `absenteeism`, `late`)
+            VALUES ('$id','$month', '$base_salary', '$zong', '$bs','$obsent', '$late','$company_id')");
+
+
+
+        }
+
 
 
 //        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$department_id','$company_id','$permissions_id','$permissions_group_id','','')");
