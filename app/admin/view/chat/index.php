@@ -97,7 +97,7 @@
                 }
 
             $.ajax({
-        url:"./?s=admin/chat/chatname",
+        url:"./?s=admin/Chat/chatname",
                 dataType:"json",
                     success:function(data){
                         if(Who.value == 0) {
@@ -109,7 +109,7 @@
                         }
                         Words.innerHTML = Words.innerHTML + str;
                         var content=str
-                        $.post("./?s=admin/chat/contenttj",{content:content},$('#talkwords').val("")),location.reload();
+                        $.post("./?s=admin/Chat/contenttj",{content:content},$('#talkwords').val("")),location.reload();
                 }
             })
         }

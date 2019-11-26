@@ -10,7 +10,7 @@ use api\Model;
 
 class  Dakatry{
     function index(){
-        include_once "./app/admin/view/Dakatry/index.php";
+        include_once "./app/admin/view/dakatry/index.php";
     }
     function init()
     {
