@@ -27,7 +27,6 @@ class Holiday extends   Login {
         echo json_encode($d);
     }
     function holiday_insert(){
-
         $aa = new Model();
         $name = $_POST['name'];
         $start_time = $_POST['start_time'];
@@ -35,16 +34,26 @@ class Holiday extends   Login {
         $approver = $_POST['approver'];
         $type = $_POST['type'];
         $reason = $_POST['reason'];
-        $data = $aa->sql_operation("insert into operation (name,start_time,end_time,approver,type,reason ) VALUES  ( '$name','$start_time','$end_time','$approver','$type','$reason')");
-        echo json_encode($data);
+        if(empty($start_time)||empty($end_time)){
+            exit(json_encode(array('v'=>201,'data'=>'时间不能为空！')));
+        }
+        if(empty($reason)){
+            exit(json_encode(array('v'=>202,'data'=>'请说明请假原因！')));
+        }
+        $v = $aa->sql_operation("insert into operation (name,start_time,end_time,approver,type,reason ) VALUES  ( '$name','$start_time','$end_time','$approver','$type','$reason')");
+        if($v){
+            exit(json_encode(array('v'=>1,'data'=>'请等待审批！')));
+        }else{
+            exit(json_encode(array('v'=>0,'data'=>'请重新申请！')));
+        }
     }
     function delete(){
         $aa = new Model();
         $v= $aa->sql_operation("delete from operation");
         if($v){
-            echo json_encode(array('v'=>1,'data'=>'清除成功！'));
+            exit(json_encode(array('v'=>1,'data'=>'清除成功！'))) ;
         }else{
-            echo json_encode(array('v'=>0,'data'=>'清除失败！'));
+            exit(json_encode(array('v'=>0,'data'=>'清除失败！'))) ;
         }
     }
 
