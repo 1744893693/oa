@@ -45,7 +45,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">申请数量</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="number" name="number" lay-verify="pass" placeholder="请输入物质名称" autocomplete="off" class="layui-input">
+                        <input type="text" id="number" name="number" lay-verify="pass" placeholder="请输入物质数量" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">

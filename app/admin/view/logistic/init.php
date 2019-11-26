@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后勤管理 - Layui</title>
+    <title>layout 物质审批 - Layui</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,7 +15,7 @@
 
         <span class="layui-breadcrumb">
           <a href="">首页</a>/
-          <a><cite>物资管理</cite></a>
+          <a><cite>物质审批</cite></a>
         </span>
 
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
@@ -27,7 +27,7 @@
                     <input class="layui-input" value="" name="id" id="id" autocomplete="off">
                 </div>
                 <button class="layui-btn" data-type="reload" id="check">搜索</button>
-                <button class="layui-btn" data-type="reload" id="insert">入库</button>
+<!--                <button class="layui-btn" data-type="reload" id="insert">入库</button>-->
             </div>
         </script>
 
