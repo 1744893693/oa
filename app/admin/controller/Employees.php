@@ -82,12 +82,19 @@ class Employees extends Login {
 
         $pwd=$_POST['pwd'];
         $department_id=$_POST['department_id'];
+
+        $company_id=$_POST['company_id'];
+        $permissions_id=$_POST['permissions_id'];
+        $permissions_group_id=$_POST['permissions_group_id'];
+        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$department_id','$company_id','$permissions_id','$permissions_group_id','','')");
+
         $company_id=$_SESSION['admin']['company_id'];
         $position_id=$_POST['position_id'];
         if(empty($department_id)||empty($position_id)){
             exit(json_encode(array('type' => 201, 'data' =>'部门或职位不能为空！')));
         }
         $type = $d->sql_operation("insert into user (name,pwd,department_id,company_id,position_id) VALUES ('$name','$pwd','$department_id','$company_id','$position_id')");
+
         if($type){
             echo json_encode(array('type' => 1, 'data' =>'添加成功！')) ;
         }else{

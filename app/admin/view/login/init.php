@@ -21,7 +21,7 @@
                     <input id="name"  class="ur" placeholder="请输入账号">
                 </div>
                 <div id="b">
-                    <input  id="pwd"  class="pw" placeholder="请输入密码">
+                    <input  id="pwd" type="password" class="pw" placeholder="请输入密码">
                 </div>
                 <div id="c">
                     <input  id="yzm"  class="vc" placeholder="请输入验证码">
@@ -39,8 +39,8 @@
     </form>
 </div>
 
-<div style="text-align:center;">
-
+<div style="text-align:center;font-size: 30px">
+    <a href="./?s=admin/Register/init">去申请注册公司</a>
 </div>
 <script src="./public/layui-v2.5.5/layui/layui.js"></script>
 <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>

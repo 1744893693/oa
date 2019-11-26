@@ -139,7 +139,8 @@
                     defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                         title: '提示',
                         layEvent: 'LAYTABLE_TIPS',
-                        icon: 'layui-icon-tips'
+                        icon: 'layui-icon-tips',
+                        skin: 'layui-layer-molv',
                     }],
                     cols: [[
                         { type: 'numbers', title: '序号' , width:80,  fixed: 'left'},
