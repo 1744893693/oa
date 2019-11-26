@@ -76,4 +76,13 @@ class Model{
         }
         return $dat;
     }
+    function selectsearch(){
+        $as=$_SESSION['admin']['company_id'];
+        $data=$this->connect->query('select * from department where company_id= '.$as );
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
 }
