@@ -16,7 +16,6 @@ class Holiday extends   Login {
     function holiday(){
         $aa = new Model();
         $data = $aa->sql_operation("select * from operation");
-//        $data = $aa->operation();
         if($data){
             $d=[];
             $d['code']=0;
