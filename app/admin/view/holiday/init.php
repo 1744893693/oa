@@ -87,34 +87,6 @@
         </div>
 
         <script type="text/javascript">
-            $(function () {
-                function maxDate() {
-                    var now = new Date();
-                    return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
-                }
-                function tim(){
-                    alert($('#start_time').val());
-                    return  $('#end_Time').val()
-                }
-                layui.use('laydate', function(){
-                    var laydate = layui.laydate;
-                    laydate.render({
-                        elem: '#start_time', //指定元素
-                        calendar: true,
-                        min: maxDate(),
-                        type: 'datetime',
-                        done: function(value, date, endDate){
-                            laydate.render({
-                                elem: '#end_Time' ,//指定元素
-                                calendar: true,
-                                min: value,
-                                type: 'datetime'
-                            })
-                        }
-                    })
-                })
-            });
-
             layui.use('laydate', function() {
                 var laydate = layui.laydate;
                 laydate.render({
