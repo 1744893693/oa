@@ -21,18 +21,18 @@ class Chat extends Login {
         include_once "./app/admin/view/Chat/index.php";
     }
    function chatname(){
-       $gs=$_SESSION["admin"]["company_id"];
+
 //       $bm=$_SESSION["admin"]["department_id"];
 //       $mz=$_SESSION["admin"]["name"];
 ////       var_dump($mz);die;
        $d= new Model();
-       $data=$d->sql_operation("select * from user name WHERE company_id=$gs ");
+       $data=$d->sql_operation("select * from user  WHERE user.id=$this->user_id ");
        $data=$data[0]['name'] ;
        echo json_encode(array('type'=>200,'data'=>$data));
    }
    function  contenttj(){
        $d= new Model();
-       $gs=$d->sql_operation("select * from company company_name");
+       $gs=$d->sql_operation("select * from company  WHERE id= $this->company_id");
        $gs=$gs[0]['company_name'];
        $content=$_POST['content'];
        $content=strip_tags($content);
