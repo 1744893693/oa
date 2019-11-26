@@ -20,6 +20,17 @@ class Chat extends Login {
 
         include_once "./app/admin/view/Chat/index.php";
     }
+
+    function   init(){
+        $id=$this->company_id;
+        $d= new Model();
+        $gs=$d->sql_operation("select * from company  WHERE id='$id' ");
+        $gs=$gs[0]['company_name'];
+        $data = $d->sql_operation("select * from company_chat WHERE company_name='$gs'");
+        include_once "./app/admin/view/Chat/init.php";
+    }
+
+
    function chatname(){
 
 //       $bm=$_SESSION["admin"]["department_id"];
