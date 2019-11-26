@@ -16,20 +16,20 @@ namespace app\admin\controller;
         }
         function permission(){
             $aa = new Menu();
-            $data = $aa->permi();
+            $data = $aa->positionc();
             if($data){
                 $d=[];
                 $d['code']=0;
-                $d['count']=100;
+                $d['count']=count($data);
                 $d['msg']="";
                 $d['data']=$data;
             }
             echo json_encode($d);
         }
-        function delate_permission(){
+        function delete_permission(){
             $d=new Model();
             $id=$_POST['id'];
-            $d->sql_operation("delete from permissions WHERE id='$id'");
+            $d->sql_operation("delete from position WHERE id='$id'");
         }
 
     }

@@ -59,9 +59,22 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label">选择部门</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="department_id">
+                            <option value=""></option>
+                            <?php foreach ($date['department'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">任务内容</label>
-                    <div class="layui-input-inline">
-                        <input type="text" id="test_content" name="test_content" lay-verify="pass" placeholder="请输入任务内容" autocomplete="off" class="layui-input">
+                    <div class="layui-input-block" >
+                        <textarea id="test_content" name="test_content" placeholder="请输入任务内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </form>
@@ -72,33 +85,6 @@
         </div>
 
         <script type="text/javascript">
-            $(function () {
-                function maxDate() {
-                    var now = new Date();
-                    return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
-                }
-                function tim(){
-                    alert($('#release_time').val());
-                    return  $('#end_Time').val()
-                }
-                layui.use('laydate', function(){
-                    var laydate = layui.laydate;
-                    laydate.render({
-                        elem: '#release_time', //指定元素
-                        calendar: true,
-                        min: maxDate(),
-                        type: 'datetime',
-                        done: function(value, date, endDate){
-                            laydate.render({
-                                elem: '#submission_time' ,//指定元素
-                                calendar: true,
-                                min: value,
-                                type: 'datetime'
-                            })
-                        }
-                    })
-                })
-            });
 
             layui.use('laydate', function() {
                 var laydate = layui.laydate;
@@ -130,13 +116,15 @@
                     }],
                     cols: [[
                         { type: 'numbers', title: '序号' , width:80,  fixed: 'left'},
+                        {field: 'name', title: '任务发布人' },
                         {field: 'test_name', title: '任务名' },
                         {field: 'release_time', title: '发布时间' },
                         {field: 'submission_time', title: '截止时间' },
+                        {field: 'department_id', title: '任务部门' },
                         {field: 'test_content', title: '任务内容' },
                         {field: 'audit', title: '任务详情',templet:function (d) {
                             if (d.audit==0) {  // 自定义内容
-                                return "<span style='color: red'>待完成</span>";
+                                return "<span style='color: red'>待领取</span>";
                             } else if (d.audit==1) {
                                 return "<span style='color: green'>已接收</span>";
                             }else if(d.audit==2){
@@ -187,7 +175,7 @@
                                 yes: function(index){
                                     $.post('?s=admin/Test/test_insert', {
                                         test_name:$('#test_name').val(),release_time:$('#release_time').val(),submission_time:$('#submission_time').val(),
-                                        test_content:$('#test_content').val()
+                                        test_content:$('#test_content').val(),department_id:$('#department_id').val()
                                     },function (v) {
                                         layer.msg(v.data);
                                         layui.table.reload('testReload');

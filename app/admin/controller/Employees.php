@@ -79,15 +79,8 @@ class Employees extends Login {
     function em_insert(){
         $d=new Model();
         $name=$_POST['name'];
-
         $pwd=$_POST['pwd'];
         $department_id=$_POST['department_id'];
-
-        $company_id=$_POST['company_id'];
-        $permissions_id=$_POST['permissions_id'];
-        $permissions_group_id=$_POST['permissions_group_id'];
-        $type = $d->sql_operation("insert into user values (null,'$name','$pwd','$department_id','$company_id','$permissions_id','$permissions_group_id','','')");
-
         $company_id=$_SESSION['admin']['company_id'];
         $position_id=$_POST['position_id'];
         if(empty($department_id)||empty($position_id)){

@@ -25,25 +25,6 @@ class Receive extends Login{
         }
         echo json_encode($d);
     }
-    function receiving_insert(){
-//        $aa = new Model();
-//        $test_name = $_POST['test_name'];
-//        $release_time = $_POST['release_time'];
-//        $submission_time = $_POST['submission_time'];
-//        $test_content= $_POST['test_content'];
-////        if(empty($test_name)||empty($release_time)){
-//            exit(json_encode(array('v'=>201,'data'=>'时间不能为空！')));
-//        }
-//        if(empty($test_content)){
-//            exit(json_encode(array('v'=>202,'data'=>'请详述任务内容！')));
-//        }
-//        $v = $aa->sql_operation("insert into test (test_name,release_time,submission_time,test_content ) VALUES  ( '$test_name','$release_time','$submission_time','$test_content')");
-//        if($v){
-//            exit(json_encode(array('v'=>1,'data'=>'请等待接收！')));
-//        }else{
-//            exit(json_encode(array('v'=>0,'data'=>'请重新发布！')));
-//        }
-    }
     function update(){
         $aa = new Model();
         $id = $_POST['id'];

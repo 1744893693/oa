@@ -102,13 +102,15 @@
                     }],
                     cols: [[
                         { type: 'numbers', title: '序号' , width:80,  fixed: 'left'},
+                        {field: 'name', title: '任务发布人' },
                         {field: 'test_name', title: '任务名' },
                         {field: 'release_time', title: '发布时间' },
                         {field: 'submission_time', title: '截止时间' },
+                        {field: 'department_id', title: '任务部门' },
                         {field: 'test_content', title: '任务内容' },
                         {field: 'audit', title: '任务详情',templet:function (d) {
                             if (d.audit==0) {  // 自定义内容
-                                return "<span style='color: red'>待完成</span>";
+                                return "<span style='color: red'>待领取</span>";
                             } else if (d.audit==1) {
                                 return "<span style='color: green'>已审批</span>";
                             }else if(d.audit==2){
@@ -153,32 +155,6 @@
                             }
                     }),
 
-
-
-//                    $(document).on('click','#insert', function(){
-//                        layui.use('layer', function(){
-//                            var layer = layui.layer;
-//                            layer.open({
-//                                skin: 'layui-layer-molv',
-//                                area: ['650px', '450px'],
-//                                type:2,
-//                                btn:['确定','取消'],
-//                                content:'?s=admin/Test/test',
-//                                shade:.0,
-//                                yes: function(index){
-//                                    $.post('?s=admin/Test/test', {
-////                                        test_name:$('#test_name').val(),release_time:$('#release_time').val(),submission_time:$('#submission_time').val(),
-////                                        test_content:$('#test_content').val()
-//                                    },function (v) {
-////                                        layer.msg(v.data);
-////                                        layui.table.reload('testReload');
-//                                    },'json')
-//                                    layer.close(index)//如果设定了yes回调，需进行手工关闭
-//                                },
-//
-//                            })
-//                        })
-//                    }),
 
                     //面包屑显示
                     layui.use('element', function(){
