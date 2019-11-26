@@ -10,7 +10,7 @@ use api\Model;
 class  Settime{
 
     function index(){
-        include_once "./app/admin/view/Settime/index.php";
+        include_once "./app/admin/view/settime/index.php";
     }
     function settime(){
         session_start();

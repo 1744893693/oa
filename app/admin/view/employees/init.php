@@ -43,10 +43,6 @@
                     if(!$i) { ?><div style="height: 30px"><?php echo $department['name'].'暂未添加任何功能';}
                     }?></div>
                 <hr class="layui-bg-green">
-
-
-<!--                <input type="checkbox" name="" title="写作" lay-skin="primary" checked>-->
-<!--                <input type="checkbox" name="" title="发呆" lay-skin="primary">-->
             </form>
         </div>
         <script type="text/html" id="toolbarDemo">
@@ -186,11 +182,11 @@
                             url:"./?s=admin/Employees/employee",
                             type:'post',
                             data:{'id':data.id},//向服务端发送删除的id
-                            success:function(type){
+                            success:function(v){
                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                 layer.close(index);
                                 console.log(index);
-//                                layer.msg(type.data);
+//                                layer.msg(v.data);
                             }
                         })
                         layer.close(index);
@@ -214,9 +210,9 @@
                                     department_id:$('#department_id1').val(),
                                     position_id:$('#position_id1').val(),
                                 },function (type) {
-//                                    layer.msg(type.data);
+                                    layer.msg(type.data);
                                         layui.table.reload('testReload');
-                                })
+                                },'json')
                                 layer.close(index)//如果设定了yes回调，需进行手工关闭
                             },
                         })
@@ -297,10 +293,10 @@
                                     pwd: $('#pwd').val(),
                                     department_id:$('#department_id').val(),
                                     position_id:$('#position_id').val(),
-                                }, function () {
-
+                                }, function (type) {
+                                    layer.msg(type.data);
                                     layui.table.reload('testReload');
-                                })
+                                },'json')
                                 layer.close(index)
                             }
                         })

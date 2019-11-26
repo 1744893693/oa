@@ -178,10 +178,10 @@
                                         $.post('?s=admin/Holiday/holiday_insert', {
                                              name:$('#name').val(),start_time:$('#start_time').val(),end_time:$('#end_time').val(),
                                             approver:$('#approver').val(),type:$('#type1').val(),reason:$('#reason').val()
-                                           },function () {
-
+                                           },function (v) {
+                                            layer.msg(v.data);
                                             layui.table.reload('testReload');
-                                        })
+                                        },'json')
                                         layer.close(index)//如果设定了yes回调，需进行手工关闭
                                     },
                                 })
