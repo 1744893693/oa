@@ -24,7 +24,7 @@ class menu extends Login
          }
          $date['department']=$d->sql_operation("select department.id,department.`name` as department_name from 
                                   company LEFT JOIN department on company.id=department.company_id WHERE company.id=$id");
-         include_once './app/admin/view/Menu/init.php';
+         include_once './app/admin/view/menu/init.php';
      }
      function menu_list(){
          $id=$_SESSION['admin']['company_id'];
@@ -40,13 +40,14 @@ class menu extends Login
                                   company LEFT JOIN functional_group on company.id = functional_group.company_id LEFT 
                                   JOIN menu on functional_group.menu_id=menu.id LEFT JOIN department on 
                                   functional_group.department_id=department.id WHERE company.id=$id limit $start,$limit");
-         if($data){
+                                 
+        
              $d=[];
              $d['code']=0;
              $d['count']=count($date);
              $d['msg']="";
              $d['data']=$data;
-         }
+       
          echo json_encode($d);
      }
      function add_menu(){
