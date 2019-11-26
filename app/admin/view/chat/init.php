@@ -96,9 +96,9 @@
                     return;
                 }
 
-            $.ajax({
-        url:"./?s=admin/chat/chatname",
-                dataType:"json",
+                $.ajax({
+                    url:"./?s=admin/chat/chatname",
+                    dataType:"json",
                     success:function(data){
                         if(Who.value == 0) {
                             //如果Who.value为0n那么是 A说
@@ -110,25 +110,25 @@
                         Words.innerHTML = Words.innerHTML + str;
                         var content=str
                         $.post("./?s=admin/chat/contenttj",{content:content},$('#talkwords').val("")),location.reload();
-                }
-            })
+                    }
+                })
+            }
         }
-     }
 
 
     </script>
 </head>
 <body>
 <div class="talk_con"style="width: 100%;height: 556px;position: relative">   <div align="center"><?php echo $gs ?></div>
-    <div class="talk_show" id="words"style="width: 100%;height: 100%;" ><div id="duoren">多人聊天</div>
+    <div class="talk_show" id="words"style="width: 100%;height: 100%;" ><div id="duoren">私聊</div>
         <?php foreach ($data as $k) {?>
-        <div class="atalk">
+            <div class="atalk">
             <span id="asay">
 <br>
-        <?php echo $k['company_name'] ?>
-        <?php echo $k['chat'] ?>
+                <?php echo $k['company_name'] ?>
+                <?php echo $k['chat'] ?>
             </span>
-    </div>
+            </div>
         <?php } ?>
     </div>
     <div class="talk_input">
