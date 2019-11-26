@@ -51,28 +51,16 @@
 
 </script>
 
-
-
-
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="del">删除</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up" id="up">同意</a>
+    <a class="layui-btn layui-btn-xs" lay-event="up" id="up">同意</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="db" id="db">驳回</a>
 </script>
 
 <div id="tan" style="display: none;margin-top:65px">
-<<<<<<< HEAD
     <div style=" text-align:center" class="layui-form-item">注册公司 <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px;margin-left:20px "></div>
     <div style=" text-align:center" class="layui-form-item">公司法人<input type="text"id="legal_person"style="width: 150px;height:30px;margin-left:23px "></div>
-=======
-    <div style=" text-align:center" class="layui-form-item">注册公司
-        <input type="text" id="company_name"  name="company_name" style="width: 150px;height:30px ">
-    </div>
-    <div style=" text-align:center" class="layui-form-item">公司法人
-        <input type="text"id="legal_person"style="width: 150px;height:30px ">
-    </div>
->>>>>>> 5d1ddfd4d243a282b07e5270bade05181c6b1327
 </div>
 <script type="text/javascript">
     layui.use('table', function(){
@@ -91,7 +79,8 @@
                 { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
                 {field: 'company_name', title: '注册公司'},
                 {field: 'legal_person', title: '法人'},
-                {field: 'status', title: '状态' ,sort: true, templet:function (d) {
+                {field: 'account', title: '账号'},
+                {field: 'status', title: '状态' ,width:100,align: 'center',sort: true, templet:function (d) {
                  if (d.status==0) {  // 自定义内容
                      return "<span style='color: red'>未审批</span>";
                  } else if (d.status==1) {
@@ -100,7 +89,7 @@
                      return "<span style='color: red'>已拒绝</span>";
                  }
                 }},
-                {fixed: 'right', title:'操作', toolbar: '#barDemo',width:210}
+                {fixed: 'right', title:'操作', toolbar: '#barDemo',width:210,align: 'right'}
             ]],
             id: 'testReload'
             ,page: true
@@ -119,8 +108,10 @@
                     layui.table.reload('testReload');
                 });
             } else if(obj.event === 'up'){
-                layer.confirm('你确定更改：'+data.company_name+"的状态为已通过吗?", function(index){
-                    $.post('./?s=admin/status/up',{id:data.id})
+                layer.confirm('你确定通过'+data.company_name+"注册申请吗?", {
+                    skin:'layui-layer-molv',
+                }, function(index){
+                    $.post('./?s=admin/status/up',{id:data.id,account:data.account})
                     layer.close(index);
                     layui.table.reload('testReload');
                 });
