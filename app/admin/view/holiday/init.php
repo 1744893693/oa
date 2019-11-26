@@ -76,7 +76,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">请假原因</label>
                     <div class="layui-input-block" style="width: 190px">
-                        <textarea placeholder="请输入请假原因" class="layui-textarea"></textarea>
+                        <textarea id="reason" placeholder="请输入请假原因" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </form>
