@@ -84,4 +84,12 @@ class Model{
         }
         return $dat;
     }
+    function department(){
+        $data=$this->connect->query('select * from department');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
 }
