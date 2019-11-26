@@ -56,8 +56,9 @@ $(document).ready(function(){
                     dataType:'json',
                     success:function(data) {
                     	//alert(data)
-                        alert('公司申请成功，请耐心等待！')
-						window.location.href='./?s=admin/register/init'
+                        alert('公司申请成功，请耐心等待！初始密码‘111111’')
+           
+						window.location.href='./?s=admin/Register/init'
                     }
                 })
             })
