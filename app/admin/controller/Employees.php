@@ -56,11 +56,11 @@ class Employees extends Login {
     function employee(){
         $d=new Model();
         $id=$_POST['id'];
-        $data = $d->sql_operation("delete from user WHERE id='$id'");
-        if($data){
-            echo json_encode(array('type' => 1, 'data' =>'删除成功！'));
+        $v = $d->sql_operation("delete from user WHERE id='$id'");
+        if($v){
+            echo json_encode(array('v' => 1, 'data' =>'删除成功！'));
         }else{
-            echo json_encode(array('type' => 0, 'data' =>'删除失败！'));
+            echo json_encode(array('v' => 0, 'data' =>'删除失败！'));
         }
     }
     function em_update(){
@@ -69,8 +69,8 @@ class Employees extends Login {
         $department_id=$_POST['department_id'];
         $pwd=$_POST['pwd'];
         $position_id=$_POST['position_id'];
-        $ba = $d->sql_operation("update user set pwd='$pwd',department_id='$department_id',position_id='$position_id' where id=$id");
-        if($ba){
+        $type = $d->sql_operation("update user set pwd='$pwd',department_id='$department_id',position_id='$position_id' where id=$id");
+        if($type){
            echo json_encode(array('type' => 1, 'data' =>'修改成功！')) ;
         }else{
            echo json_encode(array('type' => 0, 'data' =>'修改失败！'));
@@ -90,6 +90,9 @@ class Employees extends Login {
 
         $company_id=$_SESSION['admin']['company_id'];
         $position_id=$_POST['position_id'];
+        if(empty($department_id)||empty($position_id)){
+            exit(json_encode(array('type' => 201, 'data' =>'部门或职位不能为空！')));
+        }
         $type = $d->sql_operation("insert into user (name,pwd,department_id,company_id,position_id) VALUES ('$name','$pwd','$department_id','$company_id','$position_id')");
 
         if($type){
