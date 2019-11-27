@@ -11,10 +11,6 @@ use api\Model;
 
 class Logistic extends Login{
     function init(){
-//        $aa = new Model();
-//        $war=$aa->sql_operation("select id,number from warehous ");
-//        $wid = $war['id'];
-//        $wnumber = $war['number'];
         include_once './app/admin/view/logistic/init.php';
     }
     function logistic(){

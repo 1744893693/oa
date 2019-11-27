@@ -175,7 +175,7 @@
                                 yes: function(index){
                                     $.post('?s=admin/Test/test_insert', {
                                         test_name:$('#test_name').val(),release_time:$('#release_time').val(),submission_time:$('#submission_time').val(),
-                                        test_content:$('#test_content').val(),department_id:$('#department_id').val()
+                                        test_content:$('#test_content').val(),department_id:$('#department_id').val(),company_id:$('#company_id').val()
                                     },function (v) {
                                         layer.msg(v.data);
                                         layui.table.reload('testReload');

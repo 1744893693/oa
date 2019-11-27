@@ -149,7 +149,7 @@
                                     yes: function(index){
                                         $.post('?s=admin/Holiday/holiday_insert', {
                                              name:$('#name').val(),start_time:$('#start_time').val(),end_time:$('#end_time').val(),
-                                            approver:$('#approver').val(),type:$('#type1').val(),reason:$('#reason').val()
+                                            approver:$('#approver').val(),type:$('#type1').val(),reason:$('#reason').val(),company_id:$('#company_id').val()
                                            },function (v) {
                                             layer.msg(v.data);
                                             layui.table.reload('testReload');

@@ -33,13 +33,14 @@ class Holiday extends   Login {
         $approver = $_POST['approver'];
         $type = $_POST['type'];
         $reason = $_POST['reason'];
+        $company_id=$_SESSION['admin']['company_id'];
         if(empty($start_time)||empty($end_time)){
             exit(json_encode(array('v'=>201,'data'=>'时间都不填，你请个屁哦！')));
         }
         if(empty($reason)){
             exit(json_encode(array('v'=>202,'data'=>'原因都不写，你以为你是老板蛮！')));
         }
-        $v = $aa->sql_operation("insert into operation (name,start_time,end_time,approver,type,reason ) VALUES  ( '$name','$start_time','$end_time','$approver','$type','$reason')");
+        $v = $aa->sql_operation("insert into operation (name,start_time,end_time,approver,type,reason,company_id ) VALUES  ( '$name','$start_time','$end_time','$approver','$type','$reason','$company_id')");
         if($v){
             exit(json_encode(array('v'=>1,'data'=>'等到起，我去看一下再说！')));
         }else{

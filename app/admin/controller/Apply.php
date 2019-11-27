@@ -27,7 +27,7 @@ class Apply extends   Login {
         }
         echo json_encode($d);
     }
-    function Apply_insert(){
+    function apply_insert(){
         $aa = new Model();
         $apply_name = $_POST['apply_name'];
         $name = $_POST['name'];
@@ -38,10 +38,13 @@ class Apply extends   Login {
 
         $b = $aa->sql_operation("select id,name,number from warehous where id='$name' ");
         $p=$b[0]['name'];
-//        $pp=$b[1]['number'];
+
+
+//        $pp=$b['number'];
 //        if($number>$pp){
 //            exit(json_encode(array('v'=>203,'data'=>'有病蛮，哪有那么多东西哦！')));
 //        }
+
         if(empty($apply_time)){
             exit(json_encode(array('v'=>201,'data'=>'时间都不填蛮！')));
         }
