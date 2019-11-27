@@ -8,10 +8,13 @@
 namespace  app\admin\controller;
 use api\Model;
 
-class  position{
+class  Position{
 
     function management(){
-      include_once "./app/admin/view/position/management.php";
+       $d= new  Model();
+       $data['department']=$d->sql_operation("select *  from department ");
+//
+      include_once "./app/admin/view/Position/management.php";
     }
     function  managements(){
         $d=new Model();
@@ -38,10 +41,16 @@ class  position{
        echo  $date;
 }
     function puls(){
+
         $d=new Model();
         $a=$_POST['position_name'];
-        $date=$d->sql_operation("insert into position   VALUES (NULL ,'$a')");
-        return $a;
+        $b=$_POST['position_id'];
+
+
+//        $date=$d->sql_operation("select name from department ");
+//        $date=$date[0]['name'];
+       $aa= $d->sql_operation("insert into position  (position_name,department_id) VALUES ('$a','$b')");
+
     }
 
 }

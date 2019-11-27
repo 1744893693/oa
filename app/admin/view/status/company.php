@@ -111,13 +111,13 @@
                 layer.confirm('你确定通过'+data.company_name+"注册申请吗?", {
                     skin:'layui-layer-molv',
                 }, function(index){
-                    $.post('./?s=admin/status/up',{id:data.id,account:data.account})
+                    $.post('./?s=admin/Status/up',{id:data.id,account:data.account})
                     layer.close(index);
                     layui.table.reload('testReload');
                 });
             }else if(obj.event === 'db'){
                 layer.confirm('你确定驳回：'+data.company_name+"的状态为不通过吗?", function(index){
-                    $.post('./?s=admin/status/db',{id:data.id})
+                        $.post('./?s=admin/Status/db',{id:data.id})
                     layer.close(index);
                     layui.table.reload('testReload');
                 });

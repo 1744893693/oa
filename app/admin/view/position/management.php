@@ -27,7 +27,6 @@
         <script type="text/html" id="toolbarDemo">
         <div class="demoTable">
         <div class="layui-inline">
-        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
         </div>
         <button class="layui-btn" data-type="reload" id="jia">添加</button>
         </div>
@@ -43,9 +42,26 @@
        <div id="tan" style="display: none">
            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px;margin-left:20px"></div>
        </div>
-        <div id="plus" style="display: none">
-            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px;margin-left:20px"></div>
-        </div>
+       <div id="plus" style="display: none;">
+           <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_names"  name="position_names"style="width: 150px;height: 30px;margin-left:20px"></div>
+               <form class="layui-form" >
+           <div class="layui-form-item">
+               <label class="layui-form-label"style="left:90px">选择部门</label>
+               <div class="layui-input-block" style="width: 150px;height: 30px;margin-right:30px;margin-top: 10px;left: 100px">
+                   <select id="position_id">
+                       <option value=""></option>
+                       <?php foreach ($data['department'] as $val){
+                           ?>
+                           <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
+                           <?php
+                       }?>
+                   </select>
+               </div>
+           </div>
+        </form>
+     </div>
+
+
 
 
 <script type="text/javascript">
@@ -64,7 +80,7 @@
 
                 { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
                 {field: 'position_name', title: '职位'},
-//                {field: 'status', title: 'ID', width:150, sort: true},
+                {field: 'department_id', title: '部门'},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo'}
             ]],
             id: 'testReload'
@@ -78,7 +94,7 @@
                    var position_name =$('#position_name').val(data.position_name);
 
             if(obj.event === 'del'){
-                layer.confirm('真的删除ID为：'+data.id+"的职位吗?", function(index){
+                layer.confirm('你要删除职位为：'+data.position_name+"的职位吗?", function(index){
                   $.post('./?s=admin/Position/positionsc',{id:data.id})
                     obj.del();
                   layer.close(index);
@@ -88,7 +104,7 @@
                 layui.use('layer', function(){
                     var layer = layui.layer;
                     layer.open({
-                        skin:'layer-open',
+                        skin: 'layui-layer-molv',
                         btn: ['确定', '取消'],
                         area: ['500px', '300px'],
                         formType:2,
@@ -111,17 +127,17 @@
                 layui.use('layer', function() {
                     var layer = layui.layer;
                     layer.open({
-                        skin: 'layer-open',
+                        skin: 'layui-layer-molv',
                         btn: ['确定', '取消'],
-                        area: ['500px', '300px'],
+                        area: ['500px', '500px'],
                         formType: 2,
                         title:'添加信息详情',
                         content: $('#plus'),
                         shade: 0,
                         type: 1,
-                        yes: function (index) {
-                            $.post('./?s=admin/Position/puls', {position_name:$('#position_namepuls').val()}, function (date) {
-                                layer.msg(date)
+                         yes: function (index) {
+                            $.post('./?s=admin/Position/puls', {position_name:$('#position_names').val(),position_id:$('#position_id').val()}, function (date) {
+                                layer.msg('添加成功')
                                 layui.table.reload('testReload');
                             })
                             layer.close(index)

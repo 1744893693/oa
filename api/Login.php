@@ -23,6 +23,8 @@ class Login
          $this->company_id=$_SESSION['admin']['company_id'];
          $this->user_id=$_SESSION['admin']['id'];
          $this->permission=$_SESSION['admin']['permissions_id'];
+         $this->company_id=$_SESSION['admin']['company_id'];
+         $this->name=$_SESSION['admin']['name'];
      }
      function out(){
          session_destroy();
