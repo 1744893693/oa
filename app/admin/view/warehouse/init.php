@@ -31,8 +31,6 @@
             </div>
         </script>
 
-
-
         <script type="text/html" id="barDemo">
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="agree">添加</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="fuse">上架</a>
@@ -75,12 +73,12 @@
 
         <div id="ei" style="display: none;margin-top: 20px" >
             <form class="layui-form" >
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">物品名称</label>-->
-<!--                    <div class="layui-input-inline">-->
-<!--                        <input type="text" id="name" name="name" lay-verify="pass"  placeholder="请输入物品名称" autocomplete="off" class="layui-input">-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">物品名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="name" name="name" value="" lay-verify="pass"  placeholder="请输入物品名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">物品数量</label>
                     <div class="layui-input-inline">
@@ -135,7 +133,8 @@
                         {field: 'price', title: '物品价格' },
                         {field: 'warehous_time', title: '入库时间' },
                         {field: 'company_id', title: '公司' },
-                        {field: 'audit', title: '请假审批',templet:function (d) {
+//                        {field: 'company_id', title: '公司' },
+                        {field: 'audit', title: '物品详情',templet:function (d) {
                             if (d.audit==0) {  // 自定义内容
                                 return "<span style='color: green'>物品在架</span>";
                             } else if (d.audit==1) {
@@ -166,10 +165,9 @@
                                     yes: function(index){
                                         $.post('./?s=admin/Warehouse/warehouse_update', {
                                             id:data.id,
-//                                            name:data.name,
+                                            name:data.name,
                                             number:data.number,
                                             price:data.price,
-//                                            warehous_time:data.warehous_time
                                         },function (type) {
                                             layer.msg(type.data);
                                             layui.table.reload('testReload');
@@ -185,7 +183,7 @@
                                 layui.table.reload('testReload');
                             });
                         }else if(obj.event === 'fuse'){
-                            layer.confirm('是否确定下架？', function(index){
+                            layer.confirm('是否确定上架？', function(index){
                                 $.post('?s=admin/Warehouse/update1',{id:data.id,audit:data.audit})
                                 layer.close(index);
                                 layui.table.reload('testReload');
