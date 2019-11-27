@@ -32,7 +32,9 @@ class Salary extends Login
             $s =   $data->sql_operation($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%"');
         }else{
             $dd=$q.$company_id.' limit '.$news.','.$limit;
-            $d =$data->sql_operation("$dd");//查找每页显示的员工
+            $d =$data->sql_operation("select `user`.`name` as user_name ,department.`name` as department_name,
+position.position_name,salary.* from user LEFT JOIN salary on `user`.id=salary.user_id LEFT JOIN department on 
+`user`.department_id=department.id LEFT JOIN position on `user`.position_id=position.id WHERE `user`.company_id=$this->company_id ORDER BY salary.`month` desc");//查找每页显示的员工
             $s =$data->sql_operation($q.$company_id);//查找该公司所有的员工
         }
 
@@ -93,22 +95,21 @@ class Salary extends Login
                 }
             }
             $id=$val1['id'];
-            $name=$val1['name'];
-            $department_name=$val1['department_name'];
-            $position_name=$val1['position_name'];
+//            $name=$val1['name'];
+//            $department_name=$val1['department_name'];
+//            $position_name=$val1['position_name'];
             $base_salary=$val1['base_salary'];
-            $position_name=$val1['position_name'];
+//            $position_name=$val1['position_name'];
             $month=date('Ym',time())-1;
             $late_m=$late_money*$late;
             $obsent_m=$obsent_money*$obsent;
             $zong=-($late_m+$obsent_m);
             $bs=$zong+$base_salary;
-
-            $d->sql_operation("INSERT INTO `salary` (`user_id`, `month`, `base_salary`, `other_salary`, `ready_salary`, `absenteeism`, `late`)
-            VALUES ('$id','$month', '$base_salary', '$zong', '$bs','$obsent', '$late','$company_id')");
-
-
-
+            $sele=$d->sql_operation("select id from salary WHERE user_id=$id and `month`=$month");
+            if(empty($sele[0])){
+                $d->sql_operation("INSERT INTO `salary` (`user_id`, `month`, `base_salary`, `other_salary`, `ready_salary`, `absenteeism`, `late`)
+                VALUES ('$id','$month', '$base_salary', '$zong', '$bs','$obsent', '$late')");
+            }
         }
 
 
