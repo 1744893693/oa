@@ -15,11 +15,11 @@ class Register {
     function company(){
         $company_name=trim($_POST['company_name']);
         $username=trim($_POST['username']);
-        $password=trim($_POST['password']);
+        $account=trim($_POST['account']);
         if(!$company_name == ''){
             if(!$username == ''){
-                if(!$password == ''){
-                    $data = ( new Model())->sql_operation("insert into company VALUES (null,'$company_name','$username','$password','0')");
+                if(!$account == ''){
+                    $data = ( new Model())->sql_operation("insert into company ( legal_person,company_name,account)VALUES ('$username','$company_name','$account')");
                      echo json_encode($data);
                 }
             }

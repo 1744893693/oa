@@ -6,9 +6,10 @@
  * Time: 15:28
  */
 namespace app\admin\controller;
+use api\Login;
 use api\Model;
 
-class Operation{
+class Operation extends Login {
     function init(){
         include_once './app/admin/view/operation/init.php';
     }

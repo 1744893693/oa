@@ -53,14 +53,15 @@
         menu=data
         $('#title').html(data.company[0].company_name+'OA后台管理')
         $('#l').append('<a href="javascript:login_out()">退出</a>')
-        if (menu.department){
+        if (menu.department[0]['department_id']!=null){
             for(val of menu.department){
                 $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.department_id+')">'+val.department_name+'</a></li>')
             }
+            menu_child(menu.department[0].department_id)
         }
 
 
-        menu_child(menu.department[0].department_id)
+
         layui.use('element', function(){
             var element = layui.element;
         })

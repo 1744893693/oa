@@ -117,7 +117,11 @@
                 });
             }else if(obj.event === 'db'){
                 layer.confirm('你确定驳回：'+data.company_name+"的状态为不通过吗?", function(index){
+
                         $.post('./?s=admin/Status/db',{id:data.id})
+
+                    $.post('./?s=admin/Status/db',{id:data.id})
+
                     layer.close(index);
                     layui.table.reload('testReload');
                 });

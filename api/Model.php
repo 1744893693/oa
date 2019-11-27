@@ -76,4 +76,50 @@ class Model{
         }
         return $dat;
     }
+
+
+    function selectsearch(){
+        $as=$_SESSION['admin']['company_id'];
+        $data=$this->connect->query('select * from department where company_id= '.$as );
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+
+    function test(){
+        $data=$this->connect->query('select * from test');
+
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+    function department(){
+        $data=$this->connect->query('select * from department');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+    function logistic(){
+        $data=$this->connect->query('select * from logistic');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+    function warehous(){
+        $data=$this->connect->query('select * from warehous');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
+
 }

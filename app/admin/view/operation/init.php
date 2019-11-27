@@ -18,8 +18,6 @@
           <a><cite>导航元素</cite></a>
         </span>
 
-
-
 <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
 <table class="layui-hide" id="test" lay-filter="test"></table>
 
@@ -32,13 +30,10 @@
             </div>
         </script>
 
-
         <script type="text/html" id="barDemo">
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="agree">同意</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse">拒绝</a>
         </script>
-
-
 
 <div class="layui-footer">
     <div id="demo7"></div>
@@ -119,7 +114,6 @@
                     layer.msg(elem.text());
                 })
             });
-
     })
 </script>
 </body>

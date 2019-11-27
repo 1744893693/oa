@@ -43,10 +43,6 @@
                     if(!$i) { ?><div style="height: 30px"><?php echo $department['name'].'暂未添加任何功能';}
                     }?></div>
                 <hr class="layui-bg-green">
-
-
-<!--                <input type="checkbox" name="" title="写作" lay-skin="primary" checked>-->
-<!--                <input type="checkbox" name="" title="发呆" lay-skin="primary">-->
             </form>
         </div>
         <script type="text/html" id="toolbarDemo">

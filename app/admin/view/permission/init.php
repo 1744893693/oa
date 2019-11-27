@@ -76,7 +76,7 @@
                 if(obj.event === 'del'){
                     layer.confirm('真的删除ID为：'+data.id+"的用户吗?", function(index){
                         $.ajax({
-                            url:"./?s=admin/Permission/delate_permission",
+                            url:"./?s=admin/Permission/delete_permission",
                             type:'post',
                             data:{'id':data.id},//向服务端发送删除的id
                             success:function(data){

@@ -18,7 +18,7 @@ $(document).ready(function(){
 				minlength:2, //最少6个字符
 				maxlength:12,//最多20个字符
 			},
-			password:{
+            account:{
 				required:true,
 				minlength:6,
 				maxlength:32,
@@ -40,10 +40,10 @@ $(document).ready(function(){
 				maxlength:"用户名至多为12个任意字符",
 				remote: "用户名已存在",
 			},
-			password:{
-				required:"必须填写密码",
-				minlength:"密码至少为6个数字字符",
-				maxlength:"密码至多为32个数字字符",
+            account:{
+				required:"必须填写账号",
+				minlength:"账号至少为6个数字字符",
+				maxlength:"账号至多为32个数字字符",
                 digits:"必须填写数字"
 			},
 		 },
@@ -51,12 +51,14 @@ $(document).ready(function(){
             $('.submit').click(function () {
                 $.ajax({
                     url: './?s=admin/Register/company',
-                    data:{company_name:$('#company_name').val(),username:$('#username').val(),password:$('#password').val()},
+                    data:{company_name:$('#company_name').val(),username:$('#username').val(),account:$('#account').val()},
                     type:'post',
                     dataType:'json',
                     success:function(data) {
-                        alert('公司申请成功，请耐心等待！')
-						window.location.href='./?s=admin/register/init'
+                    	//alert(data)
+                        alert('公司申请成功，请耐心等待！初始密码‘111111’')
+           
+						window.location.href='./?s=admin/Register/init'
                     }
                 })
             })

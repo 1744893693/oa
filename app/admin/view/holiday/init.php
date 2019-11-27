@@ -73,12 +73,12 @@
                     </select>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">请假原因</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="reason" name="reason" lay-verify="pass" placeholder="请输入请假原因" autocomplete="off" class="layui-input">
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">请假原因</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <textarea id="reason" placeholder="请输入请假原因" class="layui-textarea"></textarea>
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
 
@@ -87,34 +87,6 @@
         </div>
 
         <script type="text/javascript">
-            $(function () {
-                function maxDate() {
-                    var now = new Date();
-                    return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
-                }
-                function tim(){
-                    alert($('#start_time').val());
-                    return  $('#end_Time').val()
-                }
-                layui.use('laydate', function(){
-                    var laydate = layui.laydate;
-                    laydate.render({
-                        elem: '#start_time', //指定元素
-                        calendar: true,
-                        min: maxDate(),
-                        type: 'datetime',
-                        done: function(value, date, endDate){
-                            laydate.render({
-                                elem: '#end_Time' ,//指定元素
-                                calendar: true,
-                                min: value,
-                                type: 'datetime'
-                            })
-                        }
-                    })
-                })
-            });
-
             layui.use('laydate', function() {
                 var laydate = layui.laydate;
                 laydate.render({
