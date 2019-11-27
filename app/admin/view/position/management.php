@@ -80,7 +80,7 @@
 
                 { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left'},
                 {field: 'position_name', title: '职位'},
-                {field: 'department_id', title: '部门'},
+                {field: 'name', title: '部门'},
                 {fixed: 'right', title:'操作', toolbar: '#barDemo'}
             ]],
             id: 'testReload'

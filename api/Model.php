@@ -45,7 +45,10 @@ class Model{
         return $dat;
     }
     function positionc(){
-        $data=$this->connect->query('select * from position');
+
+        $g=$_SESSION['admin']['company_id'];
+        $data=$this->connect->query('SELECT position.id,position_name,department.id as department_id,department.name
+        from position LEFT JOIN department ON  department.id=position.department_id WHERE department.company_id='.$g);
         $dat=[];
         while ($d=mysqli_fetch_assoc($data)){
             $dat[]=$d;

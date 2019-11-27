@@ -6,19 +6,24 @@
  * Time: 10:44
  */
 namespace  app\admin\controller;
+use api\Login;
 use api\Model;
 
-class  Position{
+class  Position extends  Login {
 
     function management(){
        $d= new  Model();
-       $data['department']=$d->sql_operation("select *  from department ");
+        $g=$this->company_id;
+        $data['department']=$d->sql_operation("select name ,id from department WHERE company_id= '$g'");
+
+
 //
       include_once "./app/admin/view/Position/management.php";
     }
     function  managements(){
         $d=new Model();
         $data=$d->positionc();
+
         if($data){
             $d=[];
             $d['code']=0;
@@ -45,10 +50,10 @@ class  Position{
         $d=new Model();
         $a=$_POST['position_name'];
         $b=$_POST['position_id'];
+         $g=$this->company_id;
 
+        $date=$d->sql_operation("select name , id  from department WHERE company_id='$g' ");
 
-//        $date=$d->sql_operation("select name from department ");
-//        $date=$date[0]['name'];
        $aa= $d->sql_operation("insert into position  (position_name,department_id) VALUES ('$a','$b')");
 
     }
