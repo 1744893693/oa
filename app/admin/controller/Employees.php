@@ -17,8 +17,8 @@ class Employees extends Login {
     function init(){
         $d=new Model();
         $date['department']=$d->sql_operation('select * from department where department.company_id='.$this->company_id);
+//        $date['position']=$d->sql_operation('select position.position_name,department.`name` from position LEFT JOIN department on department.id=position.department_id');
         $date['position']=$d->sql_operation('select * from position ');
-
         $data['my_menu']=$d->sql_operation('select id,functional_group_id,user_id from permission_group');
         $data['department']=$d->sql_operation('select department.id,department.`name`
                  from functional_group LEFT JOIN menu on functional_group.menu_id=menu.id LEFT JOIN 
@@ -47,7 +47,6 @@ class Employees extends Login {
             $d =$data->sql_operation("$dd");//查找每页显示的员工
             $s =$data->sql_operation($q.$company_id);//查找该公司所有的员工
         }
-
             $msg['code'] =0;//状态码
             $msg['count'] = count($s);//数据集
             $msg['data'] = $d;//内容数据
