@@ -58,8 +58,9 @@
                     cols: [[
                         { type: 'numbers', title: '序号' , width:80,  fixed: 'left'},
                         {field: 'apply_name', title: '申请人' },
+                        {field: 'department_id', title: '申请部门' },
                         {field: 'name', title: '物质名称' },
-                        {field: 'number', title: '物质数量' },
+                        {field: 'number', title: '申请数量' },
                         {field: 'apply_time', title: '申请时间' },
                         {field: 'reason', title: '申请原因' },
                         {field: 'audit', title: '申请状态',templet:function (d) {
@@ -83,9 +84,13 @@
                         var bb = data.warehous_id;
                         if(obj.event === 'refuse'){
                             layer.confirm('是否确定拒绝？', function(index){
-                                $.post('?s=admin/Logistic/update1',{id:data.id,audit:data.audit,number:data.number} )
-                                layui.table.reload('testReload');
-                                layer.close(index);
+                                $.post('?s=admin/Logistic/update1', {
+                                    id:data.id,audit:data.audit,number:data.number,wa:bb
+                                }, function (type) {
+                                    layer.msg(type.data);
+                                    layui.table.reload('testReload');
+                                },'json')
+                                layer.close(index)
                             })
                         }else if(obj.event === 'agree'){
                             layer.confirm('是否确定同意？', function(index){

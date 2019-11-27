@@ -37,6 +37,19 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <label class="layui-form-label">申请部门</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="department_id">
+                            <option value=""></option>
+                            <?php foreach ($date['department'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">物品名称</label>
                     <div class="layui-input-block" style="width: 190px">
                         <select id="name1">
@@ -65,7 +78,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">申请数量</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="number" name="number" lay-verify="pass" placeholder="请输入物质数量" autocomplete="off" class="layui-input">
+                        <input type="text" id="number1" name="number" lay-verify="pass" placeholder="请输入物质数量" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -88,18 +101,6 @@
         </div>
 
         <script type="text/javascript">
-
-//            $(".add").click(function() {
-//                // $(this).prev() 就是当前元素的前一个元素，即 text_box
-//                $(this).prev().val(parseInt($(this).prev().val()) + 1);
-//                setTotal();
-//            });
-//
-//            $(".min").click(function() {
-//                // $(this).next() 就是当前元素的下一个元素，即 text_box
-//                $(this).next().val(parseInt($(this).next().val()) - 1);
-//                setTotal();
-//            });
 
             layui.use('laydate', function() {
                 var laydate = layui.laydate;
@@ -125,8 +126,9 @@
                     cols: [[
                         { type: 'numbers', title: '序号' , width:80,  fixed: 'left'},
                         {field: 'apply_name', title: '申请人' },
+                        {field: 'department_id', title: '申请部门' },
                         {field: 'name', title: '物品名称' },
-                        {field: 'number', title: '物质数量' },
+                        {field: 'number', title: '申请数量' },
                         {field: 'apply_time', title: '申请时间' },
                         {field: 'reason', title: '申请原因' },
                         {field: 'audit', title: '申请状态',templet:function (d) {
@@ -155,8 +157,8 @@
                                 shade:.0,
                                 yes: function(index){
                                     $.post('?s=admin/Apply/apply_insert', {
-                                        apply_name:$('#apply_name').val(), name:$('#name1').val(),number:$('#number').val(),apply_time:$('#apply_time').val(),
-                                       reason:$('#reason').val(), company_id:$('#company_id').val(),
+                                        apply_name:$('#apply_name').val(), name:$('#name1').val(),number:$('#number1').val(),apply_time:$('#apply_time').val(),
+                                       reason:$('#reason').val(), company_id:$('#company_id').val(),department_id:$('#department_id').val()
                                     },function (v) {
                                         layer.msg(v.data);
                                         layui.table.reload('testReload');

@@ -147,15 +147,23 @@
                         var data = obj.data;
                         if(obj.event === 'refuse'){
                             layer.confirm('是否确定驳回？', function(index){
-                                $.post('?s=admin/Test/update1',{id:data.id,audit:data.audit} )
-                                layui.table.reload('testReload');
-                                layer.close(index);
+                                $.post('?s=admin/Test/update1', {
+                                    id:data.id,audit:data.audit
+                                }, function (type) {
+                                    layer.msg(type.data);
+                                    layui.table.reload('testReload');
+                                },'json')
+                                layer.close(index)
                             })
                         }else if(obj.event === 'agree'){
                             layer.confirm('是否确定接收？', function(index){
-                                $.post('?s=admin/Test/update2',{id:data.id,audit:data.audit})
-                                layer.close(index);
-                                layui.table.reload('testReload');
+                                $.post('?s=admin/Test/update2', {
+                                    id:data.id,audit:data.audit
+                                }, function (type) {
+                                    layer.msg(type.data);
+                                    layui.table.reload('testReload');
+                                },'json')
+                                layer.close(index)
                             });
                         }
                     }),
