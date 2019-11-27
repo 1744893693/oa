@@ -31,8 +31,6 @@ $(function () {
     layui.use('table', function() {
         $('#up').click(function () {
             $.ajax({url:"./?s=admin/Punchin/upb",
-                dataType:"json",
-
                 success:function(data){
                     layer.msg(data.data)
                 }
@@ -41,7 +39,6 @@ $(function () {
 
         $('#db').click(function () {
             $.ajax({url:"./?s=admin/Punchin/dbb",
-                dataType:"json",
                 success:function(data){
                     layer.msg(data.data)
                 }
@@ -54,8 +51,9 @@ $(function () {
     function list3(value) {
         layui.use('table', function() {
             var datt=$("#bu").val();
+
           layer.open({
-              skin: 'layui-layer-molv',
+              skin:'layer-open',
               btn: ['提交', '取消'],
               area: ['500px', '300px'],
               formType:2,
