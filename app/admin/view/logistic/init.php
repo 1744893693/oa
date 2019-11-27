@@ -43,40 +43,6 @@
         </div>
 
 
-<!--        <div id="tan" style="display: none;margin-top: 20px" >-->
-<!--        <form class="layui-form" >-->
-<!--            <div class="layui-form-item">-->
-<!--                <label class="layui-form-label">物质名称</label>-->
-<!--                <div class="layui-input-inline">-->
-<!--                    <input type="text" id="name" name="name" lay-verify="pass"  placeholder="请输入名称" autocomplete="off" class="layui-input">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="layui-form-item">-->
-<!--            <label class="layui-form-label">数量</label>-->
-<!--            <div class="layui-input-inline">-->
-<!--                <input type="text" id="number" name="number" lay-verify="pass"  placeholder="请输入数量" autocomplete="off" class="layui-input">-->
-<!--            </div>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--        </div>-->
-<!---->
-<!--        <div id="ei" style="display: none;margin-top: 20px" >-->
-<!--            <form class="layui-form" >-->
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">数量</label>-->
-<!--                    <div class="layui-input-inline">-->
-<!--                        <input type="text" id="number1" name="number" lay-verify="pass"  placeholder="请输入数量" autocomplete="off" class="layui-input">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">物质详情</label>-->
-<!--                    <div class="layui-input-inline">-->
-<!--                        <input type="text" id="audit" name="audit" lay-verify="pass"  placeholder="请输入物质详情" autocomplete="off" class="layui-input">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-
         <script type="text/javascript">
             layui.use('table', function(){
                 var table = layui.table;
@@ -92,8 +58,9 @@
                     cols: [[
                         { type: 'numbers', title: '序号' , width:80,  fixed: 'left'},
                         {field: 'apply_name', title: '申请人' },
+                        {field: 'department_id', title: '申请部门' },
                         {field: 'name', title: '物质名称' },
-                        {field: 'number', title: '物质数量' },
+                        {field: 'number', title: '申请数量' },
                         {field: 'apply_time', title: '申请时间' },
                         {field: 'reason', title: '申请原因' },
                         {field: 'audit', title: '申请状态',templet:function (d) {
@@ -117,13 +84,16 @@
                         var bb = data.warehous_id;
                         if(obj.event === 'refuse'){
                             layer.confirm('是否确定拒绝？', function(index){
-                                $.post('?s=admin/Logistic/update1',{id:data.id,audit:data.audit,number:data.number} )
-                                layui.table.reload('testReload');
-                                layer.close(index);
+                                $.post('?s=admin/Logistic/update1', {
+                                    id:data.id,audit:data.audit,number:data.number,wa:bb
+                                }, function (type) {
+                                    layer.msg(type.data);
+                                    layui.table.reload('testReload');
+                                },'json')
+                                layer.close(index)
                             })
                         }else if(obj.event === 'agree'){
                             layer.confirm('是否确定同意？', function(index){
-
                                 $.post('?s=admin/Logistic/update2', {
                                     id:data.id,audit:data.audit,number:data.number,wa:bb
                                 }, function (type) {
@@ -131,10 +101,6 @@
                                     layui.table.reload('testReload');
                                 },'json')
                                 layer.close(index)
-                                
-//                                $.post('?s=admin/Logistic/update2',{id:data.id,audit:data.audit,number:data.number,wa:bb})
-//                                layer.close(index);
-//                                layui.table.reload('testReload');
                             });
                         }
                     }),

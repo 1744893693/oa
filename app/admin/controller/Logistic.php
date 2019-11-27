@@ -11,10 +11,6 @@ use api\Model;
 
 class Logistic extends Login{
     function init(){
-//        $aa = new Model();
-//        $war=$aa->sql_operation("select id,number from warehous ");
-//        $wid = $war['id'];
-//        $wnumber = $war['number'];
         include_once './app/admin/view/logistic/init.php';
     }
     function logistic(){
@@ -39,11 +35,22 @@ class Logistic extends Login{
     function update1(){
         $aa = new Model();
         $id = $_POST['id'];
-        $aa->sql_operation("update logistic set audit=2 where id=$id");
+        $b = $aa->sql_operation("select * from logistic where id=$id ");
+        if($b[0]['audit'] == 2){
+            exit(json_encode(['type' => 201, 'data' => '哦，拒绝过了，不要重复拒绝']));
+        }
+        $type = $aa->sql_operation("update logistic set audit=2 where id=$id");
+        if($type){
+            exit(json_encode(['type' => 202, 'data' => '东西才用了好久，不给！']));
+        }
     }
     function update2(){
         $aa = new Model();
         $id = $_POST['id'];
+        $b = $aa->sql_operation("select * from logistic where id=$id ");
+        if($b[0]['audit'] == 1){
+            exit(json_encode(['type' => 201, 'data' => '哦，同意过了，不要重复同意']));
+        }
         $number = $_POST['number'];
         $warehous_id = $_POST['wa'];
         $war=$aa->sql_operation("select id,number from warehous where id=$warehous_id");
@@ -52,7 +59,10 @@ class Logistic extends Login{
        $app= $aa->sql_operation("update logistic set audit=1 where id=$id");
         if($app){
             $newwar = $wnumber-$number;
-            $aa->sql_operation("update warehous set number =  '$newwar' where id =$wid");
+            $type = $aa->sql_operation("update warehous set number =  '$newwar' where id =$wid");
+            if($type){
+                exit(json_encode(array('type'=>101,'data'=>'申请通过，请等待发放！'))) ;
+            }
         }
     }
 }

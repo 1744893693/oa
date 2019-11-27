@@ -60,12 +60,26 @@ class Test extends Login{
     function update1(){
         $aa = new Model();
         $id = $_POST['id'];
-        $aa->sql_operation("update test set audit=2 where id=$id");
+        $b = $aa->sql_operation("select * from test where id=$id ");
+        if($b[0]['audit'] == 2){
+            exit(json_encode(['type' => 201, 'data' => '已经驳回了，不用重复了，亲']));
+        }
+        $type = $aa->sql_operation("update test set audit=2 where id=$id");
+        if($type){
+            exit(json_encode(['type' => 204, 'data' => '驳回成功！']));
+        }
     }
     function update2(){
         $aa = new Model();
         $id = $_POST['id'];
-        $aa->sql_operation("update test set audit=1 where id=$id");
+        $b = $aa->sql_operation("select * from test where id=$id ");
+        if($b[0]['audit'] == 1){
+            exit(json_encode(['type' => 202, 'data' => '已经接收了，你想要接受几次蛮！']));
+        }
+        $type = $aa->sql_operation("update test set audit=1 where id=$id");
+        if($type){
+            exit(json_encode(['type' => 203, 'data' => '接收成功！']));
+        }
     }
     function delete(){
         $aa = new Model();

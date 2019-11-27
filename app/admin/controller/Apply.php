@@ -12,6 +12,7 @@ use api\Model;
 class Apply extends   Login {
     function init(){
         $aa = new Model();
+        $date['department']=$aa->sql_operation('select * from department where department.company_id='.$this->company_id);
         $date['warehous']=$aa->sql_operation('select * from warehous ');
         include_once './app/admin/view/apply/init.php';
     }
@@ -27,7 +28,7 @@ class Apply extends   Login {
         }
         echo json_encode($d);
     }
-    function Apply_insert(){
+    function apply_insert(){
         $aa = new Model();
         $apply_name = $_POST['apply_name'];
         $name = $_POST['name'];
@@ -35,20 +36,25 @@ class Apply extends   Login {
         $apply_time = $_POST['apply_time'];
         $reason = $_POST['reason'];
         $company_id=$_SESSION['admin']['company_id'];
+        $department_id= $_POST['department_id'];
 
         $b = $aa->sql_operation("select id,name,number from warehous where id='$name' ");
         $p=$b[0]['name'];
-//        $pp=$b[1]['number'];
-//        if($number>$pp){
-//            exit(json_encode(array('v'=>203,'data'=>'有病蛮，哪有那么多东西哦！')));
-//        }
+
+        $o= $aa->sql_operation("select name from department where id='$department_id' ");
+        $oo=$o[0]['name'];
+
+        $wnumber = $b[0]['number'];
+        if($number>$wnumber){
+            exit(json_encode(array('v'=>203,'data'=>'有病蛮，哪有那么多东西，你申请个莫子！')));
+        }
         if(empty($apply_time)){
             exit(json_encode(array('v'=>201,'data'=>'时间都不填蛮！')));
         }
         if(empty($reason)){
             exit(json_encode(array('v'=>202,'data'=>'亲！你为啥子要申请蛮？')));
         }
-        $v = $aa->sql_operation("insert into logistic (apply_name,name,number,apply_time,reason,company_id,warehous_id ) VALUES  ('$apply_name', '$p','$number','$apply_time','$reason','$company_id','$name')");
+        $v = $aa->sql_operation("insert into logistic (apply_name,name,number,apply_time,reason,company_id,warehous_id ,department_id) VALUES  ('$apply_name', '$p','$number','$apply_time','$reason','$company_id','$name','$oo')");
         if($v){
             exit(json_encode(array('v'=>1,'data'=>'等到起！')));
         }else{
@@ -64,6 +70,5 @@ class Apply extends   Login {
             exit(json_encode(array('v'=>0,'data'=>'清除失败！'))) ;
         }
     }
-
 
 }

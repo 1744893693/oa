@@ -36,14 +36,21 @@
                         <input type="text" id="apply_name" name="apply_name" value="<?php echo $_SESSION['admin']['name'] ?>"  lay-verify="pass" placeholder="请输入申请人" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">物质名称</label>-->
-<!--                    <div class="layui-input-inline">-->
-<!--                        <input type="text" id="name" name="name" lay-verify="pass" placeholder="请输入物质名称" autocomplete="off" class="layui-input">-->
-<!--                    </div>-->
-<!--                </div>-->
                 <div class="layui-form-item">
-                    <label class="layui-form-label">物质名称</label>
+                    <label class="layui-form-label">申请部门</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="department_id">
+                            <option value=""></option>
+                            <?php foreach ($date['department'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">物品名称</label>
                     <div class="layui-input-block" style="width: 190px">
                         <select id="name1">
                             <option value=""></option>
@@ -55,23 +62,23 @@
                         </select>
                     </div>
                 </div>
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">申请数量</label>-->
-<!--                    <div class="layui-input-block" style="width: 190px">-->
-<!--                        <select id="number">-->
-<!--                            <option value=""></option>-->
-<!--                            --><?php //foreach ($date['warehous'] as $val){
-//                                ?>
-<!--                                <option value="--><?php //echo $val['id']?><!--">--><?php //echo $val['number']?><!--</option>-->
-<!--                                --><?php
-//                            }?>
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">仓库数量</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="number">
+                            <option value=""></option>
+                            <?php foreach ($date['warehous'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['name']?><?php echo $val['number']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">申请数量</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="number" name="number" lay-verify="pass" placeholder="请输入物质数量" autocomplete="off" class="layui-input">
+                        <input type="text" id="number1" name="number" lay-verify="pass" placeholder="请输入物质数量" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -94,6 +101,7 @@
         </div>
 
         <script type="text/javascript">
+
             layui.use('laydate', function() {
                 var laydate = layui.laydate;
                 laydate.render({
@@ -118,8 +126,9 @@
                     cols: [[
                         { type: 'numbers', title: '序号' , width:80,  fixed: 'left'},
                         {field: 'apply_name', title: '申请人' },
+                        {field: 'department_id', title: '申请部门' },
                         {field: 'name', title: '物品名称' },
-                        {field: 'number', title: '物质数量' },
+                        {field: 'number', title: '申请数量' },
                         {field: 'apply_time', title: '申请时间' },
                         {field: 'reason', title: '申请原因' },
                         {field: 'audit', title: '申请状态',templet:function (d) {
@@ -147,9 +156,9 @@
                                 content:$('#qj'),
                                 shade:.0,
                                 yes: function(index){
-                                    $.post('?s=admin/Apply/Apply_insert', {
-                                        apply_name:$('#apply_name').val(), name:$('#name1').val(),number:$('#number').val(),apply_time:$('#apply_time').val(),
-                                       reason:$('#reason').val(), company_id:$('#company_id').val(),
+                                    $.post('?s=admin/Apply/apply_insert', {
+                                        apply_name:$('#apply_name').val(), name:$('#name1').val(),number:$('#number1').val(),apply_time:$('#apply_time').val(),
+                                       reason:$('#reason').val(), company_id:$('#company_id').val(),department_id:$('#department_id').val()
                                     },function (v) {
                                         layer.msg(v.data);
                                         layui.table.reload('testReload');

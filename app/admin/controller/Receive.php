@@ -28,6 +28,10 @@ class Receive extends Login{
     function update(){
         $aa = new Model();
         $id = $_POST['id'];
+        $b = $aa->sql_operation("select * from test where id=$id ");
+        if($b[0]['audit'] == 3){
+            exit(json_encode(['type' => 202, 'data' => '任务已提交成功，请耐心等待！']));
+        }
         $v = $aa->sql_operation("update test set audit=3 where id=$id");
         if($v){
             exit(json_encode(array('v'=>1,'data'=>'请等待审核！')));
@@ -39,6 +43,10 @@ class Receive extends Login{
     function update1(){
         $aa = new Model();
         $id = $_POST['id'];
+        $b = $aa->sql_operation("select * from test where id=$id ");
+        if($b[0]['audit'] == 4){
+            exit(json_encode(['type' => 201, 'data' => '哈哈哈！你来晚了，该任务被领了！']));
+        }
         $v = $aa->sql_operation("update test set audit=4 where id=$id");
         if($v){
             exit(json_encode(array('v'=>1,'data'=>'领取成功，请尽快完成！')));

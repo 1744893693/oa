@@ -209,6 +209,7 @@
                                     pwd: $('#pwd1').val(),
                                     department_id:$('#department_id1').val(),
                                     position_id:$('#position_id1').val(),
+                                    company_id:$('#company_id').val()
                                 },function (type) {
                                     layer.msg(type.data);
                                         layui.table.reload('testReload');
@@ -293,6 +294,7 @@
                                     pwd: $('#pwd').val(),
                                     department_id:$('#department_id').val(),
                                     position_id:$('#position_id').val(),
+                                    company_id:$('#company_id').val()
                                 }, function (type) {
                                     layer.msg(type.data);
                                     layui.table.reload('testReload');
