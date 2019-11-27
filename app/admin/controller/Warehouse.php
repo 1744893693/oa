@@ -11,6 +11,8 @@ use api\Model;
 
 class Warehouse extends Login{
     function init(){
+//        $aa = new Model();
+//        $app = $aa->sql_operation("select number from logistic ");
         include_once './app/admin/view/warehouse/init.php';
     }
     function warehouse(){
@@ -38,7 +40,8 @@ class Warehouse extends Login{
         $number=$_POST['number'];
         $price=$_POST['price'];
         $warehous_time=$_POST['warehous_time'];
-        $type = $d->sql_operation("insert into warehous (name,number,price,warehous_time) VALUES ('$name','$number','$price','$warehous_time')");
+        $company_id=$_SESSION['admin']['company_id'];
+        $type = $d->sql_operation("insert into warehous (name,number,price,warehous_time,company_id) VALUES ('$name','$number','$price','$warehous_time','$company_id')");
         if($type){
             echo json_encode(array('type' => 1, 'data' =>'入库成功！')) ;
         }else{
@@ -57,9 +60,10 @@ class Warehouse extends Login{
     }
     function warehouse_update(){
         $d=new Model();
+        $name=$_POST['name'];
         $number=$_POST['number'];
         $price=$_POST['price'];
-        $type = $d->sql_operation("insert into warehous (number,pricee) VALUES ('$number','$price')");
+        $type = $d->sql_operation("insert into warehous (number,pricee,name) VALUES ('$number','$price','$name')");
         if($type){
             echo json_encode(array('type' => 1, 'data' =>'入库成功！')) ;
         }else{

@@ -102,7 +102,7 @@
                     success:function(data){
                         if(Who.value == 0) {
                             //如果Who.value为0n那么是 A说
-                            str = '<div class="btalk"><span>' + data.data +'说'+TalkWords.value + '</span></div>';
+                            str = '<div class="btalk"><span>' + data.data +'说：+TalkWords.value + '</span></div>';
 //                            console.log(str);
                         }else{
                             str = '<div class="atalk"><span>B说 :' + TalkWords.value +'</span></div>' ;

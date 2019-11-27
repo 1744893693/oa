@@ -11,6 +11,10 @@ use api\Model;
 
 class Logistic extends Login{
     function init(){
+//        $aa = new Model();
+//        $war=$aa->sql_operation("select id,number from warehous ");
+//        $wid = $war['id'];
+//        $wnumber = $war['number'];
         include_once './app/admin/view/logistic/init.php';
     }
     function logistic(){
@@ -32,17 +36,6 @@ class Logistic extends Login{
         }
         echo json_encode($d);
     }
-    function log_insert(){
-        $d=new Model();
-        $name=$_POST['name'];
-        $number=$_POST['number'];
-        $type = $d->sql_operation("insert into logistic (name,number) VALUES ('$name','$number')");
-        if($type){
-            echo json_encode(array('type' => 1, 'data' =>'入库成功！')) ;
-        }else{
-            echo json_encode(array('type' => 0, 'data' =>'入库失败！')) ;
-        }
-    }
     function update1(){
         $aa = new Model();
         $id = $_POST['id'];
@@ -51,6 +44,15 @@ class Logistic extends Login{
     function update2(){
         $aa = new Model();
         $id = $_POST['id'];
-        $aa->sql_operation("update logistic set audit=1 where id=$id");
+        $number = $_POST['number'];
+        $warehous_id = $_POST['wa'];
+        $war=$aa->sql_operation("select id,number from warehous where id=$warehous_id");
+        $wid = $war[0]['id'];
+        $wnumber = $war[0]['number'];
+       $app= $aa->sql_operation("update logistic set audit=1 where id=$id");
+        if($app){
+            $newwar = $wnumber-$number;
+            $aa->sql_operation("update warehous set number =  '$newwar' where id =$wid");
+        }
     }
 }

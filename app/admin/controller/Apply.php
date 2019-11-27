@@ -11,6 +11,8 @@ use api\Model;
 
 class Apply extends   Login {
     function init(){
+        $aa = new Model();
+        $date['warehous']=$aa->sql_operation('select * from warehous ');
         include_once './app/admin/view/apply/init.php';
     }
     function apply(){
@@ -32,13 +34,21 @@ class Apply extends   Login {
         $number = $_POST['number'];
         $apply_time = $_POST['apply_time'];
         $reason = $_POST['reason'];
+        $company_id=$_SESSION['admin']['company_id'];
+
+        $b = $aa->sql_operation("select id,name,number from warehous where id='$name' ");
+        $p=$b[0]['name'];
+//        $pp=$b[1]['number'];
+//        if($number>$pp){
+//            exit(json_encode(array('v'=>203,'data'=>'有病蛮，哪有那么多东西哦！')));
+//        }
         if(empty($apply_time)){
             exit(json_encode(array('v'=>201,'data'=>'时间都不填蛮！')));
         }
         if(empty($reason)){
             exit(json_encode(array('v'=>202,'data'=>'亲！你为啥子要申请蛮？')));
         }
-        $v = $aa->sql_operation("insert into logistic (apply_name,name,number,apply_time,reason ) VALUES  ('$apply_name', '$name','$number','$apply_time','$reason')");
+        $v = $aa->sql_operation("insert into logistic (apply_name,name,number,apply_time,reason,company_id,warehous_id ) VALUES  ('$apply_name', '$p','$number','$apply_time','$reason','$company_id','$name')");
         if($v){
             exit(json_encode(array('v'=>1,'data'=>'等到起！')));
         }else{
