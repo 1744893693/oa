@@ -6,10 +6,13 @@
  * Time: 18:33
  */
 namespace  app\admin\controller;
+use api\Login;
 use api\Model;
 
-class  Dakatry{
+class  Dakatry extends Login {
     function index(){
+//        $d= new Model();
+//        $d->sql_operation("select  name,company_id   workingtime");
         include_once "./app/admin/view/dakatry/index.php";
     }
     function init()
@@ -26,9 +29,17 @@ class  Dakatry{
         echo json_encode($d);
     }
     function up(){
+
         $d= new Model();
         $id=$_POST['id'];
-        $d->sql_operation("update card_examine set status=1 WHERE id='$id'");
+        $data=$d->sql_operation("update card_examine set status=1 WHERE id='$id'");
+        if($data){
+            $name=$this->name;
+            $a=$this->company_id;
+            $b=$this->user_id;
+            $time=time();
+            $d->sql_operation("insert into `workingtime` (`name`,`company_id`,`start`,`user_id`) values ('$name','$a','$time','$b')");
+        }
 
     }
 
