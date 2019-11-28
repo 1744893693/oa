@@ -170,6 +170,10 @@
                         } else if(obj.event === 'edit'){
                             layui.use('layer', function(){
                                 var layer = layui.layer;
+                                if(data.ready_salary==0){
+                                    layer.msg(data.user_name+'没有可发的工资');
+                                    return false
+                                }
                                 if(data.send_time=='未发放'){
                                     $.post('./?s=admin/Salary/em_update', {
                                         id:data.id,
