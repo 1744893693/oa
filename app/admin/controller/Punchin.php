@@ -12,7 +12,7 @@ use api\Model;
 class Punchin extends Login {
     function  daka(){
 
-        include_once "./app/admin/view/Punchin/daka.php";
+        include_once "./app/admin/view/punchin/daka.php";
     }
 
     function upb (){

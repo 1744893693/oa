@@ -15,7 +15,7 @@ class  Status extends Login
     {
         $d=new Model();
         $data=$d->selects();
-        include_once './app/admin/view/Status/company.php';
+        include_once './app/admin/view/status/company.php';
     }
 
     function up(){

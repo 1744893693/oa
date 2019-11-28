@@ -39,9 +39,7 @@
     </div>
 
 
-       <div id="tan" style="display: none">
-           <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px;margin-left:20px"></div>
-       </div>
+
        <div id="plus" style="display: none;">
            <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_names"  name="position_names"style="width: 150px;height: 30px;margin-left:20px"></div>
                <form class="layui-form" >
@@ -61,7 +59,9 @@
         </form>
      </div>
 
-
+       <div id="tan" style="display: none">
+           <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_name"  name="position_name"style="width: 150px;height: 30px;margin-left:20px"></div>
+       </div>
 
 
 <script type="text/javascript">
@@ -114,7 +114,7 @@
                         type:1,
                         yes: function(index){
                             $.post('./?s=admin/Position/updatetian', {id:data.id,position_name:$('#position_name').val()},function (date) {
-                                layer.msg(date)
+                                layer.msg('修改成功')
                                 layui.table.reload('testReload');
                             })
                             layer.close(index)
