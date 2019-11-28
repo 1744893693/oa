@@ -27,14 +27,14 @@
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
 </script>
-<div id="tan" style="display: none;margin-top:30px">
-    <div style=" text-align:center" class="layui-form-item" id="id">
-        <div>名字：<input type="text" id="name" name="name" style="width: 150px;height:30px "></div>
-        <div>密码：<input type="text" id="pwd" name="pwd" style="width: 150px;height:30px "></div>
-        <div>身份证号：<input type="text" id="intion" name="intion" style="width: 150px;height:30px "></div>
-        <div>性别：<input type="text" id="gender" name="gender" style="width: 150px;height:30px "></div>
-        <div>电话：<input type="text" id="telephone" name="telephone" style="width: 150px;height:30px "></div>
-        <div>地址：<input type="text" id="address" name="address" style="width: 150px;height:30px "></div>
+<div id="tan" style="display: none;margin-top:30px" >
+    <div style=" text-align:center" class="layui-form-item" id="id" >
+        <div style="margin: 5px"><a href="#">名&emsp;&emsp;字：<input type="text" id="name" name="name" style="width: 150px;height:30px;border-style:inset;"></a></div>
+        <div style="margin: 5px"><a href="#">密&emsp;&emsp;码：<input type="text" id="pwd" name="pwd" style="width: 150px;height:30px;border-style:inset; "></a></div>
+        <div style="margin: 5px"><a href="#">身份证号：<input type="text" id="intion" name="intion" style="width: 150px;height:30px;border-style:inset;"></a></div>
+        <div style="margin: 5px"><a href="#">性&emsp;&emsp;别：<input type="text" id="gender" name="gender" style="width: 150px;height:30px;border-style:inset; "></a></div>
+        <div style="margin: 5px"><a href="#">电&emsp;&emsp;话：<input type="text" id="telephone" name="telephone" style="width: 150px;height:30px;border-style:inset; "></a></div>
+        <div style="margin: 5px"><a href="#">地&emsp;&emsp;址：<input type="text" id="address" name="address" style="width: 150px;height:30px;border-style:inset; "></a></div>
     </div>
 </div>
 
@@ -101,14 +101,7 @@
             var data = obj.data;
             //console.log(obj)
             if(obj.event === 'del'){
-//                layer.confirm('是否删除：'+data.name+'员工？', function(index){
-//                    $.post('./?s=admin/lllersonal/delete',{id:data.id}) ;
-//                    obj.del();
-//                    //layer.msg('删除成功！');
-//                    layer.msg('data');
-//                    layui.table.reload('department');
-////                    layer.close(index);
-//                });
+
             } else if(obj.event === 'edit'){
                 layui.use('layer', function(){
                     var layer = layui.layer;

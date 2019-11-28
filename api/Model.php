@@ -83,7 +83,8 @@ class Model{
 
     function selectsearch(){
         $as=$_SESSION['admin']['company_id'];
-        $data=$this->connect->query('select * from department where company_id= '.$as );
+        $jj='个人中心';
+        $data=$this->connect->query("select * from department where name!='$jj' and company_id= $as ");
         $dat=[];
         while ($d=mysqli_fetch_assoc($data)){
             $dat[]=$d;
