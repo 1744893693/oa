@@ -6,16 +6,16 @@
  * Time: 15:23
  */
 namespace  app\admin\controller;
+use api\Login;
 use api\Model;
 
-class Punchin{
+class Punchin extends Login {
     function  daka(){
 
         include_once "./app/admin/view/Punchin/daka.php";
     }
 
     function upb (){
-        session_start();
         $id=$_SESSION["admin"]["company_id"];
         $rid=$_SESSION["admin"]["id"];
         $name=$_SESSION["admin"]["name"];
@@ -42,7 +42,7 @@ class Punchin{
 
 
     function  dbb (){
-        session_start();
+
         $id=$_SESSION["admin"]["company_id"];
         $rid=$_SESSION["admin"]["id"];
         $d=new Model();
@@ -61,7 +61,7 @@ class Punchin{
     }
 
     function buk(){
-        session_start();
+
         $id=$_SESSION["admin"]["company_id"];
         $name=$_POST['name'];
         $reasons=$_POST['reasons'];
@@ -79,7 +79,7 @@ class Punchin{
 
     function ddd (){
         $d=new Model();
-        session_start();
+
         $id=$_SESSION["admin"]["company_id"];
         $data=$d->sql_operation("select * from  workingtime WHERE company_id='$id'");
         if($data){
