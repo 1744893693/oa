@@ -156,7 +156,7 @@
                                 layer.open({
                                     skin: 'layui-layer-molv',
                                     btn: ['确定', '取消'],
-                                    area: ['500px', '300px'],
+                                    area: ['400px', '400px'],
                                     formType:2,
                                     title:'编辑信息详情',
                                     content:$('#ei'),
@@ -196,7 +196,7 @@
                             var layer = layui.layer;
                             layer.open({
                                 skin: 'layui-layer-molv',
-                                area: ['500px', '300px'],
+                                area: ['500px', '500px'],
                                 type:1,
                                 btn:['确定','取消'],
                                 shade:.0,
