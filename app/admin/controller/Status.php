@@ -9,14 +9,14 @@ namespace app\admin\controller;
 use api\Login;
 use api\Model;
 
-class  status extends Login
+class  Status extends Login
 {
     function company()
     {
         $d=new Model();
         $data=$d->selects();
 
-        include_once './app/admin/view/status/company.php';
+        include_once './app/admin/view/Status/company.php';
     }
 
     function up(){
@@ -36,13 +36,6 @@ class  status extends Login
         $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (18 ,$da,$id)");
         exit($account.'已经注册成功');
     }
-    function db(){
-        $d= new Model();
-        $id=$_POST['id'];
-        $d->sql_operation("update company set status=2 WHERE id='$id'");
-
-    }
-
     function statussc(){
         $d=new Model();
         $id=$_POST['id'];
@@ -75,16 +68,4 @@ class  status extends Login
         }
         echo json_encode($d);
     }
-//    function  ye(){
-//        $d=new Model();
-//        $date=$d->selects();
-//        $page=$_GET['page'];
-//        $limit=$_GET['limit'];
-//        $data['data']=$date->limit($limit*($page-1),$limit)
-//
-//        $data['msg']='jjjj';
-//        $data['code']=0;
-//        $data['count']=count($date);
-//        return  $data;
-//    }
 }
