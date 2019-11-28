@@ -58,9 +58,6 @@
             menu_child(menu.department[0].department_id)
 //            list()
         }
-
-
-
         layui.use('element', function(){
             var element = layui.element;
         })
@@ -72,7 +69,7 @@ function list(tt) {
         if(val.menu_id==tt) {
             if (val.method) {
                 $('iframe')[0].contentWindow.location.href = './?s=' + val.method
-                
+
             }
         }
     }

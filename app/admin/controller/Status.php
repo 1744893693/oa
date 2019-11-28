@@ -15,7 +15,6 @@ class  Status extends Login
     {
         $d=new Model();
         $data=$d->selects();
-
         include_once './app/admin/view/Status/company.php';
     }
 
@@ -30,6 +29,7 @@ class  Status extends Login
         $d->sql_operation("update company set status=1 WHERE id='$id'");
         $d->sql_operation("insert into user (name,pwd,company_id,permissions_id) VALUES ('$account','111111',$id,'0')");
         $d->sql_operation("insert into department (name,company_id) VALUES ('人事部',$id)");
+        $d->sql_operation("insert into department (name,company_id) VALUES ('个人中心',$id)");
         $da=$d->sql_operation("select id from department WHERE company_id=$id ");
         $da=$da[0]['id'];
         $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,'$id')");
