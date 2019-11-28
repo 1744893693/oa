@@ -36,7 +36,9 @@ class Employees extends Login {
         $data = new Model();
         $news = ($page-1)*$limit;
         $q=$this->qurey;
+
         if(!empty($_GET['send_name'])){
+
             $d =   $data->sql_operation($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%" limit '.$news.','.$limit );
             $s =   $data->sql_operation($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%"');
         }else{

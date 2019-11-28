@@ -124,5 +124,13 @@ class Model{
         }
         return $dat;
     }
+    function information(){
+        $data=$this->connect->query('select * from information');
+        $dat=[];
+        while ($d=mysqli_fetch_assoc($data)){
+            $dat[]=$d;
+        }
+        return $dat;
+    }
 
 }
