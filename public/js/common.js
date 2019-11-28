@@ -22,9 +22,7 @@ $(document).ready(function(){
 				required:true,
 				minlength:6,
 				maxlength:32,
-                digits:true,
-
-			},
+			}
 		},
 		//错误信息提示
 		messages:{
@@ -42,10 +40,9 @@ $(document).ready(function(){
 			},
             account:{
 				required:"必须填写账号",
-				minlength:"账号至少为6个数字字符",
-				maxlength:"账号至多为32个数字字符",
-                digits:"必须填写数字"
-			},
+				minlength:"账号至少为6个任意字符",
+				maxlength:"账号至多为32个任意字符",
+			}
 		 },
         submitHandler:function (form) {
             $('.submit').click(function () {
