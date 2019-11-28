@@ -15,6 +15,7 @@
         <div class="layui-logo" id="title"></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" id="top-menu">
+<!--            <li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.department_id+')">个人中心</a></li>-->
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
