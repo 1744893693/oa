@@ -41,13 +41,11 @@
             <iframe   height="100%" width="100%" frameborder="0"></iframe>
         </div>
     </div>
-
     <div class="layui-footer">
 
     </div>
 </div>
 <script>
-
         var menu=[]
     $.post('./?s=admin/Home/menu',function (data) {
         menu=data
@@ -58,6 +56,7 @@
                 $('#top-menu').append('<li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.department_id+')">'+val.department_name+'</a></li>')
             }
             menu_child(menu.department[0].department_id)
+//            list()
         }
 
 
@@ -73,6 +72,7 @@ function list(tt) {
         if(val.menu_id==tt) {
             if (val.method) {
                 $('iframe')[0].contentWindow.location.href = './?s=' + val.method
+                
             }
         }
     }
@@ -84,9 +84,15 @@ function login_out() {
 }
 function menu_child(id){
     $('#left_menu').text('')
+    var count=0
     for(val of menu.menu){
         if(val.department_id==id){
             $('#left_menu').append('<li class="layui-nav-item layui-nav-itemed" id="audit" style=" text-align:center"><a href="javascript:list('+val.menu_id+')">'+val.menu_name+'</a></li>')
+            if(count==0){
+                list(val.menu_id)
+                count++
+            }
+
         }
     }
 }
