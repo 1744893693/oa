@@ -53,12 +53,13 @@
             , cols: [[
                // {type: 'checkbox', fixed: 'left'}
                  {type: 'numbers', title: '序号', width: 80, fixed: 'left', unresize: true, sort: true}
-                , {field: 'name', title: '部门名字', width: 100, edit: 'text'}
-                , {field: 'company_id', title: '公司代号', width: 100, edit: 'text'}
+                , {field: 'name', title: '部门名字',  edit: 'text'}
+                , {field: 'company_id', title: '公司代号',  edit: 'text'}
                 , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 250}
             ]]
             , id: 'department'
             , page: true
+            ,height: 'full-50'
         });
 
         //监听行工具事件
@@ -77,7 +78,7 @@
                 layui.use('layer', function(){
                     var layer = layui.layer;
                     layer.open({
-                        skin:'layer-open',
+                        skin: 'layui-layer-molv',
                         btn: ['确定', '取消'],
                         area: ['500px', '300px'],
                         formType:2,
@@ -101,7 +102,7 @@
             layui.use('layer', function() {
                 var layer = layui.layer;
                 layer.open({
-                    skin: 'layui-layer-lan',
+                    skin: 'layui-layer-molv',
                     btn: ['确定', '取消'],
                     area: ['500px', '300px'],
                     formType: 2,
