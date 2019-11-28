@@ -20,17 +20,22 @@
 
 
         <div id="bk" style="display: none;margin-top:65px">
-            <div style=" text-align:center" class="layui-form-item">姓名 <input type="text" id="name"              name="name" style="width: 150px;height:30px;margin-left:20px "></div>
-            <div style=" text-align:center" class="layui-form-item">原因<input                              type="text"id="reasons"name="reasons" style="width: 150px;height:30px;margin-left:23px "></div>
+            <div style=" text-align:center" class="layui-form-item">姓名 <input type="text" id="name"  name="name" style="width: 150px;height:30px;margin-left:20px "></div>
+            <div style=" text-align:center" class="layui-form-item">原因<input type="text"id="reasons"name="reasons" style="width: 150px;height:30px;margin-left:23px "></div>
         </div>
     </tr>
 </div>
+<table id="demo" lay-filter="test"></table>
 <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function () {
     layui.use('table', function() {
         $('#up').click(function () {
-            $.ajax({url:"./?s=admin/Punchin/upb",
+
+            $.ajax({
+                dataType:'json',
+                url:"./?s=admin/Punchin/upb",
+
                 success:function(data){
                     layer.msg(data.data)
                 }
@@ -38,7 +43,10 @@ $(function () {
         })
 
         $('#db').click(function () {
-            $.ajax({url:"./?s=admin/Punchin/dbb",
+            $.ajax({
+                dataType:'json',
+                url:"./?s=admin/Punchin/dbb",
+
                 success:function(data){
                     layer.msg(data.data)
                 }
@@ -53,7 +61,7 @@ $(function () {
             var datt=$("#bu").val();
 
           layer.open({
-              skin:'layer-open',
+              skin: 'layui-layer-molv',
               btn: ['提交', '取消'],
               area: ['500px', '300px'],
               formType:2,
@@ -63,18 +71,41 @@ $(function () {
               shade:.0,
               type:1,
               yes: function(index){
-                  $.post('./?s=admin/punchin/buk', {name:$("#name").val(),reasons:$("#reasons").val()},function (index) {
-                          layer.msg('提交补卡申请成功')
+                  $.post('./?s=admin/Punchin/buk', {name:$("#name").val(),reasons:$("#reasons").val()},function (index) {
+                          layer.msg(index.data)
                           // layui.table.reload('testReload');
-                      }
-                  )
+                      },'json')
+
                   layer.close(index)
               },
           })
         })
-    }
+     }
+layui.use('table', function() {
+    var table = layui.table;
+    table.render({
+        elem: '#demo',//指定表格元素
+        url: './?s=admin/Punchin/ddd',//请求路径
+        toolbar: '#toolbarDemo', //开启头部工具栏，并为其绑定左侧模板
+        defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+            title: '提示',
+            layEvent: 'LAYTABLE_TIPS',
+            icon: 'layui-icon-tips',
+            cellMinWidth: 80
+        }],
+        cols: [[ //表头
+            {type: 'numbers', title: '序号', width: 80, sort: true, fixed: 'left'},
+            {field: 'name', title: '员工名字'},
+            {field: 'start', title: '上班打卡时间'},
+            {field: 'end', title: '下班打卡时间'},
 
 
+        ]],
+        id: 'testReload'
+        , page: true
+        , height: 630
+    });
+});
 </script>
 
 </body>
