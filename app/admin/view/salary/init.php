@@ -128,15 +128,22 @@
                     }],
                     cols: [[
                         { type: 'numbers', title: '序号' , width:70, sort: true, fixed: 'left',style:'background-color: #eee;'},
-                        {field: 'user_name', title: '账号', width:130 },
+                        {field: 'user_name', title: '账号', width:120 },
                         {field: 'department_name', type:'password',title: '部门', width:80,},
                         {field: 'position_name', title: '职位',width:100,},
                         {field: 'month', title: '月份', },
                         {field: 'base_salary', title: '基本工资',align:'right',width:90, },
                         {field: 'other_salary', title: '其他工资',align:'right',width:90, },
-                        {field: 'absenteeism', title: '旷工天数',width:90, },
+                        {field: 'absenteeism', title: '旷工天数',align:'center',width:90, },
+                        {field: 'late', title: '迟到早退',align:'center',width:90, },
                         {field: 'ready_salary', title: '实发工资',align:'right' ,width:90,},
-                        {field: 'send_time', title: '发放时间',align:'center',width:90, },
+                        {field: 'send_time', title: '发放时间',align:'center',width:100, templet:function (d) {
+                    if (d.send_time=='未发放') {  // 自定义内容
+                        return "<span style='color: red'>未发放</span>";
+                    } else{
+                        return '<span style="color: green">'+d.send_time+'</span>';
+                    }
+                } },
                         {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center',style:'background-color: #CCEFE0;',width:130, }
                     ]],
                     id: 'testReload'
@@ -163,85 +170,19 @@
                         } else if(obj.event === 'edit'){
                             layui.use('layer', function(){
                                 var layer = layui.layer;
-                                layer.open({
-                                    skin: 'layui-layer-molv',
-                                    btn: ['确定', '取消'],
-                                    area: ['500px', '300px'],
-                                    formType:2,
-                                    title:'编辑信息详情',
-                                    content:$('#tan'),
-                                    shade:0,
-                                    type:1,
-                                    yes: function(index){
-                                        $.post('./?s=admin/Employees/em_update', {
-                                            id:data.id,
-                                            pwd: $('#pwd1').val(),
-                                            department_id:$('#department_id1').val(),
-                                            position_id:$('#position_id1').val(),
-                                        },function (type) {
-//                                    layer.msg(type.data);
-                                            layui.table.reload('testReload');
-                                        })
-                                        layer.close(index)//如果设定了yes回调，需进行手工关闭
-                                    },
-                                })
-                            })
-                        }
-                        else if(obj.event === 'permission'){
-                            layui.use('layer', function(){
-                                var layer = layui.layer;
-                                $.post('./?s=admin/Employees/permission_list',{id:data.id},function (date) {
-
-                                    var box=$('input:checkbox')
-                                    for (ke of box){
-
-                                        if(date.length>0){
-                                            console.log(222)
-
-                                            for(val of date){
-                                                console.log(val.functional_group_id)
-
-                                                if(ke.value==val.functional_group_id){
-                                                    console.log('ke')
-
-                                                    $('input:checkbox[value='+val.functional_group_id+']').attr('checked',true)
-                                                    form.render();
-                                                    break;
-                                                }else {
-                                                    $('input:checkbox[value='+ke.value+']').removeAttr('checked')
-                                                    form.render()
-                                                }
-                                            }
-                                        }else {
-                                            console.log(111)
-                                            $('input:checkbox').removeAttr('checked')
-                                            form.render()
-                                        }
-                                    }
-
-                                },'json')
-                                layer.open({
-                                    skin:'layui-layer-molv',
-                                    btn: ['确定', '取消'],
-                                    area: ['600px', '500px'],
-                                    formType:2,
-                                    title:'修改功能所属部门',
-                                    content:$('#permission'),
-                                    shade:0,
-                                    type:1,
-                                    yes: function(index){
-
-                                        text = $("input:checkbox[name='mes']:checked").map(function (index, elem) {
-                                            return $(elem).val();
-                                        }).get().join(',');
-                                        $.post('./?s=admin/Employees/permission', {id:text,user_id:data.id},function (date) {
-                                            if(date) {layer.msg(date)}
-
-                                        })
-                                        layer.close(index)
+                                if(data.send_time=='未发放'){
+                                    $.post('./?s=admin/Salary/em_update', {
+                                        id:data.id,
+                                        user_id:data.user_id,
+                                        salary:data.ready_salary,
+                                    },function (type) {
+                                        layer.msg(data.user_name+type);
                                         layui.table.reload('testReload');
-                                    },
-                                })
+                                    })
+                                }else {
+                                    layer.msg(data.user_name+'的工资已经发放，请不要重复发放');
+                                }
+
                             })
                         }
                     }),
