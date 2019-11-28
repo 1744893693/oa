@@ -13,13 +13,13 @@
     </div>
     <form action="" method="post" id="registerForm">
         <div>
-            <input id="company_name" type="text" name="company_name" class="username" placeholder="公司名字" autocomplete="off"/>
+            <input id="company_name" type="text" name="company_name" class="username" placeholder="公司名字" autocomplete="off">
         </div>
         <div>
-            <input id="username" type="text" name="username" class="username" placeholder="法人名字" autocomplete="off"/>
+            <input id="username" type="text" name="username" class="username" placeholder="法人名字" autocomplete="off">
         </div>
         <div>
-            <input id=account type="text" name="account" class="account" placeholder="输入账号" oncontextmenu="return false" onpaste="return false" />
+            <input id=account type="text" name="account" class="account" placeholder="输入账号" oncontextmenu="return false" onpaste="return false">
         </div>
         <button type="person" class="submit">注 册</button>
     </form>
