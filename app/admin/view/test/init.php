@@ -22,6 +22,10 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
+                <div class="layui-inline">
+                    <input class="layui-input" value="" name="id" id="id" autocomplete="off">
+                </div>
+                <button class="layui-btn" data-type="reload" id="check">搜索</button>
                 <button class="layui-btn" data-type="reload" id="insert">发布</button>
                 <button class="layui-btn" data-type="reload" id="delete">一键清空</button>
             </div>
@@ -82,16 +86,18 @@
                         <select id="department_id">
                             <option value=""></option>
                             <?php foreach ($date['department'] as $val){
+                            if($val['name']!='个人中心'){
                                 ?>
                                 <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
                                 <?php
+                            }
                             }?>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">任务内容</label>
-                    <div class="layui-input-block" >
+                    <div class="layui-input-block" style="width: 190px">
                         <textarea id="test_content" name="test_content" placeholder="请输入任务内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
@@ -219,7 +225,7 @@
                             var layer = layui.layer;
                             layer.open({
                                 skin: 'layui-layer-molv',
-                                area: ['600px', '600px'],
+                                area: ['500px', '550px'],
                                 type:1,
                                 btn:['确定','取消'],
                                 content:$('#rw'),
@@ -249,7 +255,20 @@
                             layer.close(index);
                         })
                     }),
-
+                    // 执行搜索，表格重载
+                    $(document).on('click','#check',function(){
+                        // 搜索条件
+                        var send_name = $('#id').val();
+                        table.reload('testReload', {
+                            method: 'get'
+                            , where: {
+                                'send_name': send_name
+                            }
+                            , page: {
+                                curr: 1
+                            }
+                        })
+                    }),
                     //面包屑显示
                     layui.use('element', function(){
                         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块

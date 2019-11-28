@@ -15,24 +15,25 @@ class  Status extends Login
     {
         $d=new Model();
         $data=$d->selects();
-
-        include_once './app/admin/view/Status/company.php';
+        include_once './app/admin/view/status/company.php';
     }
 
     function up(){
         $d= new Model();
         $account=$_POST['account'];
         $id=$_POST['id'];
+        $name=$_POST['name'];
         $da=$d->sql_operation("select * from user WHERE company_id=$id and permissions_id='0'");
         if(!empty($da)){
             exit($account.'已经注册成功');
         }
         $d->sql_operation("update company set status=1 WHERE id='$id'");
-        $d->sql_operation("insert into user (name,pwd,company_id,permissions_id) VALUES ('$account','111111',$id,'0')");
+        $d->sql_operation("insert into user (user_name,name,pwd,company_id,permissions_id) VALUES ('$name','$account','111111',$id,'0')");
+        $d->sql_operation("insert into department (name,company_id) VALUES ('个人中心',$id)");
         $d->sql_operation("insert into department (name,company_id) VALUES ('人事部',$id)");
         $da=$d->sql_operation("select id from department WHERE company_id=$id ");
         $da=$da[0]['id'];
-        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,'$id')");
+//        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,'$id')");
         $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (18 ,$da,$id)");
         exit($account.'已经注册成功');
     }

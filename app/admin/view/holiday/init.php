@@ -22,6 +22,10 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
+                <div class="layui-inline">
+                    <input class="layui-input" value="" name="id" id="id" autocomplete="off">
+                </div>
+                <button class="layui-btn" data-type="reload" id="check">搜索</button>
                 <button class="layui-btn" data-type="reload" id="insert">申请</button>
                 <button class="layui-btn" data-type="reload" id="delete">一键清空</button>
             </div>
@@ -48,22 +52,33 @@
                     <input type="text" id="end_time" name="end_time" lay-verify="pass" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">审批人</label>
-                <div class="layui-input-block  " style="width: 190px" >
-                    <select id="approver">
-                    <!--                    <select  <input type="text" id="approver" name="approver" lay-verify="pass"  placeholder="请输入审批人" autocomplete="off" class="layui-input">>-->
-                    <option value=""></option>
-                    <option value="人事部经理">人事部经理</option>
-                    <option value="老板">老板</option>
-                    </select>
+<!--            <div class="layui-form-item">-->
+<!--                <label class="layui-form-label">审批人</label>-->
+<!--                <div class="layui-input-block  " style="width: 190px" >-->
+<!--                    <select id="approver">-->
+<!--                    <option value=""></option>-->
+<!--                    <option value="人事部经理">人事部经理</option>-->
+<!--                    <option value="老板">老板</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">审批人</label>
+                    <div class="layui-input-block" style="width: 190px">
+                        <select id="position_id">
+                            <option value=""></option>
+                            <?php foreach ($date['position'] as $val){
+                                ?>
+                                <option value="<?php echo $val['id']?>"><?php echo $val['position_name']?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
                 </div>
-            </div>
             <div class="layui-form-item project-hide"  >
                 <label class="layui-form-label">请假类型</label>
                 <div class="layui-input-block  " style="width: 190px">
                     <select id="type1">
-<!--                    <select <input type="text" id="type1" name="type1" lay-verify="pass"  placeholder="请输入请假类型" autocomplete="off" class="layui-input">>-->
                         <option value=""></option>
                         <option value="事假">事假</option>
                         <option value="病假">病假</option>
@@ -75,7 +90,7 @@
             </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">请假原因</label>
-                    <div class="layui-input-block" >
+                    <div class="layui-input-block" style="width: 190px">
                         <textarea id="reason" placeholder="请输入请假原因" class="layui-textarea"></textarea>
                     </div>
                 </div>
@@ -119,7 +134,7 @@
                         {field: 'name', title: '请假人' },
                         {field: 'start_time', title: '开始时间' },
                         {field: 'end_time', title: '结束时间' },
-                        {field: 'approver', title: '审批人' },
+                        {field: 'position_id', title: '审批人' },
                         {field: 'type', title: '请假类型' },
                         {field: 'reason', title: '请假原因' },
                         {field: 'audit', title: '请假审批',templet:function (d) {
@@ -141,15 +156,16 @@
                                 var layer = layui.layer;
                                 layer.open({
                                     skin: 'layui-layer-molv',
-                                    area: ['650px', '600px'],
+                                    area: ['400px', '500px'],
                                     type:1,
                                     btn:['确定','取消'],
                                     content:$('#qj'),
                                     shade:.0,
                                     yes: function(index){
+
                                         $.post('?s=admin/Holiday/holiday_insert', {
                                              name:$('#name').val(),start_time:$('#start_time').val(),end_time:$('#end_time').val(),
-                                            approver:$('#approver').val(),type:$('#type1').val(),reason:$('#reason').val(),company_id:$('#company_id').val()
+                                            position_id:$('#position_id').val(),type:$('#type1').val(),reason:$('#reason').val(),company_id:$('#company_id').val()
                                            },function (v) {
                                             layer.msg(v.data);
                                             layui.table.reload('testReload');
@@ -171,7 +187,20 @@
                             layer.close(index);
                         })
                     }),
-
+                    // 执行搜索，表格重载
+                    $(document).on('click','#check',function(){
+                        // 搜索条件
+                        var send_name = $('#id').val();
+                        table.reload('testReload', {
+                            method: 'get'
+                            , where: {
+                                'send_name': send_name
+                            }
+                            , page: {
+                                curr: 1
+                            }
+                        })
+                    }),
                     //面包屑显示
                     layui.use('element', function(){
                         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块

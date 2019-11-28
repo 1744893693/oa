@@ -18,7 +18,7 @@ class Employees extends Login {
         $d=new Model();
         $date['department']=$d->sql_operation('select * from department where department.company_id='.$this->company_id);
 //        $date['position']=$d->sql_operation('select position.position_name,department.`name` from position LEFT JOIN department on department.id=position.department_id');
-        $date['position']=$d->sql_operation('select * from position ');
+        $date['position']=$d->sql_operation('select * from position where position.company_id='.$this->company_id);
         $data['my_menu']=$d->sql_operation('select id,functional_group_id,user_id from permission_group');
         $data['department']=$d->sql_operation('select department.id,department.`name`
                  from functional_group LEFT JOIN menu on functional_group.menu_id=menu.id LEFT JOIN 
@@ -52,7 +52,11 @@ class Employees extends Login {
     function employee(){
         $d=new Model();
         $id=$_POST['id'];
-        $v = $d->sql_operation("delete from user WHERE id='$id'");
+        $app = $d->sql_operation("select permissions_id from user WHERE id=$id");
+        if($app[0]['permissions_id']==0){
+            exit(json_encode(array('v'=>201,'data'=>'boss你都敢删，你想死啊！')));
+        }
+        $v = $d->sql_operation("delete from user WHERE id=$id");
         if($v){
             echo json_encode(array('v' => 1, 'data' =>'删除成功！'));
         }else{
@@ -62,6 +66,13 @@ class Employees extends Login {
     function em_update(){
         $d=new Model();
         $id=$_POST['id'];
+
+        $app = $d->sql_operation("select permissions_id from user WHERE id=$id");
+        if($app[0]['permissions_id']==0){
+            exit(json_encode(array('v'=>201,'data'=>'改你妹啊，滚！')));
+        }
+
+
         $department_id=$_POST['department_id'];
 //        $pwd=$_POST['pwd'];
         $base_salary=$_POST['base_salary'];
@@ -95,6 +106,7 @@ class Employees extends Login {
     }
     function permission(){
         $id=$_POST['id'];
+
         $user_id=$_POST['user_id'];
         $idd=explode(',',$id);
         $d=new Model();

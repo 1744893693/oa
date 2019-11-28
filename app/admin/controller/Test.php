@@ -13,19 +13,27 @@ use api\Model;
 class Test extends Login{
     function init(){
         $aa = new Model();
-        $date['department']=$aa->sql_operation('select * from department ');
+        $date['department']=$aa->sql_operation('select * from department where department.company_id='.$this->company_id);
         include_once "./app/admin/view/test/init.php";
     }
     function test(){
         $aa = new Model();
-        $data = $aa->sql_operation("select * from test ");
-        if($data){
+        $app =  $this->company_id;
+        if(!empty($_GET['send_name'])){
+            $data=$aa->sql_operation("select * from test where  name like '%$_GET[send_name]%' or test_name like '%$_GET[send_name]%' or  department_id like '%$_GET[send_name]%' release_time like '%$_GET[send_name]%'   ");
+        }else{
+            $data=$aa->sql_operation("select * from test where test.company_id='$app'");
+        }
+//        if(empty($data)){
+//            $data=$aa->test();
+//        }
+
             $d=[];
             $d['code']=0;
             $d['count']=count($data);
             $d['msg']="";
             $d['data']=$data;
-        }
+
         echo json_encode($d);
     }
     function test_insert(){

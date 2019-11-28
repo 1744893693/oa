@@ -101,7 +101,11 @@
             var company_name= $('#company_name').val(data.company_name),
                 legal_person= $('#legal_person').val(data.legal_person);
             if(obj.event === 'del'){
-                layer.confirm('你确定删除：'+data.company_name+"的公司吗?", function(index){
+                if(data.id==3){
+                    layer.msg('禁止此危险操作')
+                    return false
+                }
+                layer.confirm('你确定删除：'+data.company_name+"的公司吗?",{skin:'layui-layer-molv',}, function(index){
                     $.post('./?s=admin/Status/statussc',{id:data.id})
                     obj.del();
                     layer.close(index);
@@ -111,7 +115,7 @@
                 layer.confirm('你确定通过'+data.company_name+"注册申请吗?", {
                     skin:'layui-layer-molv',
                 }, function(index){
-                    $.post('./?s=admin/Status/up',{id:data.id,account:data.account})
+                    $.post('./?s=admin/Status/up',{id:data.id,account:data.account,name:data.legal_person})
                     layer.close(index);
                     layui.table.reload('testReload');
                 });

@@ -10,7 +10,7 @@ use api\Model;
 class  CompanyTime{
 
     function index(){
-        include_once "./app/admin/view/CompanyTime/index.php";
+        include_once "./app/admin/view/companyTime/index.php";
     }
     function settime(){
         session_start();

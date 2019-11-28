@@ -15,52 +15,23 @@ class Logistic extends Login{
     }
     function logistic(){
         $aa = new Model();
-//        $limit = $_GET['limit'];
-//        $page = $_GET['page'];
-//        $news = ($page - 1) * $limit;
-//        limit $news,$limit
+        $app =  $this->company_id;
         if(!empty($_GET['send_name'])){
-            $data=$aa->sql_operation("select * from logistic where name like '%$_GET[send_name]%' or apply_name  like '%$_GET[send_name]%' ");
+            $data=$aa->sql_operation("select * from logistic where  department_id  like '%$_GET[send_name]%' or apply_name  like '%$_GET[send_name]%' or apply_time  like '%$_GET[send_name]%' ");
         }else{
-            $data=$aa->logistic();
+            $data=$aa->sql_operation("select * from logistic where logistic.company_id='$app'");
         }
-        if(empty($data)){
-            $data=$aa->logistic();
-        }
-        if($data){
+//        if(empty($data)){
+//            $data=$aa->logistic();
+//        }
+
             $d=[];
             $d['code']=0;
             $d['count']=count($data);
             $d['msg']="";
             $d['data']=$data;
-        }
+
         echo json_encode($d);
-
-//        $limit = $_GET['limit'];
-//        $page = $_GET['page'];
-//        $news = ($page - 1) * $limit;
-//        $data = new Model();
-////        $uid = $_SESSION['admin'][0]['departmentId'];
-//        $sousuo = $_GET['send_name'];
-//
-//        if(!empty($sousuo)){
-//            $b = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%'  LIMIT $news,$limit ");
-//            $ff = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%'");
-//        }else{
-//            $b = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%'  LIMIT $news,$limit ");
-//            $ff = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%' ");
-//        }
-//        $a['code'] = 0;
-//        $a['count'] = count($ff);
-////        foreach ($b as $k => $v) {
-////            $b[$k]['foodsApplyTimes'] = date('Y-m-d H:i:s', $v['foodsApplyTimes']);
-////        }
-//        $a['data'] = $b;
-//        echo json_encode($a);
-
-
-
-
 
     }
     function update1(){

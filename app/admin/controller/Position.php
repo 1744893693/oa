@@ -18,7 +18,7 @@ class  Position extends  Login {
 
 
 //
-      include_once "./app/admin/view/Position/management.php";
+      include_once "./app/admin/view/position/management.php";
     }
     function  managements(){
         $d=new Model();
@@ -54,7 +54,7 @@ class  Position extends  Login {
 
         $date=$d->sql_operation("select name , id  from department WHERE company_id='$g' ");
 
-       $aa= $d->sql_operation("insert into position  (position_name,department_id) VALUES ('$a','$b')");
+       $aa= $d->sql_operation("insert into position  (position_name,department_id,company_id) VALUES ('$a','$b','$g')");
 
     }
 

@@ -13,20 +13,27 @@ class Apply extends   Login {
     function init(){
         $aa = new Model();
         $date['department']=$aa->sql_operation('select * from department where department.company_id='.$this->company_id);
-        $date['warehous']=$aa->sql_operation('select * from warehous ');
+        $date['warehous']=$aa->sql_operation('select * from warehous where warehous.company_id='.$this->company_id);
         include_once './app/admin/view/apply/init.php';
     }
     function apply(){
         $aa = new Model();
         $app =  $this->name;
-        $data = $aa->sql_operation("select * from logistic where apply_name='$app'");
-        if($data){
+        if(!empty($_GET['send_name'])){
+            $data=$aa->sql_operation("select * from logistic where apply_name='$app' or apply_time  like '%$_GET[send_name]%' or department_id  like '%$_GET[send_name]%' ");
+        }else{
+            $data=$aa->sql_operation("select * from logistic where apply_name='$app'");
+        }
+//        if(empty($data)){
+//            $data=$aa->logistic();
+//        }
+
             $d=[];
             $d['code']=0;
             $d['count']=count($data);
             $d['msg']="";
             $d['data']=$data;
-        }
+
         echo json_encode($d);
     }
     function apply_insert(){
@@ -38,7 +45,6 @@ class Apply extends   Login {
         $reason = $_POST['reason'];
         $company_id=$_SESSION['admin']['company_id'];
         $department_id= $_POST['department_id'];
-
         $b = $aa->sql_operation("select id,name,number from warehous where id='$name' ");
         $p=$b[0]['name'];
 
