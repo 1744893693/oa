@@ -23,7 +23,6 @@
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
                 <button class="layui-btn" data-type="reload" id="insert">申请</button>
-<!--                <button class="layui-btn" data-type="reload" id="delete">一键清空</button>-->
             </div>
         </script>
 
@@ -150,7 +149,7 @@
                             var layer = layui.layer;
                             layer.open({
                                 skin: 'layui-layer-molv',
-                                area: ['650px', '450px'],
+                                area: ['650px', '600px'],
                                 type:1,
                                 btn:['确定','取消'],
                                 content:$('#qj'),
