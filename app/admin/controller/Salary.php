@@ -77,7 +77,7 @@ position.position_name,salary.* from salary LEFT JOIN user on `user`.id=salary.u
         $base_msg=$d->sql_operation('select user.id,`user`.`name`,`user`.`permissions_id`,`user`.department_id,department.`name` as department_name,`user`.position_id,position.position_name,`user`.base_salary from 
        user LEFT JOIN department on `user`.department_id=department.id LEFT JOIN position on `user`.position_id=position.id WHERE `user`.company_id='.$this->company_id);
         foreach ($base_msg as $val1){
-            $time=$d->sql_operation('SELECT start,end from workingtime WHERE user_id='.$val1['id']);
+            $time=$d->sql_operation('SELECT name,start,end from workingtime WHERE user_id='.$val1['id']);
             $late=0;
             $obsent=0;
             foreach ($time as $val2){
@@ -103,6 +103,12 @@ position.position_name,salary.* from salary LEFT JOIN user on `user`.id=salary.u
             $bs=$zong+$base_salary;
             $sele=$d->sql_operation("select id from salary WHERE user_id=$id and `month`=$month");
             if(empty($sele[0])&&$val1['permissions_id']!=0){
+                $dakacount=count($time);
+                if($dakacount==0){
+                    $obsent=30;
+                    $bs=0;
+                }
+//                var_dump($dakacount);
                 $d->sql_operation("INSERT INTO `salary` (`user_id`, `month`, `base_salary`, `other_salary`, `ready_salary`, `absenteeism`, `late`)
                 VALUES ('$id','$month', '$base_salary', '$zong', '$bs','$obsent', '$late')");
             }

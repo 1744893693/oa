@@ -75,7 +75,7 @@
             </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">请假原因</label>
-                    <div class="layui-input-block" style="width: 190px">
+                    <div class="layui-input-block" >
                         <textarea id="reason" placeholder="请输入请假原因" class="layui-textarea"></textarea>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                                 var layer = layui.layer;
                                 layer.open({
                                     skin: 'layui-layer-molv',
-                                    area: ['650px', '450px'],
+                                    area: ['650px', '600px'],
                                     type:1,
                                     btn:['确定','取消'],
                                     content:$('#qj'),

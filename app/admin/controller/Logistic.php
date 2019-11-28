@@ -15,6 +15,10 @@ class Logistic extends Login{
     }
     function logistic(){
         $aa = new Model();
+//        $limit = $_GET['limit'];
+//        $page = $_GET['page'];
+//        $news = ($page - 1) * $limit;
+//        limit $news,$limit
         if(!empty($_GET['send_name'])){
             $data=$aa->sql_operation("select * from logistic where name like '%$_GET[send_name]%' or apply_name  like '%$_GET[send_name]%' ");
         }else{
@@ -31,6 +35,33 @@ class Logistic extends Login{
             $d['data']=$data;
         }
         echo json_encode($d);
+
+//        $limit = $_GET['limit'];
+//        $page = $_GET['page'];
+//        $news = ($page - 1) * $limit;
+//        $data = new Model();
+////        $uid = $_SESSION['admin'][0]['departmentId'];
+//        $sousuo = $_GET['send_name'];
+//
+//        if(!empty($sousuo)){
+//            $b = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%'  LIMIT $news,$limit ");
+//            $ff = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%'");
+//        }else{
+//            $b = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%'  LIMIT $news,$limit ");
+//            $ff = $data->query("select * from logistic where name like '%$sousuo%' or apply_name  like '%$sousuo%' ");
+//        }
+//        $a['code'] = 0;
+//        $a['count'] = count($ff);
+////        foreach ($b as $k => $v) {
+////            $b[$k]['foodsApplyTimes'] = date('Y-m-d H:i:s', $v['foodsApplyTimes']);
+////        }
+//        $a['data'] = $b;
+//        echo json_encode($a);
+
+
+
+
+
     }
     function update1(){
         $aa = new Model();

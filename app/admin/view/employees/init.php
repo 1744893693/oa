@@ -11,14 +11,11 @@
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
-<body >
+<body>
         <span class="layui-breadcrumb">
           <a href="">首页</a>/
-          <a href="/demo/">演示</a>
-          <a><cite>导航元素</cite></a>
+          <a><cite>员工管理</cite></a>
         </span>
-
-
 
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -60,16 +57,14 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-
-
         <div id="tan" style="display: none;margin-top: 20px"">
             <form class="layui-form" >
-                <div class="layui-form-item">
-                    <label class="layui-form-label">密码</label>
-                    <div class="layui-input-inline">
-                        <input type="text" id="pwd1" name="pwd1" lay-verify="pass" value="111111" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+<!--                <div class="layui-form-item">-->
+<!--                    <label class="layui-form-label">密码</label>-->
+<!--                    <div class="layui-input-inline">-->
+<!--                        <input type="text" id="pwd1" name="pwd1" lay-verify="pass" value="111111" placeholder="请输入密码" autocomplete="off" class="layui-input">-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择部门</label>
                     <div class="layui-input-block" style="width: 190px">
@@ -98,7 +93,6 @@
                 </div>
             </form>
         </div>
-
 
         <div id="yg" style="display: none;margin-top: 20px">
             <form class="layui-form" >
@@ -197,7 +191,7 @@
                         layer.open({
                             skin: 'layui-layer-molv',
                             btn: ['确定', '取消'],
-                            area: ['500px', '300px'],
+                            area: ['500px', '500px'],
                             formType:2,
                             title:'编辑信息详情',
                             content:$('#tan'),
@@ -206,7 +200,7 @@
                             yes: function(index){
                                 $.post('./?s=admin/Employees/em_update', {
                                     id:data.id,
-                                    pwd: $('#pwd1').val(),
+//                                    pwd: $('#pwd1').val(),
                                     department_id:$('#department_id1').val(),
                                     position_id:$('#position_id1').val(),
                                     company_id:$('#company_id').val()

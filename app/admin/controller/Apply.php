@@ -18,7 +18,8 @@ class Apply extends   Login {
     }
     function apply(){
         $aa = new Model();
-        $data = $aa->sql_operation("select * from logistic");
+        $app =  $this->name;
+        $data = $aa->sql_operation("select * from logistic where apply_name='$app'");
         if($data){
             $d=[];
             $d['code']=0;
