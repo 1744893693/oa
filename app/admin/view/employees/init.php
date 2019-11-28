@@ -66,6 +66,12 @@
 <!--                    </div>-->
 <!--                </div>-->
                 <div class="layui-form-item">
+                    <label class="layui-form-label">基本工资</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="base_salary1" name="base_salary1" lay-verify="pass"  placeholder="请输入基本工资" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">选择部门</label>
                     <div class="layui-input-block" style="width: 190px">
                         <select id="department_id1">
@@ -96,6 +102,14 @@
 
         <div id="yg" style="display: none;margin-top: 20px">
             <form class="layui-form" >
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="user_name" name="name1" lay-verify="pass" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">账号</label>
                 <div class="layui-input-inline">
@@ -108,6 +122,12 @@
                     <input type="text" id="pwd" name="pwd" lay-verify="pass" value="111111" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
             </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">基本工资</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="base_salary" name="base_salary" lay-verify="pass"  placeholder="请输入基本工资" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">选择部门</label>
                 <div class="layui-input-block" style="width: 190px">
@@ -157,10 +177,12 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                { type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left',style:'background-color: #eee;'},
+                {type: 'numbers', title: '序号' , width:80, sort: true, fixed: 'left',style:'background-color: #eee;'},
+                {field: 'user_name', title: '姓名' },
                 {field: 'name', title: '账号' },
                 {field: 'department_name', type:'password',title: '部门', },
                 {field: 'position_name', title: '职位', },
+                {field: 'base_salary', title: '基本工资', },
                 {fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center',style:'background-color: #CCEFE0;' }
             ]],
             id: 'testReload'
@@ -203,6 +225,7 @@
 //                                    pwd: $('#pwd1').val(),
                                     department_id:$('#department_id1').val(),
                                     position_id:$('#position_id1').val(),
+                                    base_salary:$('#base_salary1').val(),
                                     company_id:$('#company_id').val()
                                 },function (type) {
                                     layer.msg(type.data);
@@ -284,11 +307,13 @@
                             content: $('#yg'),
                             yes: function (index) {
                                 $.post('?s=admin/Employees/em_insert', {
+                                    user_name: $('#user_name').val(),
                                     name: $('#name1').val(),
                                     pwd: $('#pwd').val(),
                                     department_id:$('#department_id').val(),
                                     position_id:$('#position_id').val(),
-                                    company_id:$('#company_id').val()
+                                    company_id:$('#company_id').val(),
+                                    base_salary:$('#base_salary').val()
                                 }, function (type) {
                                     layer.msg(type.data);
                                     layui.table.reload('testReload');

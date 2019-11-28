@@ -64,8 +64,9 @@ class Employees extends Login {
         $id=$_POST['id'];
         $department_id=$_POST['department_id'];
 //        $pwd=$_POST['pwd'];
+        $base_salary=$_POST['base_salary'];
         $position_id=$_POST['position_id'];
-        $type = $d->sql_operation("update user set department_id='$department_id',position_id='$position_id' where id=$id");
+        $type = $d->sql_operation("update user set department_id='$department_id',position_id='$position_id',base_salary='$base_salary' where id=$id");
         if($type){
            echo json_encode(array('type' => 1, 'data' =>'修改成功！')) ;
         }else{
@@ -74,15 +75,17 @@ class Employees extends Login {
     }
     function em_insert(){
         $d=new Model();
+        $user_name=$_POST['user_name'];
         $name=$_POST['name'];
         $pwd=$_POST['pwd'];
+        $base_salary=$_POST['base_salary'];
         $department_id=$_POST['department_id'];
         $company_id=$_SESSION['admin']['company_id'];
         $position_id=$_POST['position_id'];
         if(empty($department_id)||empty($position_id)){
             exit(json_encode(array('type' => 201, 'data' =>'部门或职位不能为空！')));
         }
-        $type = $d->sql_operation("insert into user (name,pwd,department_id,company_id,position_id) VALUES ('$name','$pwd','$department_id','$company_id','$position_id')");
+        $type = $d->sql_operation("insert into user (user_name,name,pwd,base_salary,department_id,company_id,position_id) VALUES ('$user_name','$name','$pwd','$base_salary','$department_id','$company_id','$position_id')");
 
         if($type){
             echo json_encode(array('type' => 1, 'data' =>'添加成功！')) ;
