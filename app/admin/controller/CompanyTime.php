@@ -27,13 +27,14 @@ class  CompanyTime{
         $name=$_POST['name'];
         $d= new Model();
         $data=$d->sql_operation("update company set  company_name='$name' WHERE id='$id'");
-
+    }
         function person(){
             session_start();
             $id=$_SESSION["admin"]["company_id"];
             $name=$_POST['name'];
             $d= new Model();
             $data=$d->sql_operation("update company set  legal_person='$name' WHERE id='$id'");
-        }
+            var_dump($data);
+
     }
 }

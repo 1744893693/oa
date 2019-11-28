@@ -13,7 +13,7 @@
 <body>
 <table id="demo" lay-filter="test"></table>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="up" id="up">同意</a>
+    <a class="layui-btn layui-btn-xs" layui-btn-xs" lay-event="up" id="up">同意</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="db" id="db">驳回</a>
 </script>
 <script type="text/javascript">

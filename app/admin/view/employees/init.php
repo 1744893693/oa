@@ -11,14 +11,11 @@
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
-<body >
+<body>
         <span class="layui-breadcrumb">
           <a href="">首页</a>/
-          <a href="/demo/">演示</a>
-          <a><cite>导航元素</cite></a>
+          <a><cite>员工管理</cite></a>
         </span>
-
-
 
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -60,8 +57,6 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-
-
         <div id="tan" style="display: none;margin-top: 20px"">
             <form class="layui-form" >
                 <div class="layui-form-item">
@@ -98,7 +93,6 @@
                 </div>
             </form>
         </div>
-
 
         <div id="yg" style="display: none;margin-top: 20px">
             <form class="layui-form" >

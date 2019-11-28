@@ -10,8 +10,10 @@ use api\Model;
 
 class Punchin{
     function  daka(){
-        include_once "./app/admin/view/punchin/daka.php";
+
+        include_once "./app/admin/view/Punchin/daka.php";
     }
+
     function upb (){
         session_start();
         $id=$_SESSION["admin"]["company_id"];
@@ -59,11 +61,36 @@ class Punchin{
     }
 
     function buk(){
+        session_start();
+        $id=$_SESSION["admin"]["company_id"];
         $name=$_POST['name'];
         $reasons=$_POST['reasons'];
-        $time=date('H:i:s',time());
         $d=new Model();
-        $ass = $d->sql_operation("INSERT INTO `card_examine`(`name`, `reasons`, `latetime`, `status`) VALUES ('$name','$reasons','$time',0)");
+        $time=date('H:i',time());
+        $gtime=$d->sql_operation("select start  from  company WHERE id='$id' ");
+        if ($time>$gtime){
+            echo json_encode(array('type'=>'202','data'=>'补卡申请提交失败'));
+        }else{
+            $d->sql_operation("INSERT INTO `card_examine`(`name`, `reasons`, `latetime`, `status`) VALUES ('$name','$reasons','$time','下班未打卡')");
+            echo json_encode(array('type'=>'200','data'=>'补卡申请提交成功'));
+        }
     }
 
+
+    function ddd (){
+        $d=new Model();
+        session_start();
+        $id=$_SESSION["admin"]["company_id"];
+        $data=$d->sql_operation("select * from  workingtime WHERE company_id='$id'");
+        if($data){
+            $d=[];
+            $d['code']=0;
+            $d['count']=100;
+            $d['msg']="";
+            $d['data']=$data;
+        }
+        echo json_encode($d);
+    }
 }
+
+

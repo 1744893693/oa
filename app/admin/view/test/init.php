@@ -11,7 +11,7 @@
     <script src="./public/layui-v2.5.5/layui/layui.js"></script>
     <script type="text/javascript" src="./public/js/extend/jquery-3.4.1.min.js"></script>
 </head>
-<body >
+<body>
         <span class="layui-breadcrumb">
           <a href="">首页</a>/
           <a><cite>任务发布</cite></a>
@@ -49,15 +49,33 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">发布时间</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="release_time" name="release_time" lay-verify="pass" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                        <input type="text" id="release_time" name="release_time" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">截止时间</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="submission_time" name="submission_time" lay-verify="pass" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                        <input type="text" id="submission_time" name="submission_time" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
                     </div>
                 </div>
+<!--                <div class="layui-form-item">-->
+<!--                    <label class="layui-form-label">发布时间</label>-->
+<!--                    <div class="layui-input-inline">-->
+<!--                        <input id="release_time" type="text" name="kaishi" required lay-verify="required" placeholder="请选择" autocomplete="off" class="layui-input">-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-mid layui-word-aux">-->
+<!--                        <span style="color: rgba(255,10,30,0.5)">* 必填项</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="layui-form-item">-->
+<!--                    <label class="layui-form-label">截止时间</label>-->
+<!--                    <div class="layui-input-inline">-->
+<!--                        <input id="submission_time" type="text" name="jieshu" required lay-verify="required" placeholder="请选择" autocomplete="off" class="layui-input">-->
+<!--                    </div>-->
+<!--                    <div class="layui-form-mid layui-word-aux">-->
+<!--                        <span style="color: rgba(255,10,30,0.5)">* 必填项</span>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择部门</label>
                     <div class="layui-input-block" style="width: 190px">
@@ -85,22 +103,48 @@
         </div>
 
         <script type="text/javascript">
-
-            layui.use('laydate', function() {
-                var laydate = layui.laydate;
-                laydate.render({
-                    elem: '#release_time'
-                    ,min: 0
-                    ,max: 365
-                    ,type: 'datetime'
-                });
-                laydate.render({
-                    elem: '#submission_time'
-                    ,min: 0
-                    ,max: 365
-                    ,type: 'datetime'
+            $(function () {
+                function maxDate() {
+                    var now = new Date();
+                    return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+                }
+                function tim(){
+                    alert($('#release_time').val());
+                    return  $('#release_time').val()
+                }
+                layui.use('laydate', function(){
+                    var laydate = layui.laydate;
+                    laydate.render({
+                        elem: '#release_time', //指定元素
+                        calendar: true,
+                        min: maxDate(),
+                        type: 'datetime',
+                        done: function(value, date, endDate){
+                            laydate.render({
+                                elem: '#submission_time' ,//指定元素
+                                calendar: true,
+                                min: value,
+                                type: 'datetime'
+                            });
+                        }
+                    });
                 });
             });
+//            layui.use('laydate', function() {
+//                var laydate = layui.laydate;
+//                laydate.render({
+//                    elem: '#release_time'
+//                    ,min: 0
+//                    ,max: 365
+//                    ,type: 'datetime'
+//                });
+//                laydate.render({
+//                    elem: '#submission_time'
+//                    ,min: 0
+//                    ,max: 365
+//                    ,type: 'datetime'
+//                });
+//            });
 
             layui.use('table', function(){
                 var table = layui.table;
@@ -175,7 +219,7 @@
                             var layer = layui.layer;
                             layer.open({
                                 skin: 'layui-layer-molv',
-                                area: ['650px', '450px'],
+                                area: ['600px', '600px'],
                                 type:1,
                                 btn:['确定','取消'],
                                 content:$('#rw'),
