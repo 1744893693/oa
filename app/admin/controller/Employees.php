@@ -63,9 +63,9 @@ class Employees extends Login {
         $d=new Model();
         $id=$_POST['id'];
         $department_id=$_POST['department_id'];
-        $pwd=$_POST['pwd'];
+//        $pwd=$_POST['pwd'];
         $position_id=$_POST['position_id'];
-        $type = $d->sql_operation("update user set pwd='$pwd',department_id='$department_id',position_id='$position_id' where id=$id");
+        $type = $d->sql_operation("update user set department_id='$department_id',position_id='$position_id' where id=$id");
         if($type){
            echo json_encode(array('type' => 1, 'data' =>'修改成功！')) ;
         }else{
