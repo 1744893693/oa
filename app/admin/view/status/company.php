@@ -26,14 +26,14 @@
 <script type="text/html" id="toolbarDemo">
     <div class="demoTable">
 
-<div style="width:100px ;float: left">
-    <select name="modules" lay-verify="required" lay-search="" id="check"style="width:60px ">
-        <option value="">选择字段</option>.
-     <?php foreach ([1,2,5,8,8] as $k){?>
-            <option value="17"><?php echo $k ?></option>
-        <?php }?>
-    </select>
-</div>
+<!--<div style="width:100px ;float: left">-->
+<!--    <select name="modules" lay-verify="required" lay-search="" id="check"style="width:60px ">-->
+<!--        <option value="">选择字段</option>.-->
+<!--     --><?php //foreach ([1,2,5,8,8] as $k){?>
+<!--            <option value="17">--><?php //echo $k ?><!--</option>-->
+<!--        --><?php //}?>
+<!--    </select>-->
+<!--</div>-->
          <div class="layui-inline" >
 <!--        </div>-->
          <div class="layui-inlinex">
@@ -55,7 +55,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="del">删除</a>
     <a class="layui-btn layui-btn-xs" lay-event="up" id="up">同意</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="db" id="db">驳回</a>
+
 </script>
 
 <div id="tan" style="display: none;margin-top:65px">
@@ -112,16 +112,6 @@
                     skin:'layui-layer-molv',
                 }, function(index){
                     $.post('./?s=admin/Status/up',{id:data.id,account:data.account})
-                    layer.close(index);
-                    layui.table.reload('testReload');
-                });
-            }else if(obj.event === 'db'){
-                layer.confirm('你确定驳回：'+data.company_name+"的状态为不通过吗?", function(index){
-
-                        $.post('./?s=admin/Status/db',{id:data.id})
-
-                    $.post('./?s=admin/Status/db',{id:data.id})
-
                     layer.close(index);
                     layui.table.reload('testReload');
                 });

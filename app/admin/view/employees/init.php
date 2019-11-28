@@ -201,7 +201,6 @@
                             success:function(v){
                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                 layer.close(index);
-                                console.log(index);
 //                                layer.msg(v.data);
                             }
                         })
@@ -243,16 +242,9 @@
 
                             var box=$('input:checkbox')
                             for (ke of box){
-
                                 if(date.length>0){
-                                    console.log(222)
-
                                     for(val of date){
-                                console.log(val.functional_group_id)
-
                                         if(ke.value==val.functional_group_id){
-                                            console.log('ke')
-
                                             $('input:checkbox[value='+val.functional_group_id+']').attr('checked',true)
                                             form.render();
                                             break;
@@ -262,7 +254,6 @@
                                         }
                                     }
                                 }else {
-                                    console.log(111)
                                         $('input:checkbox').removeAttr('checked')
                                         form.render()
                                  }

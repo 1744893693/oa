@@ -85,7 +85,7 @@
             ]],
             id: 'testReload'
             ,page: true
-            ,height:630
+            ,height:550
         }),
 
             //监听行工具事件

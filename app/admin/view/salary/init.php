@@ -60,7 +60,7 @@
         </script>
 
         <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="permission">详细</a>
+<!--            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="permission">详细</a>-->
             <a class="layui-btn layui-btn-xs" lay-event="edit">发放</a>
         </script>
 
