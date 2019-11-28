@@ -49,9 +49,11 @@
                    <div class="layui-input-block" style="width: 250px">
                        <select id="edit_department">
                            <?php foreach ($date['department'] as $val){
+                               if($val['department_name']!='个人中心'){
                                ?>
                                <option value="<?php echo $val['id']?>"><?php echo $val['department_name']?></option>
                                <?php
+                               }
                            }?>
                        </select>
                    </div>
@@ -79,9 +81,11 @@
                    <div class="layui-input-block" style="width: 250px">
                        <select id="department">
                            <?php foreach ($date['department'] as $val){
+                           if($val['department_name']!='个人中心') {
                                ?>
-                               <option value="<?php echo $val['id']?>"><?php echo $val['department_name']?></option>
+                               <option value="<?php echo $val['id'] ?>"><?php echo $val['department_name'] ?></option>
                                <?php
+                                }
                            }?>
                        </select>
                    </div>

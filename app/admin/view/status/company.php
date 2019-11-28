@@ -115,7 +115,7 @@
                 layer.confirm('你确定通过'+data.company_name+"注册申请吗?", {
                     skin:'layui-layer-molv',
                 }, function(index){
-                    $.post('./?s=admin/Status/up',{id:data.id,account:data.account})
+                    $.post('./?s=admin/Status/up',{id:data.id,account:data.account,name:data.legal_person})
                     layer.close(index);
                     layui.table.reload('testReload');
                 });

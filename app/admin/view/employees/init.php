@@ -77,9 +77,11 @@
                         <select id="department_id1">
                             <option value=""></option>
                             <?php foreach ($date['department'] as $val){
+                                 if($val['name']!='个人中心'){
                                 ?>
                                 <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
                                 <?php
+                                 }
                             }?>
                         </select>
                     </div>
@@ -134,9 +136,11 @@
                     <select id="department_id">
                         <option value=""></option>
                         <?php foreach ($date['department'] as $val){
+                            if($val['name']!='个人中心'){
                             ?>
                             <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
                             <?php
+                            }
                         }?>
                     </select>
                 </div>
