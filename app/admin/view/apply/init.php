@@ -22,7 +22,12 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
+                <div class="layui-inline">
+                    <input class="layui-input" value="" name="id" id="id" autocomplete="off">
+                </div>
+                <button class="layui-btn" data-type="reload" id="check">搜索</button>
                 <button class="layui-btn" data-type="reload" id="insert">申请</button>
+
             </div>
         </script>
 
@@ -179,7 +184,20 @@
                             layer.close(index);
                         })
                     }),
-
+                    // 执行搜索，表格重载
+                    $(document).on('click','#check',function(){
+                        // 搜索条件
+                        var send_name = $('#id').val();
+                        table.reload('testReload', {
+                            method: 'get'
+                            , where: {
+                                'send_name': send_name
+                            }
+                            , page: {
+                                curr: 1
+                            }
+                        })
+                    }),
                     //面包屑显示
                     layui.use('element', function(){
                         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块

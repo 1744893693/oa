@@ -18,7 +18,7 @@ class Warehouse extends Login{
     function warehouse(){
         $aa = new Model();
         if(!empty($_GET['send_name'])){
-            $data=$aa->sql_operation("select * from warehous where name like '%$_GET[send_name]%'  ");
+            $data=$aa->sql_operation("select * from warehous where name like '%$_GET[send_name]%' or warehous_time like '%$_GET[send_name]%'  ");
         }else{
             $data=$aa->warehous();
         }

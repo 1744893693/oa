@@ -20,11 +20,16 @@
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
 
-<!--        <script type="text/html" id="toolbarDemo">-->
-<!--            <div class="demoTable">-->
-<!--                <button class="layui-btn" data-type="reload" id="insert">接收任务</button>-->
-<!--            </div>-->
-<!--        </script>-->
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="demoTable">
+                <div class="layui-inline">
+                    <input class="layui-input" value="" name="id" id="id" autocomplete="off">
+                </div>
+                <button class="layui-btn" data-type="reload" id="check">搜索</button>
+            </div>
+        </script>
+
 
         <script type="text/html" id="barDemo">
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse">领取</a>
@@ -154,7 +159,20 @@
                                 });
                             }
                     }),
-
+                    // 执行搜索，表格重载
+                    $(document).on('click','#check',function(){
+                        // 搜索条件
+                        var send_name = $('#id').val();
+                        table.reload('testReload', {
+                            method: 'get'
+                            , where: {
+                                'send_name': send_name
+                            }
+                            , page: {
+                                curr: 1
+                            }
+                        })
+                    }),
 
                     //面包屑显示
                     layui.use('element', function(){
