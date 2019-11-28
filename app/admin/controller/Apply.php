@@ -19,7 +19,17 @@ class Apply extends   Login {
     function apply(){
         $aa = new Model();
         $app =  $this->name;
-        $data = $aa->sql_operation("select * from logistic where apply_name='$app'");
+        if(!empty($_GET['send_name'])){
+            $data=$aa->sql_operation("select * from logistic where name like '%$_GET[send_name]%' or apply_time  like '%$_GET[send_name]%' or department_id  like '%$_GET[send_name]%' and apply_name='$app' ");
+        }else{
+            $data=$aa->logistic();
+        }
+        if(empty($data)){
+            $data=$aa->logistic();
+        }
+
+//        $app =  $this->name;
+//        $data = $aa->sql_operation("select * from logistic where apply_name='$app'");
         if($data){
             $d=[];
             $d['code']=0;

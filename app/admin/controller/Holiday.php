@@ -16,8 +16,17 @@ class Holiday extends  Login {
     function holiday(){
 
         $aa = new Model();
-       $app =  $this->name;
-        $data = $aa->sql_operation("select * from operation where name='$app'");
+        $app =  $this->name;
+        if(!empty($_GET['send_name'])){
+            $data=$aa->sql_operation("select * from operation where name like '%$_GET[send_name]%'  or type like '%$_GET[send_name]%' or start_time like '%$_GET[send_name]%' and name='$app' ");
+        }else{
+            $data=$aa->operation();
+        }
+        if(empty($data)){
+            $data=$aa->operation();
+        }
+//       $app =  $this->name;
+//        $data = $aa->sql_operation("select * from operation where name='$app'");
         if($data){
             $d=[];
             $d['code']=0;
@@ -26,33 +35,6 @@ class Holiday extends  Login {
             $d['data']=$data;
         }
         echo json_encode($d);
-
-
-
-//        $limit = $_GET['limit'];
-//        $page = $_GET['page'];
-//        $company_id=$_SESSION['admin']['company_id'];
-//        $data = new Model();
-//        $news = ($page-1)*$limit;
-//        $q=$this->qurey;
-//        if(!empty($_GET['send_name'])){
-//            $d =   $data->sql_operation($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%" limit '.$news.','.$limit );
-//            $s =   $data->sql_operation($q.$company_id.' and user.name like "%'.$_GET['send_name'].'%"');
-//        }else{
-//            $dd=$q.$company_id.' limit '.$news.','.$limit;
-//            $d =$data->sql_operation("$dd");//查找每页显示的员工
-//            $s =$data->sql_operation($q.$company_id);//查找该公司所有的员工
-//        }
-//        $msg['code'] =0;//状态码
-//        $msg['count'] = count($s);//数据集
-//        $msg['data'] = $d;//内容数据
-//        echo json_encode($msg);
-
-
-
-
-
-
 
 
     }
