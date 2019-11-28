@@ -24,8 +24,6 @@ class Home extends Login
         $permission_id=$_SESSION['admin']['permissions_id'];
         $d=new Model();
         $data['company']=$d->sql_operation('select company_name from company WHERE id='.$this->company_id);
-
-
         if($permission_id==0){
             $data['department']=$d->sql_operation('select department.id as department_id,department.`name`as department_name from functional_group LEFT 
                  JOIN menu on functional_group.menu_id=menu.id LEFT JOIN department on functional_group.department_id

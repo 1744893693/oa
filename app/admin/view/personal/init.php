@@ -26,7 +26,6 @@
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <div id="tan" style="display: none;margin-top:30px">
     <div style=" text-align:center" class="layui-form-item" id="id">
@@ -37,7 +36,7 @@
         <div>电话：<input type="text" id="telephone" name="telephone" style="width: 150px;height:30px "></div>
         <div>地址：<input type="text" id="address" name="address" style="width: 150px;height:30px "></div>
     </div>
-    </div>
+</div>
 
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
@@ -114,7 +113,7 @@
                 layui.use('layer', function(){
                     var layer = layui.layer;
                     layer.open({
-                        skin:'layer-open',
+                        skin:'layui-layer-molv',
                         btn: ['确定', '取消'],
                         area: ['500px', '350px'],
                         formType:2,
