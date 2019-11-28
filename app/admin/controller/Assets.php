@@ -12,7 +12,7 @@ namespace app\admin\controller;
 use api\Login;
 use api\Model;
 
-class assets extends Login
+class Assets extends Login
 {
      function init(){
          include_once './app/admin/view/assets/init.php';

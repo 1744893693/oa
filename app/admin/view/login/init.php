@@ -32,7 +32,7 @@
             </div>
 
         <div class="lg_foot">
-            <div  value="Login In" class="bu">登录</div>
+            <div  value="Login In" class="bu" style="cursor: pointer">登录</div>
         </div>
             </div>
         </div>
