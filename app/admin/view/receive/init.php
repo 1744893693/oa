@@ -20,7 +20,6 @@
         <table id="demo" lay-filter="test" style="height: 100%;width: 100%"></table>
         <table class="layui-hide" id="test" lay-filter="test"></table>
 
-
         <script type="text/html" id="toolbarDemo">
             <div class="demoTable">
                 <div class="layui-inline">
@@ -29,7 +28,6 @@
                 <button class="layui-btn" data-type="reload" id="check">搜索</button>
             </div>
         </script>
-
 
         <script type="text/html" id="barDemo">
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse">领取</a>
