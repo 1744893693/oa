@@ -37,7 +37,10 @@ class  Dakatry extends Login {
             $name=$this->name;
             $a=$this->company_id;
             $b=$this->user_id;
-            $time=time();
+            $time=$d->sql_operation("select start  from  company WHERE id='$a' ");
+            $time=$time[0]['start'];
+            $time=strtotime(date($time));
+            var_dump($time);
             $d->sql_operation("insert into `workingtime` (`name`,`company_id`,`start`,`user_id`) values ('$name','$a','$time','$b')");
         }
 

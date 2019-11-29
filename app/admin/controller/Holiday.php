@@ -22,7 +22,6 @@ class Holiday extends  Login {
 
         if(!empty($_GET['send_name'])){
             $data=$aa->sql_operation("select * from operation where name='$app' and type like '%$_GET[send_name]%' or start_time like '%$_GET[send_name]%'  ");
-
         }else{
             $data=$aa->sql_operation("select * from operation where name='$app'  ");
         }
