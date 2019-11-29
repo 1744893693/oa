@@ -39,15 +39,12 @@ class Personal extends Login {
         $gender=$_POST['gender'];
         $telephone=$_POST['telephone'];
         $address=$_POST['address'];
-        if(!$id=''&&!$name=''&&!$pwd=''&&!$intion=''&&!$gender=''&&!$telephone=''&&!$address=''){
             $data=(new Model())->sql_operation("update user set  name='$name'  where id='$id'");
             $data=(new Model())->sql_operation("update user set  pwd='$pwd'  where id='$id'");
             $data=(new Model())->sql_operation("update user set  intion='$intion'  where id='$id'");
             $data=(new Model())->sql_operation("update user set  gender='$gender'  where id='$id'");
             $data=(new Model())->sql_operation("update user set  telephone='$telephone'  where id='$id'");
             $data=(new Model())->sql_operation("update user set  address='$address'  where id='$id'");
-            var_dump($data);
-        }
     }
 }
 

@@ -16,11 +16,6 @@
 <table class="layui-hide" id="test" lay-filter="test"></table>
 
 <script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-    </div>
 </script>
 
 
@@ -29,12 +24,12 @@
 </script>
 <div id="tan" style="display: none;margin-top:30px" >
     <div style=" text-align:center" class="layui-form-item" id="id" >
-        <div style="margin: 5px"><a href="#">名&emsp;&emsp;字：<input type="text" id="name" name="name" style="width: 150px;height:30px;border-style:inset;"></a></div>
-        <div style="margin: 5px"><a href="#">密&emsp;&emsp;码：<input type="text" id="pwd" name="pwd" style="width: 150px;height:30px;border-style:inset; "></a></div>
-        <div style="margin: 5px"><a href="#">身份证号：<input type="text" id="intion" name="intion" style="width: 150px;height:30px;border-style:inset;"></a></div>
-        <div style="margin: 5px"><a href="#">性&emsp;&emsp;别：<input type="text" id="gender" name="gender" style="width: 150px;height:30px;border-style:inset; "></a></div>
-        <div style="margin: 5px"><a href="#">电&emsp;&emsp;话：<input type="text" id="telephone" name="telephone" style="width: 150px;height:30px;border-style:inset; "></a></div>
-        <div style="margin: 5px"><a href="#">地&emsp;&emsp;址：<input type="text" id="address" name="address" style="width: 150px;height:30px;border-style:inset; "></a></div>
+        <div style="margin: 5px">名&emsp;&emsp;字：<input type="text" id="name" name="name" value=""  style="width: 150px;height:30px;border-style:inset;"></div>
+        <div style="margin: 5px">密&emsp;&emsp;码：<input type="text" id="pwd" name="pwd" style="width: 150px;height:30px;border-style:inset; "></div>
+        <div style="margin: 5px">身份证号：<input type="text" id="intion" name="intion" style="width: 150px;height:30px;border-style:inset;"></div>
+        <div style="margin: 5px">性&emsp;&emsp;别：<input type="text" id="gender" name="gender" style="width: 150px;height:30px;border-style:inset; "></div>
+        <div style="margin: 5px">电&emsp;&emsp;话：<input type="text" id="telephone" name="telephone" style="width: 150px;height:30px;border-style:inset; "></div>
+        <div style="margin: 5px">地&emsp;&emsp;址：<input type="text" id="address" name="address" style="width: 150px;height:30px;border-style:inset; "></div>
     </div>
 </div>
 
@@ -46,53 +41,20 @@
         table.render({
             elem: '#test'
             ,url:'./?s=admin/Personal/select'
-            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-                title: '提示'
-                ,layEvent: 'LAYTABLE_TIPS'
-                ,icon: 'layui-icon-tips'
-            }]
             ,table:'user'
             ,cols: [[
                 {type:'numbers', title:'序号', width:80, unresize: true, sort: true}
                 ,{field:'name', title:'名字', width:120, edit: 'text'}
                 ,{field:'pwd', title:'密码', width:80, edit: 'text'}
-                ,{field:'company_id', title:'公司', width:80, edit: 'text'}
-                ,{field:'department_id', title:'部门',width:80,edit: 'text'}
-                ,{field:'position_id', title:'职位',width:80,edit: 'text'}
-                ,{field:'base_salary', title:'工资', width:80,edit: 'text'}
-                ,{field:'intion', title:'身份证号', width:120}
-                ,{field:'gender', title:'性别', width:80}
-                ,{field:'telephone', title:'电话', width:80}
-                ,{field:'address', title:'地址',width:80}
-                ,{fixed: 'right', title: '操作', toolbar: '#barDemo', width: 120}
+                ,{field:'intion', title:'身份证号'}
+                ,{field:'gender', title:'性别'}
+                ,{field:'telephone', title:'电话'}
+                ,{field:'address', title:'地址'}
+                ,{fixed: 'right', title: '操作', toolbar: '#barDemo',align: 'center'}
             ]]
             , id: 'department'
             ,height:'full-50'
             ,page: false
-        });
-
-        //头工具栏事件
-        table.on('toolbar(test)', function(obj){
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch(obj.event){
-                case 'getCheckData':
-                    var data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
-                    break;
-                case 'getCheckLength':
-                    var data = checkStatus.data;
-                    layer.msg('选中了：'+ data.name + ' 个');
-                    break;
-                case 'isAll':
-                    layer.msg(checkStatus.isAll ? '全选': '未全选');
-                    break;
-
-                //自定义头工具栏右侧图标 - 提示
-                case 'LAYTABLE_TIPS':
-                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
-                    break;
-            }
         });
 
 
@@ -103,6 +65,12 @@
             if(obj.event === 'del'){
 
             } else if(obj.event === 'edit'){
+                var namea=$('#name').val(data.name);
+                var pwda=$('#pwd').val(data.pwd);
+                var intiona=$('#intion').val(data.intion)
+                var gendera=$('#gender').val(data.gender)
+                var telephonea=$('#telephone').val(data.telephone)
+                var addressa=$('#address').val(data.address)
                 layui.use('layer', function(){
                     var layer = layui.layer;
                     layer.open({
