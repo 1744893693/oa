@@ -29,12 +29,12 @@
 </script>
 <div id="tan" style="display: none;margin-top:30px" >
     <div style=" text-align:center" class="layui-form-item" id="id" >
-        <div style="margin: 5px"><a href="#">名&emsp;&emsp;字：<input type="text" id="name" name="name" style="width: 150px;height:30px;border-style:inset;"></a></div>
-        <div style="margin: 5px"><a href="#">密&emsp;&emsp;码：<input type="text" id="pwd" name="pwd" style="width: 150px;height:30px;border-style:inset; "></a></div>
-        <div style="margin: 5px"><a href="#">身份证号：<input type="text" id="intion" name="intion" style="width: 150px;height:30px;border-style:inset;"></a></div>
-        <div style="margin: 5px"><a href="#">性&emsp;&emsp;别：<input type="text" id="gender" name="gender" style="width: 150px;height:30px;border-style:inset; "></a></div>
-        <div style="margin: 5px"><a href="#">电&emsp;&emsp;话：<input type="text" id="telephone" name="telephone" style="width: 150px;height:30px;border-style:inset; "></a></div>
-        <div style="margin: 5px"><a href="#">地&emsp;&emsp;址：<input type="text" id="address" name="address" style="width: 150px;height:30px;border-style:inset; "></a></div>
+        <div style="margin: 5px">名&emsp;&emsp;字：<input type="text" id="name" name="name" value=""  style="width: 150px;height:30px;border-style:inset;"></div>
+        <div style="margin: 5px">密&emsp;&emsp;码：<input type="text" id="pwd" name="pwd" style="width: 150px;height:30px;border-style:inset; "></div>
+        <div style="margin: 5px">身份证号：<input type="text" id="intion" name="intion" style="width: 150px;height:30px;border-style:inset;"></div>
+        <div style="margin: 5px">性&emsp;&emsp;别：<input type="text" id="gender" name="gender" style="width: 150px;height:30px;border-style:inset; "></div>
+        <div style="margin: 5px">电&emsp;&emsp;话：<input type="text" id="telephone" name="telephone" style="width: 150px;height:30px;border-style:inset; "></div>
+        <div style="margin: 5px">地&emsp;&emsp;址：<input type="text" id="address" name="address" style="width: 150px;height:30px;border-style:inset; "></div>
     </div>
 </div>
 
@@ -57,15 +57,11 @@
                 {type:'numbers', title:'序号', width:80, unresize: true, sort: true}
                 ,{field:'name', title:'名字', width:120, edit: 'text'}
                 ,{field:'pwd', title:'密码', width:80, edit: 'text'}
-                ,{field:'company_id', title:'公司', width:80, edit: 'text'}
-                ,{field:'department_id', title:'部门',width:80,edit: 'text'}
-                ,{field:'position_id', title:'职位',width:80,edit: 'text'}
-                ,{field:'base_salary', title:'工资', width:80,edit: 'text'}
-                ,{field:'intion', title:'身份证号', width:120}
-                ,{field:'gender', title:'性别', width:80}
-                ,{field:'telephone', title:'电话', width:80}
-                ,{field:'address', title:'地址',width:80}
-                ,{fixed: 'right', title: '操作', toolbar: '#barDemo', width: 120}
+                ,{field:'intion', title:'身份证号'}
+                ,{field:'gender', title:'性别'}
+                ,{field:'telephone', title:'电话'}
+                ,{field:'address', title:'地址'}
+                ,{fixed: 'right', title: '操作', toolbar: '#barDemo',align: 'center'}
             ]]
             , id: 'department'
             ,height:'full-50'
@@ -103,6 +99,12 @@
             if(obj.event === 'del'){
 
             } else if(obj.event === 'edit'){
+                var namea=$('#name').val(data.name);
+                var pwda=$('#pwd').val(data.pwd);
+                var intiona=$('#intion').val(data.intion)
+                var gendera=$('#gender').val(data.gender)
+                var telephonea=$('#telephone').val(data.telephone)
+                var addressa=$('#address').val(data.address)
                 layui.use('layer', function(){
                     var layer = layui.layer;
                     layer.open({
