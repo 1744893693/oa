@@ -41,8 +41,9 @@
 
 
        <div id="plus" style="display: none;">
-           <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_names"  name="position_names"style="width: 150px;height: 30px;margin-left:20px"></div>
+
                <form class="layui-form" >
+                   <div style=" ;margin-top: 80px;margin-left:130px " >职位昵称 <input type="text" id="position_names"  name="position_names"style="width: 145px;height: 30px;margin-left:20px"></div>
            <div class="layui-form-item">
                <label class="layui-form-label"style="left:90px">选择部门</label>
                <div class="layui-input-block" style="width: 150px;height: 30px;margin-right:30px;margin-top: 10px;left: 100px">
@@ -57,6 +58,7 @@
                        }?>
                    </select>
                </div>
+
            </div>
         </form>
      </div>

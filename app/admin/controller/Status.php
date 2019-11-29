@@ -14,7 +14,7 @@ class  Status extends Login
     function company()
     {
         $d=new Model();
-        $data=$d->selects();
+        $d->selects();
         include_once './app/admin/view/status/company.php';
     }
 
@@ -33,8 +33,8 @@ class  Status extends Login
         $d->sql_operation("insert into department (name,company_id) VALUES ('人事部',$id)");
         $da=$d->sql_operation("select id from department WHERE company_id=$id ");
         $da=$da[0]['id'];
-//        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,'$id')");
-        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (18 ,$da,$id)");
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (19 ,$da,'$id')");
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,$id)");
         exit($account.'已经注册成功');
     }
     function statussc(){
@@ -60,13 +60,12 @@ class  Status extends Login
         if(empty($data)){
             $data=$d->selects();
         }
-        if($data){
+
             $d=[];
             $d['code']=0;
             $d['count']=100;
             $d['msg']="";
             $d['data']=$data;
-        }
         echo json_encode($d);
     }
 }

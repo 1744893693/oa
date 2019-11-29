@@ -28,6 +28,9 @@ class Punchin extends Login {
         $time_end = strtotime(date("Y-m-d 23:59:59"));
         $start_time= $d->sql_operation("select * from workingtime start where user_id='$rid' order by id desc limit 1");
         $start_time=$start_time[0]['start'];
+
+
+
         if($time_start < $start_time && $start_time < $time_end){
             echo json_encode(array('type'=>203,'data'=>'您已打卡'));
             die();
@@ -35,9 +38,10 @@ class Punchin extends Login {
             $d->sql_operation("insert into `workingtime` (`name`,`company_id`,`start`,`end`,`user_id`) values ('$name','$id','$time',0,'$rid')");
             echo json_encode(array('type'=>201,'data'=>'打卡成功'));
         }
-        if($start_time>$aa){
+        if($start_time==null && $start_time>$aa){
             echo json_encode(array('type'=>202,'data'=>'您已迟到'));
         }
+
     }
 
 
@@ -56,6 +60,7 @@ class Punchin extends Login {
                 $d->sql_operation("UPDATE `workingtime` SET `end`='$time' WHERE id='$start_id'");
                 echo json_encode(array('type'=>201,'data'=>'打卡成功'));
         }else{
+                $d->sql_operation("UPDATE `workingtime` SET `end`='$time' WHERE id='$start_id'");
             echo json_encode(array('type'=>202,'data'=>'您已早退'));
         }
     }
@@ -71,10 +76,11 @@ class Punchin extends Login {
         if ($time>$gtime){
             echo json_encode(array('type'=>'202','data'=>'补卡申请提交失败'));
         }else{
-            $d->sql_operation("INSERT INTO `card_examine`(`name`, `reasons`, `latetime`, `status`) VALUES ('$name','$reasons','$time','下班未打卡')");
+            $d->sql_operation("INSERT INTO `card_examine`(`name`, `reasons`, `latetime`, `status`) VALUES ('$name','$reasons','$time',0,1,0)");
             echo json_encode(array('type'=>'200','data'=>'补卡申请提交成功'));
         }
     }
+
 
 
     function ddd (){
@@ -82,15 +88,14 @@ class Punchin extends Login {
 
         $id=$_SESSION["admin"]["company_id"];
         $data=$d->sql_operation("select * from  workingtime WHERE company_id='$id'");
-        if($data){
+
             $d=[];
             $d['code']=0;
             $d['count']=100;
             $d['msg']="";
             $d['data']=$data;
-        }
         echo json_encode($d);
-    }
+}
 }
 
 

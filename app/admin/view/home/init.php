@@ -50,7 +50,7 @@
         var menu=[]
     $.post('./?s=admin/Home/menu',function (data) {
         menu=data
-        $('#title').html(data.company[0].company_name+'OA后台管理')
+        $('#title').html(data.company[0].company_name+'系统')
         $('#l').append('<a href="javascript:login_out()">退出</a>')
         if (menu.department[0]['department_id']!=null){
             for(val of menu.department){
