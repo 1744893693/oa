@@ -33,8 +33,8 @@ class  Status extends Login
         $d->sql_operation("insert into department (name,company_id) VALUES ('人事部',$id)");
         $da=$d->sql_operation("select id from department WHERE company_id=$id ");
         $da=$da[0]['id'];
-//        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,'$id')");
-        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (18 ,$da,$id)");
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (19 ,$da,'$id')");
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,$id)");
         exit($account.'已经注册成功');
     }
     function statussc(){
