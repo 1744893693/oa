@@ -17,8 +17,7 @@
 
        <span class="layui-breadcrumb">
   <a href="./?s=admin/Home/init">首页</a>
-  <a href="/demo/">演示</a>
-  <a><cite>职位管理</cite></a>
+  <a><cite>菜单管理</cite></a>
        </span>
 
        <table id="demo" lay-filter="test"></table>
@@ -45,15 +44,13 @@
        <div id="tan" style="display: none;margin-top: 20px">
            <form class="layui-form" >
                <div class="layui-form-item">
-                   <label class="layui-form-label">选择部门</label>
-                   <div class="layui-input-block" style="width: 250px">
+                   <label class="layui-form-label" style="width: 87px">选择上级菜单</label>
+                   <div class="layui-input-block" style="width: 250px;margin-left: 120px">
                        <select id="edit_department">
                            <?php foreach ($date['department'] as $val){
-                               if($val['department_name']!='个人中心'){
                                ?>
                                <option value="<?php echo $val['id']?>"><?php echo $val['department_name']?></option>
                                <?php
-                               }
                            }?>
                        </select>
                    </div>
@@ -65,8 +62,8 @@
 <!--           <div style=" text-align:center;margin-top: 80px;" >职位昵称 <input type="text" id="position_namepuls"  name="position_name"style="width: 150px;height: 30px"></div>-->
            <form class="layui-form" >
                <div class="layui-form-item" >
-                   <label class="layui-form-label">选择功能</label>
-                   <div class="layui-input-block" style="width: 250px">
+                   <label class="layui-form-label" style="width: 87px">选择添加功能</label>
+                   <div class="layui-input-block" style="width: 250px;margin-left: 120px">
                        <select  id="menu" >
                            <?php foreach ($date['menu'] as $val){
                                ?>
@@ -77,15 +74,13 @@
                    </div>
                </div>
                <div class="layui-form-item">
-                   <label class="layui-form-label">选择部门</label>
-                   <div class="layui-input-block" style="width: 250px">
+                   <label class="layui-form-label" style="width: 87px">选择上级菜单</label>
+                   <div class="layui-input-block" style="width: 250px ;margin-left: 120px">
                        <select id="department">
                            <?php foreach ($date['department'] as $val){
-                           if($val['department_name']!='个人中心') {
                                ?>
                                <option value="<?php echo $val['id'] ?>"><?php echo $val['department_name'] ?></option>
                                <?php
-                                }
                            }?>
                        </select>
                    </div>
@@ -95,7 +90,6 @@
 
 
        <script type="text/javascript">
-
            layui.use('table', function(){
                var table = layui.table;
                table.render({

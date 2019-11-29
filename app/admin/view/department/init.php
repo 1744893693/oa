@@ -18,10 +18,10 @@
 <script type="textml" id="toolbarDemo" >
     <div class="demoTable">
         <div class="layui-inline" id="insearch">
-            <input class="layui-input"  name="id" id="name"  autocomplete="off">
+            <input class="layui-input"  name="name" id="nametext"  autocomplete="off">
         </div>
-        <button class="layui-btn" data-type="reload" id="search">搜索</button>
-        <button class="layui-btn" data-type="reload" id="insert">添加</button>
+         <button class="layui-btn" data-type="reload" id="search">搜索</button>
+         <button class="layui-btn" data-type="reload" id="insert">添加</button>
     </div>
 </script>
 
@@ -31,7 +31,7 @@
 </script>
 <div id="tan" style="display: none;margin-top:65px">
     <div style=" text-align:center" class="layui-form-item">部门名字：
-        <input type="text" id="id" name="name" style="width: 150px;height:30px ">
+        <input type="text" id="nametest" name="name" style="width: 150px;height:30px ">
     </div>
 </div>
 
@@ -54,8 +54,7 @@
                // {type: 'checkbox', fixed: 'left'}
                  {type: 'numbers', title: '序号', width: 80, fixed: 'left', unresize: true, sort: true}
                 , {field: 'name', title: '部门名字',  edit: 'text'}
-                , {field: 'company_id', title: '公司代号',  edit: 'text'}
-                , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 250}
+                , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 200,align: 'center' }
             ]]
             , id: 'department'
             , page: true
@@ -66,7 +65,11 @@
         table.on('tool(test)', function (obj) {
             var data = obj.data;
             if (obj.event === 'del') {
-                layer.confirm('是否删除：' + data.name + "部门?", function (index) {
+                if(data.name=='人事部'){
+                    layer.msg('禁止此操作')
+                    return false
+                }
+                layer.confirm('是否删除：' + data.name + "部门?",{ skin: 'layui-layer-molv', } ,function (index) {
                     $.post('./?s=admin/Department/delete', {id: data.id});
                     obj.del();
                     //layer.close(index);
@@ -75,6 +78,10 @@
                 });
             }
             else if(obj.event === 'edit'){
+                if(data.name=='人事部'){
+                    layer.msg('禁止此操作')
+                    return false
+                }
                 layui.use('layer', function(){
                     var layer = layui.layer;
                     layer.open({
@@ -87,13 +94,13 @@
                         shade:.0,
                         type:1,
                         yes: function(index){
-                            var id=$('#id').val();
-                            $.post('./?s=admin/Department/update', { id:data.id,name:id},function (date) {
-                                layer.msg('编辑成功')
+                            var name=$('#nametest').val();
+                            $.post('./?s=admin/Department/update', { id:data.id,name:name},function (date) {
+                                layer.msg('编辑成功');
                                 layui.table.reload('department');
-                            })
+                            });
                             layer.close(index)
-                        },
+                        }
                     })
                 })
             }
@@ -111,19 +118,19 @@
                     shade: 0,
                     type: 1,
                     yes: function (index) {
-                        var id=$('#id').val();
-                        $.post('./?s=admin/Department/insert', {id:id,name:id}, function (date) {
-                                    layer.msg('添加成功')
+                        var name=$('#nametest').val();
+                        $.post('./?s=admin/Department/insert', {name:name}, function (date) {
+                                    layer.msg('添加成功');
                                     layui.table.reload('department');
                         });
                         layer.close(index)
                     }
                 })
             })
-        })
+        });
         $(document).on('click','#search',function(){
             // 搜索条件
-            var name = $('#name').val();
+            var name = $('#nametext').val();
             table.reload('department', {
                 method: 'post'
                 , where: {
