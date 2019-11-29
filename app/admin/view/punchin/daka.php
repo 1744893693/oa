@@ -22,7 +22,7 @@
         <th><button type="button" class="layui-btn layui-btn-lg" id="up">上班打卡</button></th>
         <th><button type="button" class="layui-btn layui-btn-lg" id="db">下班打卡</button></th>
 
-        <th><button type="button"class="layui-btn layui-btn-lg layui-btn-danger" id="bu" value="<?php echo date('H:i:s',time())?>"onclick="list3(this.value)" >补卡</button></th>
+        <th><button type="button"class="layui-btn layui-btn-lg layui-btn-danger" id="bu" value="<?php echo date('H:i:s',time())?>"onclick="list3(this.value)" >上班补卡</button></th>
 
 
         <div id="bk" style="display: none;margin-top:65px">
@@ -32,6 +32,9 @@
            <textarea rows="3" cols="20"type="text"id="reasons"name="reasons" style="width: 350px;height:100px;margin-left:95px ">
 补卡原因：
 </textarea>
+
+
+
 
         </div>
     </tr>
@@ -49,6 +52,7 @@ $(function () {
 
                 success:function(data){
                     layer.msg(data.data)
+                    layui.table.reload('testReload');
                 }
             })
         })
@@ -60,6 +64,7 @@ $(function () {
 
                 success:function(data){
                     layer.msg(data.data)
+                    layui.table.reload('testReload');
                 }
             })
         })
@@ -92,6 +97,37 @@ $(function () {
           })
         })
      }
+
+
+function list4(value) {
+    layui.use('table', function() {
+        var datt=$("#xb").val();
+
+        layer.open({
+            skin: 'layui-layer-molv',
+            btn: ['提交', '取消'],
+            area: ['500px', '400px'],
+            formType:2,
+            title:'提交补卡申请',
+            content:$('#bk2'),
+            icon:0,
+            shade:.0,
+            type:1,
+            yes: function(index){
+                $.post('./?s=admin/Punchin/xbk', {name:$("#name").val(),reasons:$("#reasons").val()},function (index) {
+                    layer.msg(index.data)
+                    layui.table.reload('testReload');
+                },'json')
+
+                layer.close(index)
+            },
+        })
+    })
+}
+
+
+
+
 layui.use('table', function() {
     var table = layui.table;
     table.render({
@@ -108,12 +144,15 @@ layui.use('table', function() {
             {type: 'numbers', title: '序号', width: 80, sort: true, fixed: 'left'},
             {field: 'name', title: '员工名字'},
             {field: 'start', title: '上班打卡时间',templet:function (d) {
-
-
-//                return '+a+';
                 return   new Date(parseInt(d.start) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ')
             }},
-            {field: 'end', title: '下班打卡时间'},
+            {field: 'end', title: '下班打卡时间',templet:function (d) {
+            if (d.end!=0){
+                return new Date(parseInt(d.end) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ')
+            }else {
+                return 0;
+            }}},
+
         ]],
         id: 'testReload'
         , page: true

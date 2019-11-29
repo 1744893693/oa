@@ -14,7 +14,7 @@ class  Status extends Login
     function company()
     {
         $d=new Model();
-        $data=$d->selects();
+        $d->selects();
         include_once './app/admin/view/status/company.php';
     }
 
@@ -59,13 +59,12 @@ class  Status extends Login
         if(empty($data)){
             $data=$d->selects();
         }
-        if($data){
+
             $d=[];
             $d['code']=0;
             $d['count']=100;
             $d['msg']="";
             $d['data']=$data;
-        }
         echo json_encode($d);
     }
 }
