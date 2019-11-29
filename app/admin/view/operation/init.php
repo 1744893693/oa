@@ -56,7 +56,7 @@
                 {field: 'name', title: '请假人' },
                 {field: 'start_time', title: '开始时间' },
                 {field: 'end_time', title: '结束时间' },
-                {field: 'approver', title: '审批人' },
+                {field: 'position_id', title: '审批人' },
                 {field: 'type', title: '请假类型' },
                 {field: 'reason', title: '请假原因' },
                 {field: 'audit', title: '请假审批', templet:function (d) {
