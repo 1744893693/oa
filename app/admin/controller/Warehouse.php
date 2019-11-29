@@ -17,21 +17,22 @@ class Warehouse extends Login{
     }
     function warehouse(){
         $aa = new Model();
+        $app =  $this->company_id;
         if(!empty($_GET['send_name'])){
             $data=$aa->sql_operation("select * from warehous where name like '%$_GET[send_name]%' or warehous_time like '%$_GET[send_name]%'  ");
         }else{
-            $data=$aa->warehous();
+            $data=$aa->sql_operation("select * from warehous where warehous.company_id='$app'");
         }
-        if(empty($data)){
-            $data=$aa->warehous();
-        }
-        if($data){
+//        if(empty($data)){
+//            $data=$aa->warehous();
+//        }
+
             $d=[];
             $d['code']=0;
             $d['count']=count($data);
             $d['msg']="";
             $d['data']=$data;
-        }
+
         echo json_encode($d);
     }
     function warehouse_insert(){

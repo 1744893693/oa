@@ -49,9 +49,11 @@
                    <select id="position_id">
                        <option value=""></option>
                        <?php foreach ($data['department'] as $val){
+                       if($val['name']!='个人中心'){
                            ?>
                            <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
                            <?php
+                       }
                        }?>
                    </select>
                </div>

@@ -15,21 +15,22 @@ class Operation extends Login {
     }
     function operation(){
         $aa = new Model();
+        $a = $this->company_id;
         if(!empty($_GET['send_name'])){
             $data=$aa->sql_operation("select * from operation where name like '%$_GET[send_name]%'  or id like '%$_GET[send_name]%'");
         }else{
-            $data=$aa->operation();
+            $data=$aa->sql_operation("select * from operation where operation.company_id='$a'");
         }
-        if(empty($data)){
-            $data=$aa->operation();
-        }
-        if($data){
+//        if(empty($data)){
+//            $data=$aa->operation();
+//        }
+
             $d=[];
             $d['code']=0;
             $d['count']=count($data);
             $d['msg']="";
             $d['data']=$data;
-        }
+
         echo json_encode($d);
     }
     function update1(){

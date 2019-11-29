@@ -86,16 +86,18 @@
                         <select id="department_id">
                             <option value=""></option>
                             <?php foreach ($date['department'] as $val){
+                            if($val['name']!='个人中心'){
                                 ?>
                                 <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
                                 <?php
+                            }
                             }?>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">任务内容</label>
-                    <div class="layui-input-block" >
+                    <div class="layui-input-block" style="width: 190px">
                         <textarea id="test_content" name="test_content" placeholder="请输入任务内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
@@ -223,7 +225,7 @@
                             var layer = layui.layer;
                             layer.open({
                                 skin: 'layui-layer-molv',
-                                area: ['600px', '600px'],
+                                area: ['500px', '550px'],
                                 type:1,
                                 btn:['确定','取消'],
                                 content:$('#rw'),

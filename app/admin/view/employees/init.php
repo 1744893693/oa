@@ -77,9 +77,11 @@
                         <select id="department_id1">
                             <option value=""></option>
                             <?php foreach ($date['department'] as $val){
+                                 if($val['name']!='个人中心'){
                                 ?>
                                 <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
                                 <?php
+                                 }
                             }?>
                         </select>
                     </div>
@@ -134,9 +136,11 @@
                     <select id="department_id">
                         <option value=""></option>
                         <?php foreach ($date['department'] as $val){
+                            if($val['name']!='个人中心'){
                             ?>
                             <option value="<?php echo $val['id']?>"><?php echo $val['name']?></option>
                             <?php
+                            }
                         }?>
                     </select>
                 </div>
@@ -192,21 +196,35 @@
             //监听行工具事件
             table.on('tool(test)', function(obj){
                 var data = obj.data;
+
                 if(obj.event === 'del'){
-                    layer.confirm("是否删除该用户?", function(index){
-                        $.ajax({
-                            url:"./?s=admin/Employees/employee",
-                            type:'post',
-                            data:{'id':data.id},//向服务端发送删除的id
-                            success:function(v){
-                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                                layer.close(index);
-//                                layer.msg(v.data);
-                            }
-                        })
-                        layer.close(index);
+                    layer.confirm('是否删除该用户？', function(index){
+                        $.post('?s=admin/Employees/employee', {
+                            id:data.id
+                        }, function (v) {
+                            layer.msg(v.data);
+                            layui.table.reload('testReload');
+                        },'json')
+                        layer.close(index)
                     })
-                } else if(obj.event === 'edit'){
+                }
+
+//                if(obj.event === 'del'){
+//                    layer.confirm("是否删除该用户?", function(index){
+//                        $.ajax({
+//                            url:"./?s=admin/Employees/employee",
+//                            type:'post',
+//                            data:{'id':data.id},//向服务端发送删除的id
+//                            success:function(v){
+//                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+//                                layer.close(index);
+////                                layer.msg(v.data);
+//                            }
+//                        })
+//                        layer.close(index);
+//                    })
+//                }
+                else if(obj.event === 'edit'){
                     layui.use('layer', function(){
                         var layer = layui.layer;
                         layer.open({

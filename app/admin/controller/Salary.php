@@ -80,19 +80,24 @@ position.position_name,salary.* from salary LEFT JOIN user on `user`.id=salary.u
             $time=$d->sql_operation('SELECT name,start,end from workingtime WHERE user_id='.$val1['id']);
             $late=0;
             $obsent=0;
+            $daka=0;
             foreach ($time as $val2){
                 $dd=date('Ym',$val2['start'])-(date('Ym',time())-1);
-                if($dd==1&&$val1['permissions_id']!=0) {
-                    $aa=date('h',$val2['start']);
-                    $bb=date('h',$val2['end']);
-                    $status=$aa-$start_time;
-                    $status1=$end_time-$bb;
-                    if($status>=1&&$status<3||$status1>=1&&$status1<3){
-                        $late++;
-                    }elseif ($status>=3||$status1>=3){
-                        $obsent++;
+                if(date('Ym',$val2['start'])!=date('Ym',time())){
+                    if($dd==1&&$val1['permissions_id']!=0) {
+                        $aa=date('h',$val2['start']);
+                        $bb=date('h',$val2['end']);
+                        $status=$aa-$start_time;
+                        $status1=$end_time-$bb;
+                        if($status>=1&&$status<3||$status1>=1&&$status1<3){
+                            $late++;
+                        }elseif ($status>=3||$status1>=3){
+                            $obsent++;
+                        }
+                        $daka++;
                     }
                 }
+
             }
             $id=$val1['id'];
             $base_salary=$val1['base_salary'];
@@ -104,7 +109,7 @@ position.position_name,salary.* from salary LEFT JOIN user on `user`.id=salary.u
             $sele=$d->sql_operation("select id from salary WHERE user_id=$id and `month`=$month");
             if(empty($sele[0])&&$val1['permissions_id']!=0){
                 $dakacount=count($time);
-                if($dakacount==0){
+                if($dakacount==0||$daka==0){
                     $obsent=30;
                     $bs=0;
                 }

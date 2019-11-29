@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="./public/css/style.css" />
 <body>
 <div class="register-container">
-    <h1>公司系统注册网</h1>
-    <div class="connect">
-        <p>●洪福齐天●一统网吧●</p>
-    </div>
+    <h1>公司OA系统注册网</h1>
     <form action="" method="post" id="registerForm">
         <div>
             <input id="company_name" type="text" name="company_name" class="username" placeholder="公司名字" autocomplete="off">

@@ -34,16 +34,16 @@ class Department extends Login {
         }
     }
     function insert(){
-        $id=$_POST['id'];
-        $name=$_POST['id'];
-        if(!$id == ''){
-                $data=(new Model())->sql_operation("insert into department (`id`,`name`,`company_id`)values('$id','$name' ,'$this->company_id')");
+        $name=$_POST['name'];
+        if(!$name == ''){
+                $data=(new Model())->sql_operation("insert into department (`name`,`company_id`)values('$name','$this->company_id' )");
         }
     }
     function search(){
         $d=new Model();
         if(!empty($_POST['name'])){
-            $data=$d->sql_operation("select * from department where   name like '%$_POST[name]%' AND  company_id=$this->company_id");
+            $jj='个人中心';
+            $data=$d->sql_operation("select * from department where name!='$jj' AND name like '%$_POST[name]%' AND  company_id=$this->company_id");
         }else{
             $data=$d->selectsearch();
         }

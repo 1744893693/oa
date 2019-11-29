@@ -15,28 +15,23 @@ class Logistic extends Login{
     }
     function logistic(){
         $aa = new Model();
-        $app =  $this->name;
+        $app =  $this->company_id;
         if(!empty($_GET['send_name'])){
-            $data=$aa->sql_operation("select * from logistic where name like '%$_GET[send_name]%' or department_id  like '%$_GET[send_name]%' or apply_name  like '%$_GET[send_name]%' or apply_time  like '%$_GET[send_name]%'and apply_name='$app' ");
+            $data=$aa->sql_operation("select * from logistic where  department_id  like '%$_GET[send_name]%' or apply_name  like '%$_GET[send_name]%' or apply_time  like '%$_GET[send_name]%' ");
         }else{
-            $data=$aa->logistic();
+            $data=$aa->sql_operation("select * from logistic where logistic.company_id='$app'");
         }
-        if(empty($data)){
-            $data=$aa->logistic();
-        }
-        if($data){
+//        if(empty($data)){
+//            $data=$aa->logistic();
+//        }
+
             $d=[];
             $d['code']=0;
             $d['count']=count($data);
             $d['msg']="";
             $d['data']=$data;
-        }
+
         echo json_encode($d);
-
-
-
-
-
 
     }
     function update1(){
