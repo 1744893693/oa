@@ -12,7 +12,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" id="title"></div>
+        <div class="layui-logo" id="title" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis"></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" id="top-menu">
 <!--            <li class="layui-nav-item layui-nav-itemed"><a href="javascript:menu_child('+val.department_id+')">个人中心</a></li>-->

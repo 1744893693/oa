@@ -23,18 +23,19 @@ class  Status extends Login
         $account=$_POST['account'];
         $id=$_POST['id'];
         $name=$_POST['name'];
-        $da=$d->sql_operation("select * from user WHERE company_id=$id and permissions_id='0'");
-        if(!empty($da)){
-            exit($account.'已经注册成功');
-        }
+//        $da=$d->sql_operation("select * from user WHERE company_id=$id and permissions_id='0'");
+//        if(!empty($da)){
+//            exit($account.'已经注册成功');
+//        }
         $d->sql_operation("update company set status=1 WHERE id='$id'");
         $d->sql_operation("insert into user (user_name,name,pwd,company_id,permissions_id) VALUES ('$name','$account','111111',$id,'0')");
         $d->sql_operation("insert into department (name,company_id) VALUES ('个人中心',$id)");
         $d->sql_operation("insert into department (name,company_id) VALUES ('人事部',$id)");
         $da=$d->sql_operation("select id from department WHERE company_id=$id ");
-        $da=$da[0]['id'];
-        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (19 ,$da,'$id')");
-        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (9 ,$da,$id)");
+        $da2=$da[0]['id'];
+        $da1=$da[1]['id'];
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (19 ,$da2,'$id')");
+        $d->sql_operation("insert into functional_group (menu_id,department_id,company_id) VALUES (18 ,$da1,$id)");
         exit($account.'已经注册成功');
     }
     function statussc(){

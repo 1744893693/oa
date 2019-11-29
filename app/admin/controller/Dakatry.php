@@ -19,13 +19,11 @@ class  Dakatry extends Login {
     {
         $d = new Model();
         $data = $d->sql_operation("select * from card_examine");
-        if ($data) {
             $d = [];
             $d['code'] = 0;
             $d['count'] = 100;
             $d['msg'] = "";
             $d['data'] = $data;
-        }
         echo json_encode($d);
     }
     function up(){

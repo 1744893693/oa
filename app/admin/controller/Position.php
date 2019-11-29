@@ -23,14 +23,11 @@ class  Position extends  Login {
     function  managements(){
         $d=new Model();
         $data=$d->positionc();
-
-        if($data){
             $d=[];
             $d['code']=0;
             $d['count']=100;
             $d['msg']="";
             $d['data']=$data;
-        }
         echo json_encode($d);
     }
     function positionsc(){
